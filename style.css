@@ -41,8 +41,6 @@ p {
 }
 
 .gallery img {
-  width: 100%;
-  max-width: 400px;
   height: auto;
   border: 4px solid #1aff00;
   border-radius: 10px;
@@ -50,10 +48,26 @@ p {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* 2 per row funny widths for mobile */
+@media (max-width: 600px) {
+  .gallery img { width: 48%; max-width: 200px; }
+}
+
+/* 2 per row funny widths for tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .gallery img { width: 47%; max-width: 350px; }
+}
+
+/* 2 per row funny widths for desktop */
+@media (min-width: 1025px) {
+  .gallery img { width: 46%; max-width: 500px; }
+}
+
 .gallery img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 35px #faff00;
 }
+
 
 /* === FUN LIST === */
 .fun-list {
