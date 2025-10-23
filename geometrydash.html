@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry Dash Unblocked</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Geometry Dash Lite</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css"> 
+    
     <style>
-        /* Minimal CSS for a full-screen game experience */
-        body {
-            background-color: #351c75; /* Dark background */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        html, body {
+            touch-action: none;
+            -ms-touch-action: none;
             margin: 0;
-            overflow: hidden; /* Prevent scrolls when game is full screen */
+            padding: 0;
+            background-color: black;
         }
-        
-        /* The game iframe container */
-        .game-embed {
-            width: 100vw;   /* Fill viewport width */
-            height: 100vh;  /* Fill viewport height */
-            border: none;
+        canvas {
+            display: block;
+            margin: 0 auto;
         }
     </style>
+    
+    <script id="gamedistribution-jssdk" src=""></script>
 </head>
-<body>
-    
-    <iframe 
-        class="game-embed" 
-        src="https://geometrydash.io/" 
-        title="Geometry Dash Unblocked" 
-        frameborder="0" 
-        allowfullscreen>
-    </iframe>
-    
+<body style="cursor: auto;">
+
+    <script src="c2runtime.js"></script>
+    <script src="start.js"></script>
+    <script src="data.js"></script> 
+    <div id="fb-root"></div>
+
 </body>
 </html>
