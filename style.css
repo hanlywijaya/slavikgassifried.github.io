@@ -1,0 +1,101 @@
+/* === BIONIC FART GREEN THEME === */
+/* Slavik Gassyfried Fanpage CSS */
+
+body {
+  background-color: #00ff00; /* Bionic Fart Green */
+  color: #0b0b0b;
+  font-family: 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* === HEADINGS === */
+h1 {
+  color: #101010;
+  text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00;
+  font-size: 2.8em;
+  margin-top: 30px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+/* === IMAGES === */
+img {
+  display: block;
+  margin: 20px auto;
+  border: 4px solid #1aff00;
+  border-radius: 10px;
+  box-shadow: 0 0 25px #1aff00;
+  transition: transform 0.3s;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* === LIST === */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  display: inline-block;
+  background-color: #111;
+  color: #9eff00;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px #70ff00;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* === LINKS === */
+a {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  background-color: #0a0;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #7fff00;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+a:hover {
+  background-color: #8eff00;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* === GOOGLE TRANSLATE WIDGET === */
+#google_translate_element {
+  margin: 30px auto;
+}
+
+/* === AUDIO PLAYER === */
+audio {
+  margin: 20px auto;
+  display: block;
+  border: 3px solid #9eff00;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #9eff00;
+}
+
+/* === FOOTER === */
+footer {
+  margin-top: 40px;
+  color: #050;
+  font-size: 0.9em;
+  text-shadow: 0 0 5px #77ff00;
+}
