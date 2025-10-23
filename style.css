@@ -141,3 +141,56 @@ footer {
   text-shadow: 0 0 5px #77ff00;
   padding-bottom: 30px;
 }
+
+/* === RESPONSIVE LAYOUT === */
+
+/* Mobile (iPhone) — stack vertically */
+@media (max-width: 600px) {
+  img {
+    width: 95%;
+    max-width: 100%;
+    margin: 8px auto;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  a {
+    width: 80%;
+    font-size: 0.9em;
+  }
+}
+
+/* Tablet (iPad) — 2 images per row */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 45%;
+    max-width: 500px;
+  }
+}
+
+/* Desktop — 3 images per row */
+@media (min-width: 1025px) {
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  img {
+    width: 30%;
+    max-width: 400px;
+  }
+}
