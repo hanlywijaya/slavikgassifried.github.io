@@ -2,37 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slavik Gassyfried Fanpage</title>
   <link rel="icon" type="image/jpeg" href="Gemini_Generated_Image_148w3c148w3c148w copy.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welcome to slavikgassyfried</h1>
-  <p>This is an amazing fanpage website run by the fans of SLavik gassy!</p>
 
-  <!-- Images -->
-  <img src="Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
-  <img src="IMG_0696.PNG" alt="Gassy slavik">
-  <img src="ohnothedog.jpg" alt="oh no gassy slavik dog">
-  <img src="3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
-  <img src="3F947298-08E2-4E94-8665-532273DBDBBB_1_105_c.jpeg" alt="oregrk dog">
-  <img src="C29C5A94-DC9D-4B0A-8F36-4A43F5FD1820_1_105_c.jpeg" alt="smellyone dog">
-  <img src="C4BD9B58-40E0-4A01-B643-7C272758540A_1_105_c.jpeg" alt="Gassy slavik">
-  <img src="F78D8E3E-C169-445C-82B3-9416D584BE8B_1_105_c.jpeg" alt="direiogjkg">
+  <!-- HEADER -->
+  <header>
+    <h1>Welcome to slavikgassyfried</h1>
+    <p>This is an amazing fanpage website run by the fans of SLavik gassy!</p>
+  </header>
 
-  <!-- Fun list -->
-  <ul>
+  <!-- IMAGE GALLERY -->
+  <section class="gallery">
+    <img src="Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
+    <img src="IMG_0696.PNG" alt="Gassy slavik">
+    <img src="ohnothedog.jpg" alt="oh no gassy slavik dog">
+    <img src="3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
+    <img src="3F947298-08E2-4E94-8665-532273DBDBBB_1_105_c.jpeg" alt="oregrk dog">
+    <img src="C29C5A94-DC9D-4B0A-8F36-4A43F5FD1820_1_105_c.jpeg" alt="smellyone dog">
+    <img src="C4BD9B58-40E0-4A01-B643-7C272758540A_1_105_c.jpeg" alt="Gassy slavik">
+    <img src="F78D8E3E-C169-445C-82B3-9416D584BE8B_1_105_c.jpeg" alt="direiogjkg">
+  </section>
+
+  <!-- FUN LIST -->
+  <ul class="fun-list">
     <li>SLava</li>
     <li>is</li>
     <li>gassifried</li>
     <li>jorking!</li>
   </ul>
 
-  <!-- Links -->
-  <a href="#" id="favLink">slaviks fav gassyfried</a>
-  <a href="https://sites.google.com/view/drive-u-7-home/geometry-dash-lite" target="_blank">unblocked game? yes please</a>
+  <!-- LINKS -->
+  <div class="links">
+    <a href="#" id="favLink">slaviks fav gassyfried</a>
+    <a href="https://sites.google.com/view/drive-u-7-home/geometry-dash-lite" target="_blank">unblocked game? yes please</a>
+  </div>
 
-  <!-- Video -->
+  <!-- VIDEO -->
   <div class="video-container">
     <video controls>
       <source src="lgnosignal.mp4" type="video/mp4">
@@ -40,38 +49,32 @@
     </video>
   </div>
 
-  <!-- Google Translate -->
+  <!-- GOOGLE TRANSLATE -->
   <div id="google_translate_element"></div>
-  <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-    }
-  </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <!-- Audio -->
+  <!-- AUDIO -->
   <audio controls autoplay>
     <source src="greatautoplay.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
-
   <audio controls autoplay>
     <source src="greatautoplay2.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
   </footer>
 
-  <!-- ⚠️ WARNING SYSTEM SCRIPT -->
+  <!-- SCRIPTS -->
   <script>
-    document.getElementById("favLink").addEventListener("click", function(event) {
-      event.preventDefault(); // stop immediate link navigation
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
 
+    // Fav gassyfried warning system
+    document.getElementById("favLink").addEventListener("click", function(event) {
+      event.preventDefault();
       const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
-      
       if (confirm(confirmMessage)) {
         window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
       } else {
@@ -79,5 +82,7 @@
       }
     });
   </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
