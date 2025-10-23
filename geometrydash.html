@@ -1,0 +1,22 @@
+  <!-- INDEPENDENT GEOMETRY DASH EMBED -->
+<div id="geometryDashContainer" style="width:640px; height:360px; overflow:hidden; margin:0 auto;">
+  <canvas id="gameCanvas" width="1914" height="1077"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@64d92b5d448ee74c27904841ebbe9c3ef787c443/c2runtime.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/start.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/register-sw.js"></script>
+
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const container = document.getElementById('geometryDashContainer');
+
+  function resizeCanvas() {
+    const rect = container.getBoundingClientRect();
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+</script>
