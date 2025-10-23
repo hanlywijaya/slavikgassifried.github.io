@@ -3,29 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry Dash Stripped</title>
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000; /* Black background */
-            overflow: hidden; /* Hide scrollbars */
-        }
-        .game-embed {
-            width: 100vw; /* 100% of viewport width */
-            height: 100vh; /* 100% of viewport height */
-            border: none;
-        }
-    </style>
+    <title>Geometry Dash</title>
+    <!-- Link your site CSS if you want the game to inherit your styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link your game JS and any required assets -->
+    <script src="game.js" defer></script>
 </head>
 <body>
-
-    <iframe 
-        class="game-embed" 
-        src="https://geometrydash.io/" 
-        allowfullscreen>
-    </iframe>
-
+    <!-- Game container -->
+    <div id="game-container">
+        <!-- The game canvas or div from your original HTML goes here -->
+        <!-- For example, if your original HTML had a canvas like this: -->
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+    </div>
 </body>
 </html>
