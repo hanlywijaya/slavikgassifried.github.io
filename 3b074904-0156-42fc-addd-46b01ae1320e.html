@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Geometry Dash Lite</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
- <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/style.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/style.css" type="text/css">
+<style>
+  /* Make the canvas fill the window while maintaining aspect ratio */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: black;
+  }
 
-<script id="gamedistribution-jssdk" src=""></script><script src=""></script></head>
-<body style="cursor: auto;">
-<div id="fb-root"></div>
+  #gameCanvas {
+    display: block;
+    margin: 0 auto;
+    background: black;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* keeps aspect ratio, no cropping */
+  }
+</style>
 
- <script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@64d92b5d448ee74c27904841ebbe9c3ef787c443/c2runtime.js"></script>
- <script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/start.js"></script>
- <script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/register-sw.js"></script>
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
 
-<canvas width="1914" height="1077" style="width: 957px; height: 538px; margin-left: 0px; margin-top: 36px;"></canvas></body></html>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@64d92b5d448ee74c27904841ebbe9c3ef787c443/c2runtime.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/start.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/register-sw.js"></script>
+
+<script>
+  // Make the canvas always resize to the window
+  const canvas = document.getElementById('gameCanvas');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+</script>
+
+</body>
+</html>
