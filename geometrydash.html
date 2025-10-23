@@ -2,37 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Geometry Dash Lite</title>
-
-    <link rel="stylesheet" href="style.css" type="text/css"> 
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Dash Lite Unblocked Mirror</title> 
     <style>
-        /* Ensures the game takes up the full browser window */
-        html, body {
-            touch-action: none;
-            -ms-touch-action: none;
+        /* This ensures the game takes up the full screen of this HTML page */
+        body {
+            background-color: #000;
             margin: 0;
-            padding: 0;
-            background-color: black;
-            height: 100%;
-            width: 100%;
             overflow: hidden;
         }
-        canvas {
-            display: block;
-            margin: 0 auto;
+        
+        /* The iframe fills the entire screen */
+        .game-embed {
+            width: 100vw;   
+            height: 100vh;  
+            border: none;
         }
     </style>
-    
 </head>
-<body style="cursor: auto;">
-
-    <div id="fb-root"></div>
-
-    <script src="c2runtime.js"></script>
-    <script src="start.js"></script>
-    <script src="data.js"></script> 
-    </body>
+<body>
+    
+    <iframe 
+        class="game-embed" 
+        src="https://sites.google.com/view/drive-u-7-home/geometry-dash-lite" 
+        title="Geometry Dash Lite Embed" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
+    
+</body>
 </html>
