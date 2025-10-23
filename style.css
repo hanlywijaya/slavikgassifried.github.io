@@ -1,90 +1,50 @@
-/* === BIONIC FART GREEN THEME === */
-/* Slavik Gassyfried Fanpage CSS */
-
-body {
-  background-color: #00ff00; /* Bionic Fart Green */
-  color: #0b0b0b;
-  font-family: 'Trebuchet MS', sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-/* === HEADINGS === */
-h1 {
-  color: #101010;
-  text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00;
-  font-size: 2.8em;
-  margin-top: 30px;
-}
-
-p {
-  font-size: 1.2em;
-  color: #111;
-  margin-bottom: 20px;
-}
-
-/* === IMAGES === */
-img {
+/* === VIDEO FIXES: BIONIC FART GREEN THEME === */
+/* Make video responsive and styled like images without breaking controls */
+video {
   display: block;
   margin: 20px auto;
+  max-width: 100%;        /* responsive */
+  width: 720px;           /* preferred default width, change as needed */
+  height: auto;
+  background: #000;       /* fallback background while loading/poster */
   border: 4px solid #1aff00;
   border-radius: 10px;
   box-shadow: 0 0 25px #1aff00;
-  transition: transform 0.3s;
+  outline: none;          /* prevents focus outline messing with layout */
+  -webkit-backface-visibility: hidden; /* helps with transform/paint issues */
+  backface-visibility: hidden;
+  will-change: transform; /* gives browser a heads-up (improves smoothness) */
 }
 
-img:hover {
-  transform: scale(1.05);
-}
+/* Prevent hover scale effect meant for images from affecting video controls */
+img:hover { transform: scale(1.05); }    /* keep image hover */
+video:hover { transform: none; }         /* don't scale video on hover */
 
-/* === LIST === */
-ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
+/* If you want the video to slightly scale on hover but not hide controls, use this safe variant:
+video.safe-hover {
+  transform-origin: center;
 }
-
-li {
-  display: inline-block;
-  background-color: #111;
-  color: #9eff00;
-  margin: 5px;
-  padding: 10px 20px;
-  border-radius: 25px;
-  box-shadow: 0 0 10px #70ff00;
-  font-weight: bold;
-  letter-spacing: 1px;
+video.safe-hover:hover {
+  transform: scale(1.02);
 }
+*/
 
-/* === LINKS === */
-a {
-  display: inline-block;
+/* Make sure controls remain accessible and not clipped by overflow */
+.video-container {
+  display: inline-block;    /* keeps container sized to video */
+  position: relative;
   margin: 20px auto;
-  padding: 12px 24px;
-  background-color: #0a0;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #7fff00;
-  transition: all 0.3s;
-  font-weight: bold;
+  overflow: visible;        /* ensure controls aren't clipped */
+  -webkit-user-select: none;
 }
 
-a:hover {
-  background-color: #8eff00;
-  color: #000;
-  transform: scale(1.1);
+/* If you wrap your <video> in a link (<a>), avoid making the link cover controls */
+a > video {
+  pointer-events: auto;
 }
 
-/* === GOOGLE TRANSLATE WIDGET === */
-#google_translate_element {
-  margin: 30px auto;
-}
-
-/* === AUDIO PLAYER === */
-audio {
+/* Keep audio styling separate (you already have good styling) */
+audio { /* kept from you, but safe fallback */
   margin: 20px auto;
   display: block;
   border: 3px solid #9eff00;
@@ -92,10 +52,8 @@ audio {
   box-shadow: 0 0 20px #9eff00;
 }
 
-/* === FOOTER === */
-footer {
-  margin-top: 40px;
-  color: #050;
-  font-size: 0.9em;
-  text-shadow: 0 0 5px #77ff00;
+/* Optional: poster image inside video uses object-fit to prevent stretching */
+video::cue { } /* not used, but placeholder for accessibility tweaks */
+video[poster] {
+  object-fit: cover;
 }
