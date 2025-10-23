@@ -34,30 +34,6 @@
     <li>gassifried</li>
     <li>jorking!</li>
   </ul>
-
-<!-- VOLUME CONTROL -->
-<div class="volume-control" style="margin: 20px;">
-  <label for="volumeSlider">Volume (fun edition): </label>
-  <input type="range" id="volumeSlider" min="0" max="100" value="50">
-</div>
-
-<script>
-  const slider = document.getElementById("volumeSlider");
-  const audios = document.querySelectorAll("audio");
-
-  // Initialize all audios to slider value
-  audios.forEach(audio => {
-    audio.volume = slider.value / 100;
-  });
-
-  slider.addEventListener("input", () => {
-    // "Opposite" effect: slider up → lower volume, slider down → higher volume
-    const invertedVolume = 1 - slider.value / 100;
-    audios.forEach(audio => {
-      audio.volume = invertedVolume;
-    });
-  });
-</script>
   
   <!-- LINKS -->
   <div class="links">
@@ -73,6 +49,10 @@
     </video>
     <video controls>
       <source src="khabylamemechanism.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video controls>
+      <source src="islandgivesuswhatweneed.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
