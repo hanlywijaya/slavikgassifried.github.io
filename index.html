@@ -73,16 +73,30 @@
   <!-- GEOMETRY DASH EMBED -->
 <section class="geometry-dash">
   <h2>Play Geometry Dash Lite!</h2>
-  <iframe 
-    src="3b074904-0156-42fc-addd-46b01ae1320e.html" 
-    width="640" 
-    height="360" 
-    style="border: 3px solid yellow; border-radius: 12px;" 
-    allowfullscreen
-    title="Geometry Dash Lite">
-  </iframe>
-  <p>Small window for fun gaming 😎</p>
+  <div id="geometryDashContainer" style="width:640px; height:360px; border:3px solid yellow; border-radius:12px; overflow:hidden; margin:0 auto;">
+    <canvas id="gameCanvas" width="1914" height="1077"></canvas>
+  </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@64d92b5d448ee74c27904841ebbe9c3ef787c443/c2runtime.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/start.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yrgen73/GDC@5f6fb6329a03aecf95c6db186ff6410c6b0330c9/register-sw.js"></script>
+
+<script>
+  // Optional: resize canvas to fit container
+  const canvas = document.getElementById('gameCanvas');
+  const container = document.getElementById('geometryDashContainer');
+
+  function resizeCanvas() {
+    const rect = container.getBoundingClientRect();
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+</script>
+
 
   
   <!-- FOOTER -->
