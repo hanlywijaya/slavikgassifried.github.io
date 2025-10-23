@@ -1,19 +1,16 @@
 /* === BIONIC FART GREEN THEME === */
-/* Slavik Gassyfried Fanpage CSS */
-/* Powered by radioactive glow 💨 */
 
-/* === BODY === */
 body {
-  background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
-  color: #0b0b0b;
-  font-family: 'Trebuchet MS', sans-serif;
   margin: 0;
   padding: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+  color: #0b0b0b;
   text-align: center;
   overflow-x: hidden;
 }
 
-/* === HEADINGS === */
+/* === HEADER === */
 h1 {
   color: #101010;
   text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
@@ -27,36 +24,45 @@ h1 {
   to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
 }
 
-/* === PARAGRAPHS === */
 p {
   font-size: 1.2em;
   color: #111;
   margin-bottom: 20px;
 }
 
-/* === IMAGES === */
-img {
-  display: block;
+/* === IMAGE GALLERY === */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
   margin: 20px auto;
+  max-width: 1400px;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   border: 4px solid #1aff00;
   border-radius: 10px;
   box-shadow: 0 0 25px #1aff00;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-img:hover {
+.gallery img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 35px #faff00;
 }
 
-/* === LIST === */
-ul {
+/* === FUN LIST === */
+.fun-list {
   list-style: none;
   padding: 0;
   margin-top: 20px;
 }
 
-li {
+.fun-list li {
   display: inline-block;
   background-color: #111;
   color: #9eff00;
@@ -69,9 +75,13 @@ li {
 }
 
 /* === LINKS === */
-a {
-  display: inline-block;
+.links {
   margin: 20px auto;
+}
+
+.links a {
+  display: inline-block;
+  margin: 10px;
   padding: 12px 24px;
   background-color: #0a0;
   color: #fff;
@@ -82,115 +92,20 @@ a {
   font-weight: bold;
 }
 
-a:hover {
+.links a:hover {
   background-color: #faff00;
   color: #000;
   transform: scale(1.1);
   box-shadow: 0 0 30px #faff00;
 }
 
-/* === VIDEO CONTAINER === */
+/* === VIDEO === */
 .video-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: visible;
   margin: 20px auto;
 }
 
-/* === VIDEOS === */
 video {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border: 5px solid #ffff00;       /* bright yellow outline */
-  border-radius: 12px;
-  box-shadow: 0 0 30px #ffff00;
-  background: #000;
-  position: relative;
-  z-index: 10;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-video:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 45px #faff00;
-}
-
-/* === GOOGLE TRANSLATE WIDGET === */
-#google_translate_element {
-  margin: 30px auto;
-  filter: drop-shadow(0 0 10px #9eff00);
-}
-
-/* === AUDIO PLAYER === */
-audio {
-  margin: 20px auto;
-  display: block;
-  border: 3px solid #9eff00;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #9eff00;
-  background: #000;
-}
-
-/* === FOOTER === */
-footer {
-  margin-top: 40px;
-  color: #050;
-  font-size: 0.9em;
-  text-shadow: 0 0 5px #77ff00;
-  padding-bottom: 30px;
-}
-
-/* === RESPONSIVE LAYOUT === */
-
-/* Mobile (iPhone) — stack vertically */
-@media (max-width: 600px) {
-  img {
-    width: 95%;
-    max-width: 100%;
-    margin: 8px auto;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  p {
-    font-size: 1em;
-  }
-
-  a {
-    width: 80%;
-    font-size: 0.9em;
-  }
-}
-
-/* Tablet (iPad) — 2 images per row */
-@media (min-width: 601px) and (max-width: 1024px) {
-  body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  img {
-    width: 45%;
-    max-width: 500px;
-  }
-}
-
-/* Desktop — 3 images per row */
-@media (min-width: 1025px) {
-  body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  img {
-    width: 30%;
-    max-width: 400px;
-  }
-}
+  width: 90%;
+  max-w
