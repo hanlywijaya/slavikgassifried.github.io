@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Geometry Dash Lite</title>
@@ -9,12 +9,16 @@
     <link rel="stylesheet" href="style.css" type="text/css"> 
     
     <style>
+        /* Ensures the game takes up the full browser window */
         html, body {
             touch-action: none;
             -ms-touch-action: none;
             margin: 0;
             padding: 0;
             background-color: black;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
         }
         canvas {
             display: block;
@@ -22,14 +26,13 @@
         }
     </style>
     
-    <script id="gamedistribution-jssdk" src=""></script>
 </head>
 <body style="cursor: auto;">
+
+    <div id="fb-root"></div>
 
     <script src="c2runtime.js"></script>
     <script src="start.js"></script>
     <script src="data.js"></script> 
-    <div id="fb-root"></div>
-
-</body>
+    </body>
 </html>
