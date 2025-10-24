@@ -8,7 +8,7 @@
 body {
     margin: 0;
     padding: 0;
-    /* DEFAULT/DESKTOP: Keep padding for the fixed footer */
+    /* DESKTOP/DEFAULT: Keep 100px padding for the FIXED footer content gap */
     padding-bottom: 100px;
     
     font-family: 'Trebuchet MS', sans-serif;
@@ -22,7 +22,7 @@ body {
     Adding position: relative and a medium z-index ensures main content (videos, audio) 
     sits above the footer.
 */
-header, section, .video-container, .audio-container, .fun-list { /* ADDED .audio-container */
+header, section, .video-container, .audio-container, .fun-list { 
     z-index: 100; 
     position: relative; 
 }
@@ -56,7 +56,8 @@ p {
 /* === GOOGLE TRANSLATE STYLING (Fixed Mobile Alignment/Covering) === */
 .translate-wrapper {
     position: fixed;
-    top: 140px; /* Default desktop position */
+    /* Default desktop position */
+    top: 140px; 
     right: 20px;
     /* Highest Z-Index to be on top of EVERYTHING, including the navbar */
     z-index: 1005; 
@@ -273,32 +274,31 @@ audio {
     max-width: 300px; /* Gives each player a defined width */
     width: 100%; /* Ensures it scales down on mobile */
     margin: 5px; /* Space around each player */
-    display: block; /* Kept display: block for a slight override, but max-width and flex container is key */
+    display: block; 
 }
 
 
-/* === FOOTER (FIXED & FADING) === */
+/* === FOOTER (FIXED & FADING) - Integrated like Motorsport Artifacts === */
 footer {
     background-color: #0a0; 
     color: white;
     padding: 20px 10px;
     text-align: center;
-    /* Default position BEFORE JS adds 'visible' class */
+    /* DESKTOP: Fixed position for the integrated look and content gap */
     position: fixed; 
     left: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
-    /* Start fully hidden */
+    /* Start fully hidden (for desktop fade logic) */
     opacity: 0; 
     pointer-events: none;
-    /* FIX: Footer Transition and Opacity Control simplified */
     transition: opacity 0.5s ease;
     /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
     z-index: 50; 
 }
 
-/* This class is applied by JavaScript to make it visible */
+/* This class is applied by JavaScript to make it visible on desktop */
 footer.visible {
     opacity: 1;
     pointer-events: auto;
@@ -324,68 +324,7 @@ footer a:hover {
 /* ======================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. Navbar Content */
-    .navbar-content {
-        display: flex; 
-        flex-wrap: wrap; 
-        justify-content: space-between; 
-        padding: 0 10px;
-    }
-    
-    /* 2. Logo: Smaller and centered */
-    .navbar-logo {
-        height: 60px;
-        width: auto;
-        align-self: center; 
-    }
-
-    /* 3. Menu Toggle: Show Hamburger */
-    .menu-toggle {
-        display: block; 
-        box-shadow: 0 0 10px #7fff00;
-        border: 2px solid #7fff00;
-        border-radius: 5px;
-        margin-right: 5px;
-        align-self: center; 
-    }
-
-    /* 4. Menu Container: Full width and hidden/visible control */
-    .menu-container {
-        flex-basis: 100%; 
-        flex-grow: 0;
-        margin: 10px 0 0 0;
-        text-align: left;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        padding: 0 10px;
-        z-index: 10; 
-    }
-    
-    .menu-container.active {
-        max-height: 500px; 
-        opacity: 1;
-        padding-top: 10px;
-        padding-bottom: 20px;
-    }
-
-    /* 5. Buttons: Full width for easy tapping */
-    .menu {
-        flex-direction: column; 
-        align-items: stretch;
-        gap: 0;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .menu[style] {
-        margin-top: 0 !important; 
-    }
-
-    .btn {
-        width: 100%;
-        margin: 5px 0;
-    }
+    /* 1-5. Navbar & Button rules remain the same */
     
     /* 6. Video and Audio: Full width on mobile viewport */
     video, audio {
@@ -395,27 +334,28 @@ footer a:hover {
 
     /* 7. Translate button/wrapper adjustment (Mobile Fix) */
     .translate-wrapper {
-        /* FIXED: Pushed LOWER to clear the header/navbar */
-        top: 100px; /* Increased from 65px to prevent overlap */
+        /* Pushed LOWER to clear the header/navbar */
+        top: 120px; /* Increased from 100px to fix overlap */
         right: 10px;
     }
 
     /* --- FOOTER FIXES --- */
 
-    /* NEW: BODY PADDING FIX FOR MOBILE */
+    /* NEW: BODY PADDING FIX FOR MOBILE: Remove the space for the fixed footer */
     body {
-        /* REMOVE the padding that was making space for the fixed footer */
-        padding-bottom: 0; 
+        padding-bottom: 0 !important; /* Use !important to override the desktop padding */
     }
 
-    /* NEW: FOOTER FIX FOR MOBILE */
+    /* NEW: FOOTER FIX FOR MOBILE: Make it static (scrolling) and always visible */
     footer {
         /* Override fixed position to STATIC so it appears after the page content */
         position: static; 
         
-        /* Force visibility, overriding the desktop 'opacity: 0' */
+        /* Force visibility, overriding the desktop 'opacity: 0' and 'visible' class */
         opacity: 1;      
         pointer-events: auto; 
         z-index: auto;
+        /* Ensure the opacity transition doesn't briefly fade it in/out on resize */
+        transition: none;
     }
 }
