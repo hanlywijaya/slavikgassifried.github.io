@@ -1,144 +1,205 @@
-/* === BIONIC FART GREEN THEME === */
+/* === BIONIC FART GREEN THEME (Combined) === */
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Trebuchet MS', sans-serif;
-  background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
-  color: #0b0b0b;
-  text-align: center;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+    color: #0b0b0b;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Make room for the fixed footer (from Motorsport Artifacts) */
+main {
+    padding-bottom: 72px; 
 }
 
 /* === HEADER === */
 h1 {
-  color: #101010;
-  text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
-  font-size: 2.8em;
-  margin-top: 30px;
-  animation: glow 2s infinite alternate;
+    color: #101010;
+    text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
+    font-size: 2.8em;
+    margin-top: 30px;
+    animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00; }
-  to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
+    from { text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00; }
+    to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
 }
 
 p {
-  font-size: 1.2em;
-  color: #111;
-  margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #111;
+    margin-bottom: 20px;
 }
 
-/* === SECOND LEVEL TEXT === */
-h2 {
-  color: #e0ff00;
-  text-shadow: 0 0 5px #9eff00, 0 0 15px #8aff00;
-  font-size: 2em;
-  margin-top: 25px;
+/* === NAVIGATION MENU (Motorsport Artifacts Layout with Green Colors) === */
+.navbar {
+    /* Used Gassy colors for background */
+    background-color: #0a0; 
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    transition: opacity 0.4s ease;
 }
 
-p2 {
-  display: block; /* Ensure it behaves like a block element */
-  font-size: 1em;
-  color: #e0ff00;
-  margin-bottom: 15px;
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
-/* === IMAGE GALLERY === */
+.btn {
+    /* Button base color is Gassy dark */
+    background-color: #111;
+    /* Text color is Gassy neon */
+    color: #9eff00; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    /* Added Gassy glow effect for buttons */
+    box-shadow: 0 0 10px #7fff00; 
+}
+
+.btn:hover {
+    /* Hover color is Gassy bright yellow */
+    background-color: #faff00; 
+    color: #000;
+    transform: translateY(-2px);
+    /* Hover glow is Gassy bright yellow */
+    box-shadow: 0 0 20px #faff00;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* === IMAGE GALLERY (Gassy Styling) === */
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px auto;
-  max-width: 1400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1400px;
 }
 
 .gallery img {
-  height: auto;
-  border: 4px solid #1aff00;
-  border-radius: 10px;
-  box-shadow: 0 0 25px #1aff00;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* 2 per row funny widths for mobile */
-@media (max-width: 600px) {
-  .gallery img { width: 48%; max-width: 200px; }
-}
-
-/* 2 per row funny widths for tablet */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .gallery img { width: 47%; max-width: 350px; }
-}
-
-/* 2 per row funny widths for desktop */
-@media (min-width: 1025px) {
-  .gallery img { width: 46%; max-width: 500px; }
+    height: auto;
+    /* Gassy border and shadow */
+    border: 4px solid #1aff00;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px #faff00;
+    transform: scale(1.05);
+    /* Gassy hover shadow */
+    box-shadow: 0 0 35px #faff00;
 }
 
-/* === FUN LIST === */
+/* Image gallery responsiveness (from Slavik CSS) */
+@media (max-width: 600px) {
+    .gallery img { width: 48%; max-width: 200px; }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .gallery img { width: 47%; max-width: 350px; }
+}
+
+@media (min-width: 1025px) {
+    .gallery img { width: 46%; max-width: 500px; }
+}
+
+/* === FUN LIST (Gassy Styling) === */
 .fun-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
 }
 
 .fun-list li {
-  display: inline-block;
-  background-color: #111;
-  color: #9eff00;
-  margin: 5px;
-  padding: 10px 20px;
-  border-radius: 25px;
-  box-shadow: 0 0 10px #70ff00;
-  font-weight: bold;
-  letter-spacing: 1px;
+    display: inline-block;
+    background-color: #111;
+    color: #9eff00;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px #70ff00;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-/* === LINKS === */
-.links {
-  margin: 20px auto;
+/* === VIDEO (Gassy Styling) === */
+.video-container {
+    display: flex; /* Added flex to display videos nicely (like gallery) */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
 }
 
-.links a {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 24px;
-  background-color: #0a0;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #7fff00;
-  transition: all 0.3s ease;
-  font-weight: bold;
-}
-
-.links a:hover {
-  background-color: #faff00;
-  color: #000;
-  transform: scale(1.1);
-  box-shadow: 0 0 30px #faff00;
-}
-
-/* === VIDEO === */
 video {
-  width: 90%;
-  max-width: 1400px;
-  height: auto;
-  border: 4px solid #1aff00;
-  border-radius: 10px;
-  box-shadow: 0 0 25px #1aff00;
-  transition: transform 0.3s, box-shadow 0.3s;
+    width: 90%;
+    max-width: 400px; /* Reduced max width to allow multiple videos in a row */
+    height: auto;
+    /* Gassy border and shadow */
+    border: 4px solid #1aff00;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 video:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px #faff00;
+    transform: scale(1.05);
+    /* Gassy hover shadow */
+    box-shadow: 0 0 35px #faff00;
+}
+
+/* === FOOTER (Motorsport Artifacts Layout with Green Colors) === */
+footer {
+    /* Footer background is Gassy dark green */
+    background-color: #0a0; 
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+footer.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+footer p {
+    color: white; /* Ensure footer text is visible white */
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
