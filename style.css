@@ -324,12 +324,17 @@ footer a:hover {
         padding: 0 10px;
         z-index: 10;
     }
+    
+    /* FIX: Set a large, viewport-relative max-height and enable scrolling */
     .menu-container.active {
-        max-height: 500px;
+        max-height: 90vh; /* Changed from 500px to 90% of viewport height */
+        overflow-y: auto; /* ADDED: Enables scrolling for buttons */
         opacity: 1;
         padding-top: 10px;
         padding-bottom: 20px;
+        padding-right: 20px; /* Added right padding for scrollbar space */
     }
+    
     .menu {
         flex-direction: column;
         align-items: stretch;
@@ -350,6 +355,7 @@ footer a:hover {
         top: 90px;
         right: 10px;
         transform: scale(0.9);
+        z-index: 2000; /* Consolidated z-index fix */
     }
     .translate-popup {
         max-width: 200px;
@@ -357,28 +363,9 @@ footer a:hover {
         right: 0;
         margin-top: 5px;
     }
-}
-
-/* Keep footer above content */
-body {
-  padding-bottom: 140px; /* ensures footer not covering content */
-}
-
-/* Fix translate button position */
-.translate-wrapper {
-  position: fixed;
-  right: 15px;
-  z-index: 2000;
-}
-
-@media (max-width: 768px) {
-  .translate-wrapper {
-    right: 10px;
-    transform: scale(0.9);
-  }
-
-  .footer {
-    transition: opacity 0.4s ease;
-    opacity: 0; /* starts hidden */
-  }
+    
+    .footer {
+        transition: opacity 0.4s ease;
+        opacity: 0; /* starts hidden, matches the opacity setting in the JS */
+    }
 }
