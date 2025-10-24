@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your New Page Title</title>
+  <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="translate-wrapper">
+    <button id="translate-toggle" class="btn">Translate Page 🌐</button>
+    <div id="translate-popup" class="translate-popup hidden">
+      <div id="google_translate_element"></div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="navbar-content">
+      <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="96" width="168" alt="Gassing slavik placeholder" class="navbar-logo" />
+      <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="menu-container" id="menu-container">
+        <!-- You can replace the text and links below for your new page -->
+        <div class="menu">
+          <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
+          <button class="btn" onClick="window.location.href='#'" target="_self">Page A</button>
+          <button class="btn" onClick="window.location.href='#'" target="_self">Page B</button>
+          <button class="btn" id="favgLinkPlaceholder">Placeholder Link</button>
+          <button class="btn" onClick="window.open('#', '_blank')">Game 1</button>
+          <button class="btn" onClick="window.open('#', '_blank')">Game 2</button>
+        </div>
+        <!-- Secondary menu section -->
+        <div class="menu" style="margin-top: 10px;">
+          <button class="btn" onClick="window.open('#', '_blank')">Sub Link 1</button>
+          <button class="btn" onClick="window.open('#', '_blank')">Sub Link 2</button>
+          <button class="btn" onClick="window.open('#', '_blank')">Sub Link 3</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <h1>[New Content Title]</h1>
+    <p>[New Subtitle or Introduction Paragraph]</p>
+  </header>
+
+    <!-- CONTENT SECTION: ADD YOUR NEW HTML HERE -->
+    <section class="main-content" style="padding: 20px;">
+        <p>This is where your new page content goes.</p>
+        <p>You can add images, videos, lists, or any other elements that match the style of your site.</p>
+    </section>
+    <!-- END CONTENT SECTION -->
+
+  <footer class="footer">
+    <p>Made with 💨 Bionic Fart Green Power</p>
+    <p><a href="index.html"> &copy; 2025 Your Site Name</a></p>
+  </footer>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+
+    document.getElementById("translate-toggle").addEventListener("click", () => {
+      document.getElementById("translate-popup").classList.toggle("hidden");
+    });
+
+    // Placeholder for the warning link's event listener (removed content-specific logic)
+    document.getElementById("favgLinkPlaceholder").addEventListener("click", e => {
+        e.preventDefault();
+        window.open("#", "_blank"); // Opens a blank link or you can replace it
+    });
+
+    /* Fade footer only on mobile */
+    const footer = document.querySelector(".footer");
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth <= 768) {
+        footer.style.opacity = window.scrollY > 120 ? "1" : "0";
+      } else {
+        footer.style.opacity = "1";
+      }
+    });
+
+    /* Fix translate overlap */
+    window.addEventListener("load", () => {
+      const translate = document.querySelector(".translate-wrapper");
+      const navbar = document.querySelector(".navbar");
+      const offset = navbar.offsetHeight + 10;
+      translate.style.top = `${offset}px`;
+    });
+
+    /* Prevent cutoff scrolling */
+    document.body.style.overflowY = "auto";
+
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+      const menuContainer = document.getElementById("menu-container");
+      menuContainer.classList.toggle("active");
+      this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
+    });
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
