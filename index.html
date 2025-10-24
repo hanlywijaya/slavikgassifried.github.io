@@ -127,5 +127,29 @@
     });
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector("footer");
+
+    // Always show footer
+    footer.classList.add("visible");
+
+    // Optional: Show footer only when user scrolls near bottom
+    /*
+    window.addEventListener("scroll", function() {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+
+        if (scrollPosition >= pageHeight - 50) { // near bottom
+            footer.classList.add("visible");
+        } else {
+            footer.classList.remove("visible");
+        }
+    });
+    */
+});
+</script>
+
 </body>
 </html>
