@@ -8,7 +8,6 @@
 body {
     margin: 0;
     padding: 0;
-    padding-bottom: 140px; /* ensures space for footer */
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
@@ -268,22 +267,16 @@ footer {
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed;
+    position: relative; /* Changed from 'fixed' to 'relative' */
     left: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
     z-index: 1002;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-}
-
-footer.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+    opacity: 1; /* Always visible */
+    pointer-events: auto; /* Always interactive */
+    transform: none; /* No initial transform */
+    transition: none; /* Removed transitions */
 }
 
 footer a {
@@ -357,11 +350,11 @@ footer a:hover {
         right: 0;
         margin-top: 5px;
     }
-}
 
-/* Keep footer above content */
-body {
-  padding-bottom: 140px; /* ensures footer not covering content */
+    .footer {
+      transition: none; /* Removed mobile transition */
+      opacity: 1; /* Ensure always visible on mobile */
+    }
 }
 
 /* Fix translate button position */
@@ -375,10 +368,5 @@ body {
   .translate-wrapper {
     right: 10px;
     transform: scale(0.9);
-  }
-
-  .footer {
-    transition: opacity 0.4s ease;
-    opacity: 0; /* starts hidden */
   }
 }
