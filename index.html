@@ -99,20 +99,26 @@
       }
     });
 
-    // Footer fade logic
-    const footer = document.querySelector("footer");
-    function checkFooter() {
-      const scrollPos = window.innerHeight + window.scrollY;
-      const docHeight = document.body.offsetHeight;
-      if (scrollPos >= docHeight - 100) {
-        footer.classList.add("visible");
+    /* Fade footer only on mobile */
+    const footer = document.querySelector(".footer");
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth <= 768) {
+        footer.style.opacity = window.scrollY > 120 ? "1" : "0";
       } else {
-        footer.classList.remove("visible");
+        footer.style.opacity = "1";
       }
-    }
-    window.addEventListener("scroll", checkFooter);
-    window.addEventListener("resize", checkFooter);
-    window.addEventListener("load", checkFooter);
+    });
+
+    /* Fix translate overlap */
+    window.addEventListener("load", () => {
+      const translate = document.querySelector(".translate-wrapper");
+      const navbar = document.querySelector(".navbar");
+      const offset = navbar.offsetHeight + 10;
+      translate.style.top = `${offset}px`;
+    });
+
+    /* Prevent cutoff scrolling */
+    document.body.style.overflowY = "auto";
 
     document.getElementById("menu-toggle").addEventListener("click", function() {
       const menuContainer = document.getElementById("menu-container");
