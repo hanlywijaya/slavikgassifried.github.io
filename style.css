@@ -261,6 +261,15 @@ video:hover {
     box-shadow: 0 0 35px #faff00;
 }
 
+/* === AUDIO (Gassy Styling) === */
+audio {
+    /* Ensure audio elements also respect max-width, though they are usually smaller */
+    max-width: 90%; 
+    margin: 5px auto;
+    display: block;
+}
+
+
 /* === FOOTER (Motorsport Artifacts Layout with Green Colors) === */
 footer {
     /* Footer background is Gassy dark green */
@@ -297,6 +306,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
+
 /* ======================================= */
 /* === MOBILE MEDIA QUERY: max-width: 768px === */
 /* ======================================= */
@@ -304,15 +314,90 @@ footer a:hover {
     
     /* 1. Navbar Content: Setup for Logo (left) and Toggle (right) */
     .navbar-content {
-        /* This line is the KEY fix. It allows the menu to drop below the logo/toggle. */
+        /* KEY FIX: ensures the logo and toggle button stay aligned horizontally */
         display: flex; 
         
-        /* Allow the content to wrap */
+        /* Allow the content (menu-container) to drop below the logo/toggle bar */
         flex-wrap: wrap; 
+        
         /* Keep logo and toggle on one row on the sides */
         justify-content: space-between; 
-        padding: 0 10px; /* Add some padding on the sides */
+        padding: 0 10px;
+    }
+    
+    /* 2. Logo: Adjust size for mobile and align it */
+    .navbar-logo {
+        height: 60px; /* Smaller logo for mobile phones */
+        width: auto;
+        /* Ensure it's vertically centered with the toggle */
+        align-self: center; 
     }
 
-    /* ... all your other mobile CSS styles ... */
+    /* 3. Menu Toggle: Show Hamburger Icon */
+    .menu-toggle {
+        display: block; 
+        box-shadow: 0 0 10px #7fff00;
+        border: 2px solid #7fff00;
+        border-radius: 5px;
+        margin-right: 5px;
+        /* Ensure it's vertically centered with the logo */
+        align-self: center; 
+    }
+    
+    /* 4. Menu Container: Control visibility and stacking */
+    .menu-container {
+        /* Force it to take up the full width below the logo/toggle bar */
+        flex-basis: 100%; 
+        flex-grow: 0;
+        margin: 10px 0 0 0;
+        text-align: left;
+        
+        /* HIDDEN STATE (Default for closed menu on mobile) */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        padding: 0 10px;
+        /* FINAL FIX: Ensures menu is above footer/translate button when active */
+        z-index: 1; 
+    }
+    
+    /* VISIBLE STATE (Toggled by JavaScript) */
+    .menu-container.active {
+        max-height: 500px; 
+        opacity: 1;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    /* 5. Menu Rows & Buttons: Stack vertically and fill width */
+    .menu {
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .menu[style] {
+        margin-top: 0 !important; 
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    /* 6. Video and Audio: Ensure they are full width on mobile */
+    video, audio {
+        /* FINAL FIX: Forces full width on mobile, overriding general max-width */
+        width: 100% !important; 
+        max-width: none; 
+    }
+
+    /* 7. Translate button/wrapper adjustment */
+    .translate-wrapper {
+        /* Moved up slightly to clear the logo/toggle bar area on mobile */
+        top: 80px; 
+        right: 10px;
+    }
 }
