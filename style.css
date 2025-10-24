@@ -1,411 +1,403 @@
-<!DOCTYPE html>
-<html lang="en">
+/* === BIONIC FART GREEN THEME (Combined) === */
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slavik Gassifried Fanpage</title>
-    <!-- Placeholder for the favicon -->
-    <link rel="icon" type="image/png" href="https://placehold.co/32x32/000/00ff00?text=S">
+body {
+    margin: 0;
+    padding: 0;
+    /* Increased padding to 100px to ensure enough space for the fixed footer */
+    padding-bottom: 100px;
+    
+    font-family: 'Trebuchet MS', sans-serif;
+    background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+    color: #0b0b0b;
+    text-align: center;
+    overflow-x: hidden;
+}
 
-    <style>
-        /* === BIONIC FART GREEN THEME (Combined) === */
-        * {
-            box-sizing: border-box;
-        }
+/* Make room for the fixed footer (from Motorsport Artifacts) */
+main {
+    /* This rule is now effectively empty and can be ignored or removed if no other content is inside main */
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            padding-bottom: 100px;
-            font-family: 'Trebuchet MS', sans-serif;
-            background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
-            color: #0b0b0b;
-            text-align: center;
-            overflow-x: hidden;
-        }
+/* === HEADER === */
+h1 {
+    color: #101010;
+    text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
+    font-size: 2.8em;
+    margin-top: 30px;
+    animation: glow 2s infinite alternate;
+}
 
-        header,
-        section,
-        .video-container,
-        audio,
-        .fun-list {
-            z-index: 100;
-            position: relative;
-        }
+@keyframes glow {
+    from { text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00; }
+    to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
+}
 
-        h1,
-        p {
-            position: relative;
-            z-index: 100;
-        }
+p {
+    font-size: 1.2em;
+    color: #111;
+    margin-bottom: 20px;
+}
 
-        /* === HEADER === */
-        h1 {
-            color: #101010;
-            text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
-            font-size: 2.8em;
-            margin-top: 30px;
-            animation: glow 2s infinite alternate;
-        }
+/* === GOOGLE TRANSLATE STYLING (UPDATED) === */
+.translate-wrapper {
+    position: fixed;
+    /* ADJUSTED: Moved down to 140px to clear the navbar's two rows */
+    top: 140px;
+    right: 20px;
+    z-index: 999;
+    text-align: right; 
+}
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00;
-            }
-            to {
-                text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00;
-            }
-        }
+.translate-popup {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #111; /* Dark background */
+    border: 3px solid #9eff00; /* Neon border */
+    border-radius: 8px;
+    box-shadow: 0 0 15px #7fff00; /* Gassy glow */
+    display: inline-block;
+    max-width: 250px;
+}
 
-        p {
-            font-size: 1.2em;
-            color: #111;
-            margin-bottom: 20px;
-        }
+.translate-popup.hidden {
+    display: none;
+}
 
-        /* === NAVIGATION MENU (DESKTOP LAYOUT - STICKY FIXED) === */
-        .navbar {
-            background-color: #0a0;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: opacity 0.4s ease;
-        }
+/* Tweak the actual Google Translate widget appearance inside the popup */
+.translate-popup #google_translate_element {
+    line-height: 1; /* Adjust line height */
+}
 
-        .navbar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
+/* Target the standard Google Translate combo box styles for better integration */
+.translate-popup .goog-te-gadget-simple {
+    background-color: #0a0 !important; /* Gassy background for the selector */
+    border: 1px solid #faff00 !important; /* Neon border */
+    border-radius: 5px;
+    padding: 5px;
+}
 
-        .navbar-logo {
-            flex-shrink: 0;
-            border-radius: 8px; /* Added rounded corners to logo */
-        }
 
-        .menu-container {
-            flex-grow: 1;
-            text-align: center;
-            margin: 0 auto;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-        }
+/* === NAVIGATION MENU (DESKTOP LAYOUT) === */
+.navbar {
+    /* Used Gassy colors for background */
+    background-color: #0a0; 
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    transition: opacity 0.4s ease;
+}
 
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
+/* Styling for the main navigation bar */
+.navbar-content {
+    /* Enables Flexbox layout */
+    display: flex; 
+    /* Centers items vertically */
+    align-items: center; 
+    /* Ensures items are spaced out (logo on left, buttons centered) */
+    justify-content: space-between; 
+    /* Keeps the content from touching the edges */
+    width: 100%;
+}
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px 10px;
-            z-index: 1001;
-        }
+/* Style for the logo image */
+.navbar-logo {
+    /* Ensures the logo doesn't shrink or grow */
+    flex-shrink: 0;
+}
 
-        .menu-toggle .bar {
-            display: block;
-            width: 30px;
-            height: 4px;
-            margin: 5px auto;
-            background-color: #9eff00;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
+/* Container for all the buttons to manage their centering */
+.menu-container {
+    /* Allows the menu to take up available space */
+    flex-grow: 1; 
+    /* Centers the menu container itself */
+    text-align: center; 
+    /* Pushes the content to the horizontal center */
+    margin: 0 auto;
+    /* Desktop transition baseline */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
 
-        /* === BUTTON STYLING (Shared) === */
-        .btn {
-            background-color: #111;
-            color: #9eff00;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-            font-family: 'Trebuchet MS', sans-serif;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s, transform 0.2s ease-in-out;
-            box-shadow: 0 0 10px #7fff00;
-        }
+.menu {
+    /* Use Flexbox for button rows for better spacing/alignment */
+    display: flex;
+    justify-content: center; /* Center buttons within the row */
+    gap: 5px; /* Add some space between buttons */
+}
 
-        .btn:hover {
-            background-color: #faff00;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px #faff00;
-        }
+/* --- Global Styles for Menu Toggle (Hidden on Desktop) --- */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1001;
+}
 
-        .btn:active {
-            transform: translateY(1px);
-        }
+.menu-toggle .bar {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 5px auto;
+    background-color: #9eff00; /* Gassy color */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
 
-        /* === IMAGE GALLERY === */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px auto;
-            max-width: 1400px;
-        }
+/* === BUTTON STYLING (Shared) === */
+.btn {
+    /* Button base color is Gassy dark */
+    background-color: #111;
+    /* Text color is Gassy neon */
+    color: #9eff00; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    /* Added Gassy glow effect for buttons */
+    box-shadow: 0 0 10px #7fff00; 
+}
 
-        .gallery img {
-            height: auto;
-            border: 4px solid #1aff00;
-            border-radius: 10px;
-            box-shadow: 0 0 25px #1aff00;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+.btn:hover {
+    /* Hover color is Gassy bright yellow */
+    background-color: #faff00; 
+    color: #000;
+    transform: translateY(-2px);
+    /* Hover glow is Gassy bright yellow */
+    box-shadow: 0 0 20px #faff00;
+}
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px #faff00;
-        }
+.btn:active {
+    transform: translateY(1px);
+}
 
-        @media (max-width: 600px) {
-            .gallery img {
-                width: 48%;
-                max-width: 200px;
-            }
-        }
+/* === IMAGE GALLERY (Gassy Styling) === */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1400px;
+}
 
-        @media (min-width: 601px) and (max-width: 1024px) {
-            .gallery img {
-                width: 47%;
-                max-width: 350px;
-            }
-        }
+.gallery img {
+    height: auto;
+    /* Gassy border and shadow */
+    border: 4px solid #1aff00;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-        @media (min-width: 1025px) {
-            .gallery img {
-                width: 46%;
-                max-width: 500px;
-            }
-        }
+.gallery img:hover {
+    transform: scale(1.05);
+    /* Gassy hover shadow */
+    box-shadow: 0 0 35px #faff00;
+}
 
-        /* === FUN LIST === */
-        .fun-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
+/* Image gallery responsiveness (from Slavik CSS) */
+@media (max-width: 600px) {
+    .gallery img { width: 48%; max-width: 200px; }
+}
 
-        .fun-list li {
-            display: inline-block;
-            background-color: #111;
-            color: #9eff00;
-            margin: 5px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            box-shadow: 0 0 10px #70ff00;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+@media (min-width: 601px) and (max-width: 1024px) {
+    .gallery img { width: 47%; max-width: 350px; }
+}
 
-        /* === VIDEO / AUDIO === */
-        .video-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px auto;
-        }
+@media (min-width: 1025px) {
+    .gallery img { width: 46%; max-width: 500px; }
+}
 
-        video {
-            width: 90%;
-            max-width: 400px;
-            height: auto;
-            border: 4px solid #1aff00;
-            border-radius: 10px;
-            box-shadow: 0 0 25px #1aff00;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+/* === FUN LIST (Gassy Styling) === */
+.fun-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
 
-        video:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px #faff00;
-        }
+.fun-list li {
+    display: inline-block;
+    background-color: #111;
+    color: #9eff00;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px #70ff00;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-        audio {
-            max-width: 90%;
-            margin: 5px auto;
-            display: block;
-            border: 2px solid #1aff00;
-            border-radius: 5px;
-            box-shadow: 0 0 15px #1aff00;
-        }
+/* === VIDEO (Gassy Styling) === */
+.video-container {
+    display: flex; /* Added flex to display videos nicely (like gallery) */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+}
 
-        /* === FOOTER (FIXED & FADING) === */
-        footer {
-            background-color: #0a0;
-            color: white;
-            padding: 20px 10px;
-            text-align: center;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            font-size: 16px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-            z-index: 50;
-        }
+video {
+    width: 90%;
+    max-width: 400px; /* Reduced max width to allow multiple videos in a row */
+    height: auto;
+    /* Gassy border and shadow */
+    border: 4px solid #1aff00;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-        footer.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+video:hover {
+    transform: scale(1.05);
+    /* Gassy hover shadow */
+    box-shadow: 0 0 35px #faff00;
+}
 
-        footer p {
-            color: white;
-        }
+/* === AUDIO (Gassy Styling) === */
+audio {
+    /* Ensure audio elements also respect max-width, though they are usually smaller */
+    max-width: 90%; 
+    margin: 5px auto;
+    display: block;
+}
 
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 8px;
-        }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+/* === FOOTER (Motorsport Artifacts Layout with Green Colors) === */
+footer {
+    /* Footer background is Gassy dark green */
+    background-color: #0a0; 
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
 
-        /* === CUSTOM MODAL STYLING (Replacing alert/confirm) === */
-        .custom-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            /* Animation for fade in/out */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+footer.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        .custom-modal.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+footer p {
+    color: white; /* Ensure footer text is visible white */
+}
 
-        .modal-content {
-            background-color: #111;
-            color: #9eff00;
-            padding: 30px;
-            border-radius: 15px;
-            border: 5px solid #faff00;
-            text-align: center;
-            max-width: 90%;
-            box-shadow: 0 0 40px #faff00;
-            /* Small bounce animation for visibility */
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
 
-        .custom-modal.visible .modal-content {
-            transform: scale(1);
-        }
+footer a:hover {
+    text-decoration: underline;
+}
 
-        #modal-message {
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            color: white;
-            white-space: pre-wrap; /* Preserve newlines from JS text */
-            text-shadow: 0 0 5px #faff00;
-        }
 
-        #modal-actions button,
-        #modal-ok {
-            margin: 5px 10px;
-        }
+/* ======================================= */
+/* === MOBILE MEDIA QUERY: max-width: 768px === */
+/* ======================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Navbar Content: Setup for Logo (left) and Toggle (right) */
+    .navbar-content {
+        /* KEY FIX: ensures the logo and toggle button stay aligned horizontally */
+        display: flex; 
+        
+        /* Allow the content (menu-container) to drop below the logo/toggle bar */
+        flex-wrap: wrap; 
+        
+        /* Keep logo and toggle on one row on the sides */
+        justify-content: space-between; 
+        padding: 0 10px;
+    }
+    
+    /* 2. Logo: Adjust size for mobile and align it */
+    .navbar-logo {
+        height: 60px; /* Smaller logo for mobile phones */
+        width: auto;
+        /* Ensure it's vertically centered with the toggle */
+        align-self: center; 
+    }
 
-        /* ======================================= */
-        /* === MOBILE MEDIA QUERY: max-width: 768px === */
-        /* ======================================= */
-        @media screen and (max-width: 768px) {
+    /* 3. Menu Toggle: Show Hamburger Icon */
+    .menu-toggle {
+        display: block; 
+        box-shadow: 0 0 10px #7fff00;
+        border: 2px solid #7fff00;
+        border-radius: 5px;
+        margin-right: 5px;
+        /* Ensure it's vertically centered with the logo */
+        align-self: center; 
+    }
+    
+    /* 4. Menu Container: Control visibility and stacking */
+    .menu-container {
+        /* Force it to take up the full width below the logo/toggle bar */
+        flex-basis: 100%; 
+        flex-grow: 0;
+        margin: 10px 0 0 0;
+        text-align: left;
+        
+        /* HIDDEN STATE (Default for closed menu on mobile) */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        padding: 0 10px;
+        /* FINAL FIX: Ensures menu is above footer/translate button when active */
+        z-index: 1; 
+    }
+    
+    /* VISIBLE STATE (Toggled by JavaScript) */
+    .menu-container.active {
+        max-height: 500px; 
+        opacity: 1;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
 
-            /* 1. Navbar Content */
-            .navbar-content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                padding: 0 10px;
-            }
+    /* 5. Menu Rows & Buttons: Stack vertically and fill width */
+    .menu {
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .menu[style] {
+        margin-top: 0 !important; 
+    }
 
-            /* 2. Logo: Smaller and centered */
-            .navbar-logo {
-                height: 60px;
-                width: auto;
-                align-self: center;
-            }
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    /* 6. Video and Audio: Ensure they are full width on mobile */
+    video, audio {
+        /* FINAL FIX: Forces full width on mobile, overriding general max-width */
+        width: 100% !important; 
+        max-width: none; 
+    }
 
-            /* 3. Menu Toggle: Show Hamburger */
-            .menu-toggle {
-                display: block;
-                box-shadow: 0 0 10px #7fff00;
-                border: 2px solid #7fff00;
-                border-radius: 5px;
-                margin-right: 5px;
-                align-self: center;
-            }
-
-            /* 4. Menu Container: Full width and hidden/visible control */
-            .menu-container {
-                flex-basis: 100%;
-                flex-grow: 0;
-                margin: 10px 0 0 0;
-                text-align: left;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                padding: 0 10px;
-                z-index: 10;
-            }
-
-            .menu-container.active {
-                max-height: 500px;
-                opacity: 1;
-                padding-top: 10px;
-                padding-bottom: 20px;
-            }
-
-            /* 5. Buttons: Full width for easy tapping */
-            .menu {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-                padding: 0;
-                margin: 0;
-            }
-
-            .menu[style] {
-                margin-top: 0 !important;
-            }
-
-            .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-
-            /* 6. Video and Audio: Full width on mobile viewport */
-            video,
-            audio {
-                width: 100% !important;
-                max-width: none;
-            }
-        }
-    </style>
-</head>
+    /* 7. Translate button/wrapper adjustment */
+    .translate-wrapper {
+        /* Moved up slightly to clear the logo/toggle bar area on mobile */
+        top: 80px; 
+        right: 10px;
+    }
+}
