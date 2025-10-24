@@ -38,10 +38,11 @@ p {
     margin-bottom: 20px;
 }
 
-/* === GOOGLE TRANSLATE STYLING (NEW) === */
+/* === GOOGLE TRANSLATE STYLING (UPDATED) === */
 .translate-wrapper {
     position: fixed;
-    top: 100px; /* Position below the navbar */
+    /* ADJUSTED: Moved down to 140px to clear the navbar's two rows */
+    top: 140px; 
     right: 20px;
     z-index: 999;
     text-align: right; 
