@@ -1,36 +1,30 @@
-/* === BIONIC FART GREEN THEME (Combined) === */
+/* === BIONIC FART GREEN THEME (Fixed Mobile + Footer Version) === */
 
-/* Ensure padding and border are included in the element's total width/height */
+/* Universal box-sizing */
 * {
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
-    /* Space for the fixed footer */
-    padding-bottom: 100px;
-    
+    padding-bottom: 140px; /* ensures space for footer */
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
     text-align: center;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
-/* CONTENT STACKING FIX: 
-   Adding position: relative and a medium z-index ensures main content (videos, audio) 
-   sits above the footer (z-index: 50).
-*/
+/* Content stacking order */
 header, section, .video-container, .audio-container, .fun-list {
-    z-index: 100; 
-    position: relative; 
+    z-index: 100;
+    position: relative;
 }
 
-/* FIX: Reduce H1 and P z-index slightly so the translate button (1005) is clearly on top. */
 h1, p {
     position: relative;
-    z-index: 100; 
+    z-index: 100;
 }
 
 /* === HEADER === */
@@ -53,20 +47,18 @@ p {
     margin-bottom: 20px;
 }
 
-/* === GOOGLE TRANSLATE STYLING (Fixed Mobile Alignment/Covering) === */
+/* === TRANSLATE BUTTON === */
 .translate-wrapper {
     position: fixed;
-    top: 140px; /* Default desktop position */
-    right: 20px;
-    /* Highest Z-Index to be on top of EVERYTHING, including the navbar */
-    z-index: 1005; 
-    text-align: right; 
+    top: 120px;
+    right: 15px;
+    z-index: 1500;
+    text-align: right;
 }
 
-/* Hides the actual Google element dropdown that was causing the "white button" issue */
 #google_translate_element {
-    visibility: hidden; 
-    height: 0; 
+    visibility: hidden;
+    height: 0;
     overflow: hidden;
 }
 
@@ -91,28 +83,26 @@ p {
 }
 
 .translate-popup .goog-te-gadget-simple {
-    background-color: #0a0 !important; 
-    border: 1px solid #faff00 !important; 
+    background-color: #0a0 !important;
+    border: 1px solid #faff00 !important;
     border-radius: 5px;
     padding: 5px;
 }
 
-
-/* === NAVIGATION MENU (DESKTOP LAYOUT - STICKY FIXED) === */
+/* === NAVBAR === */
 .navbar {
-    background-color: #0a0; 
+    background-color: #0a0;
     padding: 15px 0;
-    position: sticky; /* Sticky Navbar */
+    position: sticky;
     top: 0;
-    /* Second Highest Z-Index */
-    z-index: 1000;  
+    z-index: 1000;
     transition: opacity 0.4s ease;
 }
 
 .navbar-content {
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -121,8 +111,8 @@ p {
 }
 
 .menu-container {
-    flex-grow: 1; 
-    text-align: center; 
+    flex-grow: 1;
+    text-align: center;
     margin: 0 auto;
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
@@ -152,25 +142,24 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-/* === BUTTON STYLING (Shared) === */
+/* === BUTTONS === */
 .btn {
     background-color: #111;
-    color: #9eff00; 
+    color: #9eff00;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     border: none;
     font-size: 16px;
-    font-family: 'Trebuchet MS', sans-serif;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
-    box-shadow: 0 0 10px #7fff00; 
+    box-shadow: 0 0 10px #7fff00;
 }
 
 .btn:hover {
-    background-color: #faff00; 
+    background-color: #faff00;
     color: #000;
     transform: translateY(-2px);
     box-shadow: 0 0 20px #faff00;
@@ -203,14 +192,13 @@ p {
     box-shadow: 0 0 35px #faff00;
 }
 
+/* Responsive gallery */
 @media (max-width: 600px) {
     .gallery img { width: 48%; max-width: 200px; }
 }
-
 @media (min-width: 601px) and (max-width: 1024px) {
     .gallery img { width: 47%; max-width: 350px; }
 }
-
 @media (min-width: 1025px) {
     .gallery img { width: 46%; max-width: 500px; }
 }
@@ -234,7 +222,7 @@ p {
     letter-spacing: 1px;
 }
 
-/* === VIDEO / AUDIO === */
+/* === VIDEO & AUDIO === */
 .video-container {
     display: flex;
     flex-wrap: wrap;
@@ -258,53 +246,44 @@ video:hover {
     box-shadow: 0 0 35px #faff00;
 }
 
-/* ADDED: Flex container for audio elements */
 .audio-container {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
     margin: 20px auto;
-    /* Ensure the audio container maintains its stacking context */
     z-index: 100;
-    position: relative; 
+    position: relative;
 }
 
 audio {
-    /* REMOVED: display: block; */
-    max-width: 300px; /* Constrain width so multiple fit on one line */
-    width: 100%; /* Allows it to shrink if needed */
-    margin: 5px; /* Space around each player */
+    max-width: 300px;
+    width: 100%;
+    margin: 5px;
 }
 
-
-/* === FOOTER (FIXED & FADING) === */
+/* === FOOTER === */
 footer {
-    background-color: #0a0; 
+    background-color: #0a0;
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed; 
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
-    /* Start fully hidden */
-    opacity: 0; 
+    z-index: 1002;
+    opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
-    /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
-    z-index: 50; 
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 
-/* This class is applied by JavaScript to make it visible */
 footer.visible {
     opacity: 1;
     pointer-events: auto;
-}
-
-footer p {
-    color: white; 
+    transform: translateY(0);
 }
 
 footer a {
@@ -312,90 +291,70 @@ footer a {
     text-decoration: none;
     margin: 0 8px;
 }
-
 footer a:hover {
     text-decoration: underline;
 }
 
-
-/* ======================================= */
-/* === MOBILE MEDIA QUERY: max-width: 768px === */
-/* ======================================= */
+/* === MOBILE === */
 @media screen and (max-width: 768px) {
-    
-    /* 1. Navbar Content */
     .navbar-content {
-        display: flex; 
-        flex-wrap: wrap; 
-        justify-content: space-between; 
+        flex-wrap: wrap;
         padding: 0 10px;
     }
-    
-    /* 2. Logo: Smaller and centered */
     .navbar-logo {
         height: 60px;
         width: auto;
-        align-self: center; 
+        align-self: center;
     }
-
-    /* 3. Menu Toggle: Show Hamburger */
     .menu-toggle {
-        display: block; 
+        display: block;
         box-shadow: 0 0 10px #7fff00;
         border: 2px solid #7fff00;
         border-radius: 5px;
         margin-right: 5px;
-        align-self: center; 
+        align-self: center;
     }
-
-    /* 4. Menu Container: Full width and hidden/visible control */
     .menu-container {
-        flex-basis: 100%; 
-        flex-grow: 0;
+        flex-basis: 100%;
         margin: 10px 0 0 0;
         text-align: left;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         padding: 0 10px;
-        z-index: 10; 
+        z-index: 10;
     }
-    
     .menu-container.active {
-        max-height: 500px; 
+        max-height: 500px;
         opacity: 1;
         padding-top: 10px;
         padding-bottom: 20px;
     }
-
-    /* 5. Buttons: Full width for easy tapping */
     .menu {
-        flex-direction: column; 
+        flex-direction: column;
         align-items: stretch;
         gap: 0;
         padding: 0;
         margin: 0;
     }
-    
-    .menu[style] {
-        margin-top: 0 !important; 
-    }
-
     .btn {
         width: 100%;
         margin: 5px 0;
     }
-    
-    /* 6. Video and Audio: Full width on mobile viewport */
     video, audio {
-        width: 100% !important; 
-        max-width: none; 
+        width: 100% !important;
+        max-width: none;
     }
 
-    /* 7. Translate button/wrapper adjustment (Mobile Fix) */
     .translate-wrapper {
-        /* Pushed higher to clear the two-row collapsed navbar */
-        top: 65px; 
+        top: 90px;
         right: 10px;
+        transform: scale(0.9);
+    }
+    .translate-popup {
+        max-width: 200px;
+        word-wrap: break-word;
+        right: 0;
+        margin-top: 5px;
     }
 }
