@@ -8,13 +8,25 @@
 body {
     margin: 0;
     padding: 0;
+    /* Space for the fixed footer */
     padding-bottom: 100px;
+    
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
     text-align: center;
-    overflow-x: hidden; /* CRITICAL: Prevents horizontal scroll from misplaced elements */
+    overflow-x: hidden; /* Prevents horizontal scroll on mobile */
 }
+
+/* CONTENT STACKING FIX: 
+   Adding position: relative and z-index ensures all main content (header, videos, audio) 
+   sits above the fixed/sticky footer and navbar, resolving the covering issue.
+*/
+header, section, .video-container, audio {
+    z-index: 100; 
+    position: relative; 
+}
+
 
 /* === HEADER === */
 h1 {
@@ -36,18 +48,18 @@ p {
     margin-bottom: 20px;
 }
 
-/* === GOOGLE TRANSLATE STYLING (Fixed White Button Issue) === */
+/* === GOOGLE TRANSLATE STYLING (Fixed Mobile Alignment/Covering) === */
 .translate-wrapper {
     position: fixed;
-    top: 140px; /* Default desktop position */
+    top: 140px; 
     right: 20px;
-    z-index: 999;
+    /* Ensure the translate button/popup is always on top of the navbar */
+    z-index: 1005; 
     text-align: right; 
 }
 
-/* Ensures the actual Google element dropdown is invisible until the user clicks the button */
+/* Hides the actual Google element dropdown that was causing the "white button" issue */
 #google_translate_element {
-    /* Set display: none in the HTML inline style as well, just to be safe */
     visibility: hidden; 
     height: 0; 
     overflow: hidden;
@@ -61,8 +73,8 @@ p {
 .translate-popup {
     margin-top: 10px;
     padding: 10px;
-    background-color: #111; 
-    border: 3px solid #9eff00; 
+    background-color: #111;
+    border: 3px solid #9eff00;
     border-radius: 8px;
     box-shadow: 0 0 15px #7fff00;
     display: inline-block;
@@ -73,7 +85,6 @@ p {
     display: none;
 }
 
-/* Tweak the actual Google Translate widget appearance inside the popup */
 .translate-popup .goog-te-gadget-simple {
     background-color: #0a0 !important; 
     border: 1px solid #faff00 !important; 
@@ -86,8 +97,9 @@ p {
 .navbar {
     background-color: #0a0; 
     padding: 15px 0;
-    position: sticky; /* Keeps it locked at the top when scrolling */
+    position: sticky; /* Sticky Navbar */
     top: 0;
+    /* Highest Z-Index to always be on top of content */
     z-index: 1000;  
     transition: opacity 0.4s ease;
 }
@@ -186,7 +198,6 @@ p {
     box-shadow: 0 0 35px #faff00;
 }
 
-/* Image gallery responsiveness (Standard CSS) */
 @media (max-width: 600px) {
     .gallery img { width: 48%; max-width: 200px; }
 }
@@ -255,7 +266,7 @@ footer {
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed; /* Ensures it stays visible at the bottom */
+    position: fixed; /* Fixed Footer */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -263,7 +274,8 @@ footer {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
-    z-index: 990; /* Ensures it is below the navbar, but above page content */
+    /* Lower Z-Index than content (100) and navbar (1000) so content sits on top */
+    z-index: 50; 
 }
 
 footer.visible {
@@ -291,7 +303,7 @@ footer a:hover {
 /* ======================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. Navbar Content: Ensure logo and toggle are aligned and menu wraps */
+    /* 1. Navbar Content */
     .navbar-content {
         display: flex; 
         flex-wrap: wrap; 
