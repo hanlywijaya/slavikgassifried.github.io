@@ -3,130 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slavik Gassifried Fanpage</title>
-    <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png">
-    <link rel="stylesheet" href="style.css">
+    <title>Motorsport Artifacts</title>
+    <style>
+        /* ========== GLOBAL BODY STYLES ========== */
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 120px; /* keeps content above footer */
+            font-family: 'Trebuchet MS', sans-serif;
+            background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+            color: #0b0b0b;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background-color: #002200;
+            color: #00ff00;
+            padding: 25px 10px;
+            font-size: 28px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0, 255, 0, 0.3);
+        }
+
+        /* ========== TRANSLATE BUTTON ========== */
+        .translate-wrapper {
+            position: fixed;
+            top: 85px; /* below header */
+            right: 15px;
+            z-index: 1500;
+            text-align: right;
+        }
+
+        .translate-popup {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 8px;
+            background: #001900;
+            color: #00ff00;
+            border: 1px solid #00cc00;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .translate-popup a {
+            color: #00ff00;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .translate-popup a:hover {
+            text-decoration: underline;
+        }
+
+        .translate-button {
+            background-color: #004400;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .translate-button:hover {
+            background-color: #006600;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        main {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: #0a0;
+            color: white;
+            padding: 18px 10px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+            z-index: 1002;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+        }
+
+        /* ========== MOBILE RESPONSIVE FIXES ========== */
+        @media screen and (max-width: 768px) {
+            header {
+                font-size: 22px;
+                padding: 18px 10px;
+            }
+
+            .translate-wrapper {
+                top: 75px; /* lower to clear sticky header */
+                right: 10px;
+                transform: scale(0.9);
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            footer {
+                font-size: 14px;
+                padding: 15px 8px;
+                z-index: 2000;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="navbar-content">
-        <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="96" width="168" alt="Gassing slavik" class="navbar-logo">
-        
-        <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-        </button>
-        <div class="menu-container" id="menu-container">
-            <div class="menu">
-                <button class="btn" onClick="window.location.href='index'">slaviks home</button>
-                <button class="btn" onClick="window.location.href='images'">slavik galleries</button>
-                <button class="btn" onClick="window.location.href='icebreakers'">Slavik's fav icebreakers</button>
-                <button class="btn" id="favgLink">Slavik's fav gassyfried</button>
-                <button class="btn" onClick="window.open('pizzeria/saved_resource.html', '_blank')">doggeriajoo</button>
-                <button class="btn" onClick="window.open('geometrydash', '_blank')">geometrydashjoo</button>
-            </div>
-            <div class="menu" style="margin-top: 10px;">
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/1/', '_blank')">fnaf1</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/2/', '_blank')">fnaf2</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/3/', '_blank')">fnaf3</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/4/', '_blank')">fnaf4</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/w/', '_blank')">fnafworld</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/sl/', '_blank')">fnafsl</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ps/', '_blank')">fnafps</button>
-                <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ucn/', '_blank')">fnafucn</button>
-            </div>
+    <header>🏎 Motorsport Artifacts</header>
+
+    <div class="translate-wrapper">
+        <button class="translate-button" onclick="toggleTranslate()">🌐 Translate Page</button>
+        <div class="translate-popup" id="translate-popup">
+            <a href="#">English</a>
+            <a href="#">日本語</a>
+            <a href="#">Français</a>
+            <a href="#">Deutsch</a>
         </div>
     </div>
-</nav>
 
-<header>
-    <h1>Welcome to slavikgassifried</h1>
-    <p>This is an amazing fanpage website run by the fans of SLavik gassy!
-    Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
-</header>
+    <main>
+        <h2>Welcome to Motorsport Artifacts</h2>
+        <p>
+            Explore vintage racing memorabilia, team archives, and historic automotive collectibles.
+        </p>
+        <p>
+            From Formula 1 legends to classic endurance machines, we curate and preserve the heritage of motorsport.
+        </p>
+        <p>
+            Stay tuned for more additions to the collection and behind-the-scenes insights from the paddock.
+        </p>
+    </main>
 
-<div class="translate-wrapper">
-    <button id="translate-toggle" class="btn">Translate Page 🌐</button>
-    <div id="translate-popup" class="translate-popup hidden">
-        <div id="google_translate_element"></div>
-    </div>
-</div>
+    <footer>
+        © 2025 Motorsport Artifacts — Preserving Racing Heritage 🏁
+    </footer>
 
-<section class="gallery">
-    <img src="files/Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
-    <img src="files/chicken gassy.jpg" alt="namisgassyasshit">
-    <img src="files/diginmybutttwin.png" alt="howintelligentweare">
-    <img src="files/IMG_0696.PNG" alt="Gassy slavik">
-    <img src="files/ohnothedog.jpg" alt="Oh no gassy slavik dog">
-    <img src="files/3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
-</section>
+    <script>
+        function toggleTranslate() {
+            const popup = document.getElementById("translate-popup");
+            popup.style.display = (popup.style.display === "block") ? "none" : "block";
+        }
 
-<ul class="fun-list">
-    <li>SLava</li>
-    <li>is</li>
-    <li>gassifried</li>
-    <li>jorking!</li>
-</ul>
+        // Hide popup when clicking outside
+        document.addEventListener("click", (e) => {
+            const popup = document.getElementById("translate-popup");
+            const button = document.querySelector(".translate-button");
+            if (!popup.contains(e.target) && !button.contains(e.target)) {
+                popup.style.display = "none";
+            }
+        });
+    </script>
 
-<div class="video-container">
-    <video controls><source src="files/lgnosignal.mp4" type="video/mp4"></video>
-    <video controls><source src="files/khabylamemechanism.mp4" type="video/mp4"></video>
-    <video controls><source src="files/islandgivesuswhatweneed.mp4" type="video/mp4"></video>
-</div>
-
-<div class="audio-container">
-    <audio controls><source src="files/greatautoplay.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/greatautoplay2.mp3" type="audio/mpeg"></audio>
-    <audio controls autoplay><source src="files/GET BEHIND ME DOCTOR!!.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/[SFM FNaF] I'm Golden Freddy I like to Scare.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg"></audio>
-</div>
-
-<footer class="footer">
-    <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
-    <p><a href="index.html">© 2025 slavikgassifried</a></p>
-</footer>
-
-<script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-}
-
-// Toggle translate popup
-document.getElementById("translate-toggle").addEventListener("click", () => {
-    document.getElementById("translate-popup").classList.toggle("hidden");
-});
-
-// Warning popup
-document.getElementById("favgLink").addEventListener("click", (event) => {
-    event.preventDefault();
-    const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
-    if (confirm(confirmMessage)) {
-        window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
-    } else {
-        alert("Good choice 😮‍💨 Stay away from the gas!");
-    }
-});
-
-// Mobile menu toggle
-document.getElementById("menu-toggle").addEventListener("click", function() {
-    const menuContainer = document.getElementById("menu-container");
-    const toggleButton = this;
-    menuContainer.classList.toggle("active");
-    const isExpanded = menuContainer.classList.contains("active");
-    toggleButton.setAttribute("aria-expanded", isExpanded);
-});
-
-// Footer fade in/out when near bottom
-window.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer");
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    if (scrollTop > docHeight * 0.8) footer.classList.add("visible");
-    else footer.classList.remove("visible");
-});
-</script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
