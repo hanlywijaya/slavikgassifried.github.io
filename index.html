@@ -1,87 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Slavik Gassifried Fanpage</title>
-  <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="translate-wrapper">
-    <button id="translate-toggle" class="btn">Translate Page 🌐</button>
-    <div id="translate-popup" class="translate-popup hidden">
-      <div id="google_translate_element"></div>
-    </div>
-  </div>
-
-  <nav class="navbar">
-    <div class="navbar-content">
-      <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="96" width="168" alt="Gassing slavik" class="navbar-logo" />
-      <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-      <div class="menu-container" id="menu-container">
-        <div class="menu">
-          <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
-          <button class="btn" onClick="window.location.href='images'" target="_self">slavik galleries</button>
-          <button class="btn" onClick="window.location.href='icebreakers'" target="_self">Slavik's fav icebreakers</button>
-          <button class="btn" id="favgLink">Slavik's fav gassyfried</button>
-          <button class="btn" onClick="window.open('pizzeria/saved_resource.html', '_blank')">doggeriajoo</button>
-          <button class="btn" onClick="window.open('geometrydash', '_blank')">geometrydashjoo</button>
-        </div>
-        <div class="menu" style="margin-top: 10px;">
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/1/', '_blank')">fnaf1</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/2/', '_blank')">fnaf2</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/3/', '_blank')">fnaf3</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/4/', '_blank')">fnaf4</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/w/', '_blank')">fnafworld</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/sl/', '_blank')">fnafsl</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ps/', '_blank')">fnafps</button>
-          <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ucn/', '_blank')">fnafucn</button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <header>
-    <h1>Welcome to slavikgassifried</h1>
-    <p>This is an amazing fanpage website run by the fans of SLavik gassy! Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
-  </header>
-
-  <section class="gallery">
-    <img src="files/Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
-    <img src="files/chicken gassy.jpg" alt="namisgassyasshit">
-    <img src="files/diginmybutttwin.png" alt="howintelligentweare">
-    <img src="files/IMG_0696.PNG" alt="Gassy slavik">
-    <img src="files/ohnothedog.jpg" alt="Oh no gassy slavik dog">
-    <img src="files/3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
-  </section>
-
-  <ul class="fun-list">
-    <li>SLava</li><li>is</li><li>gassifried</li><li>jorking!</li>
-  </ul>
-
-  <div class="video-container">
-    <video controls><source src="files/lgnosignal.mp4" type="video/mp4"></video>
-    <video controls><source src="files/khabylamemechanism.mp4" type="video/mp4"></video>
-    <video controls><source src="files/islandgivesuswhatweneed.mp4" type="video/mp4"></video>
-  </div>
-
-  <div class="audio-container">
-    <audio controls><source src="files/greatautoplay.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/greatautoplay2.mp3" type="audio/mpeg"></audio>
-    <audio controls autoplay><source src="files/GET BEHIND ME DOCTOR!!.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/[SFM FNaF] I'm Golden Freddy I like to Scare.mp3" type="audio/mpeg"></audio>
-    <audio controls><source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg"></audio>
-  </div>
-
-  <footer class="footer">
-    <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
-    <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
-  </footer>
-
-  <script>
+<script>
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
     }
@@ -109,13 +26,26 @@
       }
     });
 
-    /* Fix translate overlap */
-    window.addEventListener("load", () => {
-      const translate = document.querySelector(".translate-wrapper");
-      const navbar = document.querySelector(".navbar");
+    /* Fix translate overlap and implement scroll transparency */
+    const translateWrapper = document.querySelector(".translate-wrapper");
+    const navbar = document.querySelector(".navbar");
+
+    const updateTranslatePositionAndOpacity = () => {
+      // Position fix (moved inside the function for potential dynamic navbar size)
       const offset = navbar.offsetHeight + 10;
-      translate.style.top = `${offset}px`;
-    });
+      translateWrapper.style.top = `${offset}px`;
+
+      // Transparency logic
+      if (window.scrollY > 50) { // Transparency starts after scrolling 50px
+        translateWrapper.style.opacity = "0.2"; // Make it transparent
+      } else {
+        translateWrapper.style.opacity = "1"; // Fully opaque at the top
+      }
+    };
+
+    window.addEventListener("load", updateTranslatePositionAndOpacity);
+    // Added: Update opacity on scroll
+    window.addEventListener("scroll", updateTranslatePositionAndOpacity);
 
     /* Prevent cutoff scrolling */
     document.body.style.overflowY = "auto";
