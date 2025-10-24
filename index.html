@@ -99,16 +99,6 @@
       }
     });
 
-    /* Fade footer only on mobile */
-    const footer = document.querySelector(".footer");
-    window.addEventListener("scroll", () => {
-      if (window.innerWidth <= 768) {
-        footer.style.opacity = window.scrollY > 120 ? "1" : "0";
-      } else {
-        footer.style.opacity = "1";
-      }
-    });
-
     /* Fix translate overlap */
     window.addEventListener("load", () => {
       const translate = document.querySelector(".translate-wrapper");
