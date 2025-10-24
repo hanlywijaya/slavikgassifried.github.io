@@ -9,12 +9,16 @@
 </head>
 <body>
 
-    <!-- NAVIGATION BAR (Using navbar/menu/btn structure for consistent styling) -->
-<nav class="navbar">
+    <nav class="navbar">
     <div class="navbar-content">
         <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="96" width="168" alt="Gassing slavik" class="navbar-logo">
         
-        <div class="menu-container">
+        <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="menu-container" id="menu-container">
             <div class="menu">
                 <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
                 <button class="btn" onClick="window.location.href='images'" target="_self">slavik galleries</button>
@@ -37,24 +41,18 @@
     </div>
 </nav>
     
-    <!-- HEADER -->
     <header>
         <h1>Welcome to slavikgassifried</h1>
         <p>This is an amazing fanpage website run by the fans of SLavik gassy!
             Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
     </header>
 
-    <!-- NEW GOOGLE TRANSLATE TOGGLE WINDOW (Fixed position and styled in CSS) -->
     <div class="translate-wrapper">
         <button id="translate-toggle" class="btn">Translate Page 🌐</button>
         <div id="translate-popup" class="translate-popup hidden">
-            <!-- The original Google Translate element -->
             <div id="google_translate_element"></div>
         </div>
     </div>
-    <!-- END GOOGLE TRANSLATE TOGGLE -->
-
-    <!-- IMAGE GALLERY -->
     <section class="gallery">
         <img src="files/Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
         <img src="files/chicken gassy.jpg" alt="namisgassyasshit">
@@ -64,7 +62,6 @@
         <img src="files/3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
     </section>
 
-    <!-- FUN LIST -->
     <ul class="fun-list">
         <li>SLava</li>
         <li>is</li>
@@ -72,9 +69,7 @@
         <li>jorking!</li>
     </ul>
 
-    <!-- VIDEO -->
     <div class="video-container">
-        <!-- Re-added video-container class to simplify styling like Motorsport Artifacts -->
         <video controls>
             <source src="files/lgnosignal.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -89,7 +84,6 @@
         </video>
     </div>
 
-    <!-- AUDIO -->
     <audio controls>
         <source src="files/greatautoplay.mp3" type="audio/mpeg">
     </audio>
@@ -106,13 +100,11 @@
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- FOOTER (Motorsport Artifacts Style) -->
     <footer class="footer">
         <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
         <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
         // Google Translate init
         function googleTranslateElementInit() {
@@ -140,6 +132,19 @@
         // Footer visibility script (from Motorsport Artifacts)
         window.addEventListener('load', function() {
             document.querySelector('footer').classList.add('visible');
+        });
+
+        // NEW: Toggle logic for the mobile menu
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menuContainer = document.getElementById("menu-container");
+            const toggleButton = this;
+            
+            // Toggles the 'active' class to show/hide the menu
+            menuContainer.classList.toggle("active");
+            
+            // Update ARIA attributes for accessibility
+            const isExpanded = menuContainer.classList.contains("active");
+            toggleButton.setAttribute("aria-expanded", isExpanded);
         });
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
