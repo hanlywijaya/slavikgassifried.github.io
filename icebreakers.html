@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>icebreakers</title>
-  <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>icebreakers</title>
+    <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LINKS -->
-<div class="links">
-  <a href="index" target="_self">slaviks home</a>
-  <a href="images" target="_self">slavik galleries</a>
-  <a href="icebreakers" target="_self">Slavik's fav icebreakers</a>
-  <a href="#" id="favgLink">Slavik's fav gassyfried</a>
-  <a href="pizzeria/saved_resource.html" target="_blank">doggeriajoo</a>
-  <a href="geometrydash" target="_blank">geometrydashjoo</a>
-  <a href="https://irv77.github.io/hd_fnaf/1/" target="_blank">fnaf1</a>
-  <a href="https://irv77.github.io/hd_fnaf/2/" target="_blank">fnaf2</a>
-  <a href="https://irv77.github.io/hd_fnaf/3/" target="_blank">fnaf3</a>
-  <a href="https://irv77.github.io/hd_fnaf/4/" target="_blank">fnaf4</a>
-  <a href="https://irv77.github.io/hd_fnaf/w/" target="_blank">fnafworld</a>
-  <a href="https://irv77.github.io/hd_fnaf/sl/" target="_blank">fnafsl</a>
-  <a href="https://irv77.github.io/hd_fnaf/ps/" target="_blank">fnafps</a>
-  <a href="https://irv77.github.io/hd_fnaf/ucn/" target="_blank">fnafucn</a>
-</div>
-  
-  <!-- HEADER -->
-  <header>
-    <h1>Welcome to our incredible slavikgassifried icebreakers</h1>
-    <p>This is an amazing fanpage website run by the fans of SLavik gassy!
-     Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
-  </header>
+    <!-- NAVIGATION BAR (Using navbar/menu/btn structure for consistent styling) -->
+    <nav class="navbar">
+        <div class="menu">
+            <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
+            <button class="btn" onClick="window.location.href='images'" target="_self">slavik galleries</button>
+            <button class="btn" onClick="window.location.href='icebreakers'" target="_self">Slavik's fav icebreakers</button>
+            <button class="btn" id="favgLink">Slavik's fav gassyfried</button>
+            <button class="btn" onClick="window.open('pizzeria/saved_resource.html', '_blank')">doggeriajoo</button>
+            <button class="btn" onClick="window.open('geometrydash', '_blank')">geometrydashjoo</button>
+        </div>
+        <!-- FNAF Links on a second row to keep the layout clean -->
+        <div class="menu" style="margin-top: 10px;">
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/1/', '_blank')">fnaf1</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/2/', '_blank')">fnaf2</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/3/', '_blank')">fnaf3</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/4/', '_blank')">fnaf4</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/w/', '_blank')">fnafworld</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/sl/', '_blank')">fnafsl</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ps/', '_blank')">fnafps</button>
+            <button class="btn" onClick="window.open('https://irv77.github.io/hd_fnaf/ucn/', '_blank')">fnafucn</button>
+        </div>
+    </nav>
+  
+    <!-- HEADER -->
+    <header>
+        <h1>Welcome to our incredible slavikgassifried icebreakers</h1>
+        <p>This is an amazing fanpage website run by the fans of SLavik gassy!
+            Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
+    </header>
+
+    <!-- GOOGLE TRANSLATE TOGGLE WINDOW (Fixed position) -->
+    <div class="translate-wrapper">
+        <button id="translate-toggle" class="btn">Translate Page 🌐</button>
+        <div id="translate-popup" class="translate-popup hidden">
+            <!-- The original Google Translate element -->
+            <div id="google_translate_element"></div>
+        </div>
+    </div>
+    <!-- END GOOGLE TRANSLATE TOGGLE -->
 
     <h2>Icebreaker 1</h2>
     <p2>Is it more weird to jerk off with your legs spread out or to jerk off with headphones on?</p2>
@@ -46,56 +61,66 @@
     <p2>If you carved a penis out on a snowman, what would you do with it?</p2>
     <p2>Example answer - I'd start bouncing on it.</p2>
 
-  <!-- FUN LIST -->
-  <ul class="fun-list">
-    <li>SLava</li>
-    <li>is</li>
-    <li>gassifried</li>
-    <li>jorking!</li>
-  </ul>
-  
+    <!-- FUN LIST -->
+    <ul class="fun-list">
+        <li>SLava</li>
+        <li>is</li>
+        <li>gassifried</li>
+        <li>jorking!</li>
+    </ul>
+    
+    <!-- VIDEO CONTAINER (FIXED - using video-container for styling) -->
+    <div class="video-container">
+        <!-- Removed empty/malformed </video> tag from original content -->
+        <video controls>
+            <source src="files/khabylamemechanism.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-  <!-- VIDEO -->
-    </video>
-    <video controls>
-      <source src="files/khabylamemechanism.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <!-- AUDIO -->
+    <audio controls autoplay>
+        <source src="files/greatautoplay.mp3" type="audio/mpeg">
+    </audio>
+    <audio controls autoplay>
+        <source src="files/greatautoplay2.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
+    </footer>
 
-  <!-- GOOGLE TRANSLATE -->
-  <div id="google_translate_element"></div>
+    <!-- SCRIPTS -->
+    <script>
+        // Google Translate init
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
 
-  <!-- AUDIO -->
-  <audio controls autoplay>
-    <source src="files/greatautoplay.mp3" type="audio/mpeg">
-  </audio>
-  <audio controls autoplay>
-    <source src="files/greatautoplay2.mp3" type="audio/mpeg">
-  </audio>
-  
-  <!-- FOOTER -->
-  <footer>
-    <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
-  </footer>
+        // Toggle visibility for the Google Translate popup
+        document.getElementById("translate-toggle").addEventListener("click", function() {
+            const popup = document.getElementById("translate-popup");
+            popup.classList.toggle("hidden");
+        });
 
-  <!-- SCRIPTS -->
-  <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-    }
+        // Fav gassyfried warning system
+        document.getElementById("favgLink").addEventListener("click", function(event) {
+            event.preventDefault();
+            const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
+            if (confirm(confirmMessage)) {
+                window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
+            } else {
+                alert("Good choice 😮‍💨 Stay away from the gas!");
+            }
+        });
 
-    // Fav gassyfried warning system
-    document.getElementById("favgLink").addEventListener("click", function(event) {
-      event.preventDefault();
-      const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
-      if (confirm(confirmMessage)) {
-        window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
-      } else {
-        alert("Good choice 😮‍💨 Stay away from the gas!");
-      }
-    });
-  </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        // Make footer visible when the page loads
+        window.addEventListener('load', function() {
+            document.querySelector('footer').classList.add('visible');
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
