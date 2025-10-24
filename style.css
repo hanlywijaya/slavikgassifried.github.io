@@ -51,7 +51,7 @@ p {
 /* === GOOGLE TRANSLATE STYLING (Fixed Mobile Alignment/Covering) === */
 .translate-wrapper {
     position: fixed;
-    top: 140px; 
+    top: 140px; /* Default desktop position */
     right: 20px;
     /* Ensure the translate button/popup is always on top of the navbar */
     z-index: 1005; 
@@ -266,21 +266,24 @@ footer {
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed; /* Fixed Footer */
+    /* REMOVED: position: fixed; This must be added by the JS class to allow the transition */
     left: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
-    opacity: 0;
+    /* Starts hidden and transitions */
+    opacity: 0; 
     pointer-events: none;
     transition: opacity 0.5s ease;
-    /* Lower Z-Index than content (100) and navbar (1000) so content sits on top */
+    /* Lower Z-Index so content sits on top */
     z-index: 50; 
 }
 
+/* ADDED: This class is applied by JavaScript to make it visible and fixed */
 footer.visible {
     opacity: 1;
     pointer-events: auto;
+    position: fixed; /* Apply fixed positioning *after* the page loads */
 }
 
 footer p {
@@ -372,10 +375,10 @@ footer a:hover {
         max-width: none; 
     }
 
-    /* 7. Translate button/wrapper adjustment */
+    /* 7. Translate button/wrapper adjustment (Mobile Fix) */
     .translate-wrapper {
-        /* Move translate button below the navbar on mobile */
-        top: 80px; 
+        /* Pushed higher to clear the two-row collapsed navbar */
+        top: 65px; 
         right: 10px;
     }
 }
