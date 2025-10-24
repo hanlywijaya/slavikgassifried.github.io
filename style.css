@@ -3,6 +3,9 @@
 body {
     margin: 0;
     padding: 0;
+    /* ADDED: Padding to create space for the fixed footer */
+    padding-bottom: 70px; 
+    
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
@@ -12,7 +15,8 @@ body {
 
 /* Make room for the fixed footer (from Motorsport Artifacts) */
 main {
-    padding-bottom: 72px; 
+    /* CHANGED: Removed padding-bottom here since it's now applied to the body */
+    /* padding-bottom: 72px; */ 
 }
 
 /* === HEADER === */
