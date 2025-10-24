@@ -99,23 +99,31 @@
       }
     });
 
-    /* Fade footer only on mobile */
+    /* Fade footer logic (revised for clarity) */
     const footer = document.querySelector(".footer");
     window.addEventListener("scroll", () => {
-      if (window.innerWidth <= 768) {
-        footer.style.opacity = window.scrollY > 120 ? "1" : "0";
+      // Logic for desktop: footer is always visible (handled by CSS)
+      if (window.innerWidth > 768) {
+        footer.classList.add("visible");
       } else {
-        footer.style.opacity = "1";
+        // Logic for mobile: fade in/out based on scroll
+        // Fade out on scroll up/near top, fade in on scroll down/after a threshold
+        if (window.scrollY > 50) { // Shows footer after scrolling down a bit
+          footer.classList.add("visible");
+        } else {
+          footer.classList.remove("visible");
+        }
       }
     });
-
-    /* Fix translate overlap */
+    
+    // Initial check for non-mobile devices to ensure visibility
     window.addEventListener("load", () => {
-      const translate = document.querySelector(".translate-wrapper");
-      const navbar = document.querySelector(".navbar");
-      const offset = navbar.offsetHeight + 10;
-      translate.style.top = `${offset}px`;
+        if (window.innerWidth > 768) {
+            footer.classList.add("visible");
+        }
     });
+
+    /* Remove: Fix translate overlap (no longer necessary as it's at the bottom) */
 
     /* Prevent cutoff scrolling */
     document.body.style.overflowY = "auto";
