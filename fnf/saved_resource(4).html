@@ -1,0 +1,129 @@
+
+<!-- saved from url=(0260)https://1180529230-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.J8aLcn7bYF8.O%2Fd%3D1%2Frs%3DAHpOoo-YaQN_2soL6ZNher0ZcTp3d4Q_nw%2Fm%3D__features__ -->
+<html lang="tr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><module>
+<moduleprefs title="Google.com">
+<content type="html"><!--[CDATA[
+
+
+<!DOCTYPE html-->
+
+
+  
+  <title>google.com</title>
+  <script src="./ruffle.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+
+    #loading {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.2rem;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    .bar {
+      width: 200px;
+      height: 8px;
+      background: #333;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+
+    .bar-fill {
+      width: 0%;
+      height: 100%;
+      background: #00bfff;
+      animation: load 2.5s forwards;
+    }
+
+    @keyframes load {
+      to {
+        width: 100%;
+      }
+    }
+
+    #swf-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    embed {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+
+  <div id="loading">
+    Loading..pls u ugly ?XD? G+.
+    <div class="bar"><div class="bar-fill"></div></div>
+  </div>
+  <div id="swf-container"></div>
+
+  <script>
+    async function fetchAndCombineParts(partUrls) {
+      const buffers = await Promise.all(partUrls.map(url => fetch(url).then(r => r.arrayBuffer())));
+      const total = buffers.reduce((sum, b) => sum + b.byteLength, 0);
+      const combined = new Uint8Array(total);
+      let offset = 0;
+      for (const b of buffers) {
+        combined.set(new Uint8Array(b), offset);
+        offset += b.byteLength;
+      }
+      return new Blob([combined], { type: "application/x-shockwave-flash" });
+    }
+
+    (async () => {
+      const parts = [
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part0",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part1",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part2",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part3",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part4",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part5",
+        "https://cdn.jsdelivr.net/gh/fnafben/fx@main/fnfa.part6"
+      ];
+
+      const blob = await fetchAndCombineParts(parts);
+      const blobUrl = URL.createObjectURL(blob);
+
+      const container = document.getElementById("swf-container");
+
+      const embed = document.createElement("embed");
+      embed.src = blobUrl;
+      embed.type = "application/x-shockwave-flash";
+      embed.setAttribute("width", "100%");
+      embed.setAttribute("height", "100%");
+
+      container.appendChild(embed);
+      setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+      }, 3000);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+]]&gt;</content>
+</moduleprefs></module></body></html>
