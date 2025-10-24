@@ -245,3 +245,40 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Styling for the main navigation bar */
+.navbar-content {
+    /* Enables Flexbox layout */
+    display: flex; 
+    /* Centers items vertically */
+    align-items: center; 
+    /* Ensures items are spaced out (logo on left, buttons centered) */
+    justify-content: space-between; 
+    /* Keeps the content from touching the edges */
+    width: 100%;
+}
+
+/* Style for the logo image */
+.navbar-logo {
+    /* Ensures the logo doesn't shrink or grow */
+    flex-shrink: 0;
+}
+
+/* Container for all the buttons to manage their centering */
+.menu-container {
+    /* Allows the menu to take up available space */
+    flex-grow: 1; 
+    /* Centers the menu container itself */
+    text-align: center; 
+    /* Pushes the content to the horizontal center */
+    margin: 0 auto;
+}
+
+/* Optional: To make the buttons look better if you're using Flexbox inside .menu, 
+   you might need to adjust the existing .menu style: */
+.menu {
+    /* Use Flexbox for button rows for better spacing/alignment */
+    display: flex;
+    justify-content: center; /* Center buttons within the row */
+    gap: 5px; /* Add some space between buttons */
+}
