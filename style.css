@@ -1,6 +1,6 @@
 /* === BIONIC FART GREEN THEME (Fixed Mobile + Footer Version) === */
 
-/* Universal box-sizing */
+/* --- UNIVERSAL --- */
 * {
     box-sizing: border-box;
 }
@@ -8,7 +8,7 @@
 body {
     margin: 0;
     padding: 0;
-    padding-bottom: 140px; /* ensures space for footer */
+    padding-bottom: 140px; /* space for footer */
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
@@ -16,7 +16,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Content stacking order */
+/* Content stacking */
 header, section, .video-container, .audio-container, .fun-list {
     z-index: 100;
     position: relative;
@@ -52,7 +52,7 @@ p {
     position: fixed;
     top: 120px;
     right: 15px;
-    z-index: 1500;
+    z-index: 2000;
     text-align: right;
 }
 
@@ -264,17 +264,17 @@ audio {
 
 /* === FOOTER === */
 footer {
+    position: fixed;       /* stick to bottom */
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #0a0;
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     font-size: 16px;
     z-index: 1002;
-    opacity: 0;
+    opacity: 0;            /* hidden initially */
     pointer-events: none;
     transform: translateY(20px);
     transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
@@ -357,28 +357,8 @@ footer a:hover {
         right: 0;
         margin-top: 5px;
     }
-}
 
-/* Keep footer above content */
-body {
-  padding-bottom: 140px; /* ensures footer not covering content */
-}
-
-/* Fix translate button position */
-.translate-wrapper {
-  position: fixed;
-  right: 15px;
-  z-index: 2000;
-}
-
-@media (max-width: 768px) {
-  .translate-wrapper {
-    right: 10px;
-    transform: scale(0.9);
-  }
-
-  .footer {
-    transition: opacity 0.4s ease;
-    opacity: 0; /* starts hidden */
-  }
+    body {
+        padding-bottom: 160px; /* extra space for footer */
+    }
 }
