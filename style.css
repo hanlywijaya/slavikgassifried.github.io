@@ -15,18 +15,23 @@ body {
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
     text-align: center;
-    overflow-x: hidden; /* Prevents horizontal scroll on mobile */
+    overflow-x: hidden; 
 }
 
 /* CONTENT STACKING FIX: 
-   Adding position: relative and z-index ensures all main content (header, videos, audio) 
-   sits above the fixed/sticky footer and navbar, resolving the covering issue.
+   Adding position: relative and a medium z-index ensures main content (videos, audio) 
+   sits above the footer.
 */
-header, section, .video-container, audio {
+header, section, .video-container, audio, .fun-list {
     z-index: 100; 
     position: relative; 
 }
 
+/* FIX: Reduce H1 and P z-index slightly so the translate button (1005) is clearly on top. */
+h1, p {
+    position: relative;
+    z-index: 100; 
+}
 
 /* === HEADER === */
 h1 {
@@ -53,7 +58,7 @@ p {
     position: fixed;
     top: 140px; /* Default desktop position */
     right: 20px;
-    /* Ensure the translate button/popup is always on top of the navbar */
+    /* Highest Z-Index to be on top of EVERYTHING, including the navbar */
     z-index: 1005; 
     text-align: right; 
 }
@@ -99,7 +104,7 @@ p {
     padding: 15px 0;
     position: sticky; /* Sticky Navbar */
     top: 0;
-    /* Highest Z-Index to always be on top of content */
+    /* Second Highest Z-Index */
     z-index: 1000;  
     transition: opacity 0.4s ease;
 }
@@ -260,30 +265,32 @@ audio {
 }
 
 
-/* === FOOTER (FIXED) === */
+/* === FOOTER (FIXED & FADING) === */
 footer {
     background-color: #0a0; 
     color: white;
     padding: 20px 10px;
     text-align: center;
-    /* REMOVED: position: fixed; This must be added by the JS class to allow the transition */
+    /* Default position BEFORE JS adds 'visible' class */
+    position: fixed; 
     left: 0;
     bottom: 0;
     width: 100%;
     font-size: 16px;
-    /* Starts hidden and transitions */
+    /* Start fully hidden */
     opacity: 0; 
     pointer-events: none;
+    /* FIX: Footer Transition and Opacity Control simplified */
     transition: opacity 0.5s ease;
-    /* Lower Z-Index so content sits on top */
+    /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
     z-index: 50; 
 }
 
-/* ADDED: This class is applied by JavaScript to make it visible and fixed */
+/* This class is applied by JavaScript to make it visible */
 footer.visible {
     opacity: 1;
     pointer-events: auto;
-    position: fixed; /* Apply fixed positioning *after* the page loads */
+    /* We don't need to re-apply position: fixed since it's on the base 'footer' rule now */
 }
 
 footer p {
