@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    /* INCREASED: Padding to 100px to ensure enough space for the footer */
+    /* Increased padding to 100px to ensure enough space for the fixed footer */
     padding-bottom: 100px; 
     
     font-family: 'Trebuchet MS', sans-serif;
@@ -15,7 +15,7 @@ body {
 
 /* Make room for the fixed footer (from Motorsport Artifacts) */
 main {
-    /* REMOVED: Conflicting padding-bottom: 72px; */ 
+    /* This rule is now effectively empty and can be ignored or removed if no other content is inside main */
 }
 
 /* === HEADER === */
@@ -37,6 +37,44 @@ p {
     color: #111;
     margin-bottom: 20px;
 }
+
+/* === GOOGLE TRANSLATE STYLING (NEW) === */
+.translate-wrapper {
+    position: fixed;
+    top: 100px; /* Position below the navbar */
+    right: 20px;
+    z-index: 999;
+    text-align: right; 
+}
+
+.translate-popup {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #111; /* Dark background */
+    border: 3px solid #9eff00; /* Neon border */
+    border-radius: 8px;
+    box-shadow: 0 0 15px #7fff00; /* Gassy glow */
+    display: inline-block;
+    max-width: 250px;
+}
+
+.translate-popup.hidden {
+    display: none;
+}
+
+/* Tweak the actual Google Translate widget appearance inside the popup */
+.translate-popup #google_translate_element {
+    line-height: 1; /* Adjust line height */
+}
+
+/* Target the standard Google Translate combo box styles for better integration */
+.translate-popup .goog-te-gadget-simple {
+    background-color: #0a0 !important; /* Gassy background for the selector */
+    border: 1px solid #faff00 !important; /* Neon border */
+    border-radius: 5px;
+    padding: 5px;
+}
+
 
 /* === NAVIGATION MENU (Motorsport Artifacts Layout with Green Colors) === */
 .navbar {
