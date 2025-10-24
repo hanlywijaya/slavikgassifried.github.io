@@ -22,7 +22,7 @@ body {
    Adding position: relative and a medium z-index ensures main content (videos, audio) 
    sits above the footer (z-index: 50).
 */
-header, section, .video-container, .audio-container, .fun-list {
+header, section, .video-container, audio, .fun-list {
     z-index: 100; 
     position: relative; 
 }
@@ -258,23 +258,10 @@ video:hover {
     box-shadow: 0 0 35px #faff00;
 }
 
-/* ADDED: Flex container for audio elements */
-.audio-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px; 
-    margin: 20px auto;
-    /* Ensure the audio container maintains its stacking context */
-    z-index: 100;
-    position: relative; 
-}
-
 audio {
-    /* REMOVED: display: block; */
-    max-width: 300px; /* Constrain width so multiple fit on one line */
-    width: 100%; /* Allows it to shrink if needed */
-    margin: 5px; /* Space around each player */
+    max-width: 90%; 
+    margin: 5px auto;
+    display: block;
 }
 
 
