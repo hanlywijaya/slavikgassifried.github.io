@@ -1,4 +1,4 @@
-/* === BIONIC FART GREEN THEME (Fixed Mobile Footer & Translate Button Position) === */
+/* === BIONIC FART GREEN THEME (Fixed Mobile + Footer Version) === */
 
 /* Universal box-sizing */
 * {
@@ -8,7 +8,7 @@
 body {
     margin: 0;
     padding: 0;
-    padding-bottom: 100px; /* ensures space for the fixed footer on mobile */
+    padding-bottom: 140px; /* ensures space for footer */
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
@@ -52,10 +52,10 @@ p {
     position: fixed;
     bottom: 20px; /* Position at the bottom */
     right: 15px; /* Position on the right */
-    top: auto;
+    top: auto; /* Remove top position */
     z-index: 1500;
     text-align: right;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Add transition for smoothness */
 }
 
 #google_translate_element {
@@ -70,7 +70,7 @@ p {
 }
 
 .translate-popup {
-    margin-bottom: 10px; 
+    margin-bottom: 10px; /* Changed margin-top to margin-bottom */
     padding: 10px;
     background-color: #111;
     border: 3px solid #9eff00;
@@ -265,7 +265,7 @@ audio {
 }
 
 /* === FOOTER (Fixed for Mobile/Desktop visibility) === */
-.footer { 
+.footer { /* Changed from 'footer' to '.footer' for better specificity */
     background-color: #0a0;
     color: white;
     padding: 20px 10px;
@@ -276,7 +276,7 @@ audio {
     width: 100%;
     font-size: 16px;
     z-index: 1002;
-    opacity: 0; /* Starts hidden */
+    opacity: 0; /* Starts hidden on all devices */
     pointer-events: none; /* Disables interaction when hidden */
     transform: translateY(20px);
     transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
@@ -288,18 +288,12 @@ audio {
     transform: translateY(0);
 }
 
-/* Desktop: ensure footer is visible by default and not fading */
+/* Desktop: ensure footer is visible by default (CSS handles the position, JS adds the 'visible' class on load/scroll for non-mobile) */
 @media (min-width: 769px) {
     .footer {
-        /* JS adds 'visible' class on load for desktop */
-        position: static; /* Let it flow normally on desktop */
-        margin-top: 50px; /* Add some space above it */
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
-    }
-    body {
-        padding-bottom: 0; /* No need for padding when footer is static */
     }
 }
 
@@ -310,6 +304,11 @@ footer a {
 }
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Keep footer above content */
+body {
+  padding-bottom: 140px; /* ensures footer not covering content */
 }
 
 /* === MOBILE === */
@@ -364,7 +363,7 @@ footer a:hover {
     }
 
     .translate-wrapper {
-        bottom: 20px;
+        bottom: 20px; /* Bottom position for mobile */
         right: 10px;
         transform: scale(0.9);
     }
@@ -372,6 +371,8 @@ footer a:hover {
         max-width: 200px;
         word-wrap: break-word;
         right: 0;
-        margin-bottom: 5px; 
+        margin-bottom: 5px; /* Changed margin-top to margin-bottom */
     }
+
+    /* Remove previous mobile footer style, rely on generic .footer and JS logic */
 }
