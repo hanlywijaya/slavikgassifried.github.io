@@ -1,21 +1,19 @@
 /* === BIONIC FART GREEN THEME (Combined) === */
 
+/* Ensure padding and border are included in the element's total width/height */
+* {
+    box-sizing: border-box; 
+}
+
 body {
     margin: 0;
     padding: 0;
-    /* Increased padding to 100px to ensure enough space for the fixed footer */
     padding-bottom: 100px;
-    
     font-family: 'Trebuchet MS', sans-serif;
     background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
     color: #0b0b0b;
     text-align: center;
-    overflow-x: hidden;
-}
-
-/* Make room for the fixed footer (from Motorsport Artifacts) */
-main {
-    /* This rule is now effectively empty and can be ignored or removed if no other content is inside main */
+    overflow-x: hidden; /* CRITICAL: Prevents horizontal scroll from misplaced elements */
 }
 
 /* === HEADER === */
@@ -38,23 +36,35 @@ p {
     margin-bottom: 20px;
 }
 
-/* === GOOGLE TRANSLATE STYLING (UPDATED) === */
+/* === GOOGLE TRANSLATE STYLING (Fixed White Button Issue) === */
 .translate-wrapper {
     position: fixed;
-    /* ADJUSTED: Moved down to 140px to clear the navbar's two rows */
-    top: 140px;
+    top: 140px; /* Default desktop position */
     right: 20px;
     z-index: 999;
     text-align: right; 
 }
 
+/* Ensures the actual Google element dropdown is invisible until the user clicks the button */
+#google_translate_element {
+    /* Set display: none in the HTML inline style as well, just to be safe */
+    visibility: hidden; 
+    height: 0; 
+    overflow: hidden;
+}
+
+.translate-popup:not(.hidden) #google_translate_element {
+    visibility: visible;
+    height: auto;
+}
+
 .translate-popup {
     margin-top: 10px;
     padding: 10px;
-    background-color: #111; /* Dark background */
-    border: 3px solid #9eff00; /* Neon border */
+    background-color: #111; 
+    border: 3px solid #9eff00; 
     border-radius: 8px;
-    box-shadow: 0 0 15px #7fff00; /* Gassy glow */
+    box-shadow: 0 0 15px #7fff00;
     display: inline-block;
     max-width: 250px;
 }
@@ -64,70 +74,50 @@ p {
 }
 
 /* Tweak the actual Google Translate widget appearance inside the popup */
-.translate-popup #google_translate_element {
-    line-height: 1; /* Adjust line height */
-}
-
-/* Target the standard Google Translate combo box styles for better integration */
 .translate-popup .goog-te-gadget-simple {
-    background-color: #0a0 !important; /* Gassy background for the selector */
-    border: 1px solid #faff00 !important; /* Neon border */
+    background-color: #0a0 !important; 
+    border: 1px solid #faff00 !important; 
     border-radius: 5px;
     padding: 5px;
 }
 
 
-/* === NAVIGATION MENU (DESKTOP LAYOUT) === */
+/* === NAVIGATION MENU (DESKTOP LAYOUT - STICKY FIXED) === */
 .navbar {
-    /* Used Gassy colors for background */
     background-color: #0a0; 
     padding: 15px 0;
-    position: sticky;
+    position: sticky; /* Keeps it locked at the top when scrolling */
     top: 0;
     z-index: 1000;  
     transition: opacity 0.4s ease;
 }
 
-/* Styling for the main navigation bar */
 .navbar-content {
-    /* Enables Flexbox layout */
     display: flex; 
-    /* Centers items vertically */
     align-items: center; 
-    /* Ensures items are spaced out (logo on left, buttons centered) */
     justify-content: space-between; 
-    /* Keeps the content from touching the edges */
     width: 100%;
 }
 
-/* Style for the logo image */
 .navbar-logo {
-    /* Ensures the logo doesn't shrink or grow */
     flex-shrink: 0;
 }
 
-/* Container for all the buttons to manage their centering */
 .menu-container {
-    /* Allows the menu to take up available space */
     flex-grow: 1; 
-    /* Centers the menu container itself */
     text-align: center; 
-    /* Pushes the content to the horizontal center */
     margin: 0 auto;
-    /* Desktop transition baseline */
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .menu {
-    /* Use Flexbox for button rows for better spacing/alignment */
     display: flex;
-    justify-content: center; /* Center buttons within the row */
-    gap: 5px; /* Add some space between buttons */
+    justify-content: center;
+    gap: 5px;
 }
 
-/* --- Global Styles for Menu Toggle (Hidden on Desktop) --- */
 .menu-toggle {
-    display: none; /* Hidden by default on desktop */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -140,16 +130,14 @@ p {
     width: 30px;
     height: 4px;
     margin: 5px auto;
-    background-color: #9eff00; /* Gassy color */
+    background-color: #9eff00;
     border-radius: 2px;
     transition: all 0.3s ease-in-out;
 }
 
 /* === BUTTON STYLING (Shared) === */
 .btn {
-    /* Button base color is Gassy dark */
     background-color: #111;
-    /* Text color is Gassy neon */
     color: #9eff00; 
     padding: 10px 20px;
     border-radius: 5px;
@@ -161,16 +149,13 @@ p {
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
-    /* Added Gassy glow effect for buttons */
     box-shadow: 0 0 10px #7fff00; 
 }
 
 .btn:hover {
-    /* Hover color is Gassy bright yellow */
     background-color: #faff00; 
     color: #000;
     transform: translateY(-2px);
-    /* Hover glow is Gassy bright yellow */
     box-shadow: 0 0 20px #faff00;
 }
 
@@ -178,7 +163,7 @@ p {
     transform: translateY(1px);
 }
 
-/* === IMAGE GALLERY (Gassy Styling) === */
+/* === IMAGE GALLERY === */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -190,7 +175,6 @@ p {
 
 .gallery img {
     height: auto;
-    /* Gassy border and shadow */
     border: 4px solid #1aff00;
     border-radius: 10px;
     box-shadow: 0 0 25px #1aff00;
@@ -199,11 +183,10 @@ p {
 
 .gallery img:hover {
     transform: scale(1.05);
-    /* Gassy hover shadow */
     box-shadow: 0 0 35px #faff00;
 }
 
-/* Image gallery responsiveness (from Slavik CSS) */
+/* Image gallery responsiveness (Standard CSS) */
 @media (max-width: 600px) {
     .gallery img { width: 48%; max-width: 200px; }
 }
@@ -216,7 +199,7 @@ p {
     .gallery img { width: 46%; max-width: 500px; }
 }
 
-/* === FUN LIST (Gassy Styling) === */
+/* === FUN LIST === */
 .fun-list {
     list-style: none;
     padding: 0;
@@ -235,9 +218,9 @@ p {
     letter-spacing: 1px;
 }
 
-/* === VIDEO (Gassy Styling) === */
+/* === VIDEO / AUDIO === */
 .video-container {
-    display: flex; /* Added flex to display videos nicely (like gallery) */
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
@@ -246,9 +229,8 @@ p {
 
 video {
     width: 90%;
-    max-width: 400px; /* Reduced max width to allow multiple videos in a row */
+    max-width: 400px;
     height: auto;
-    /* Gassy border and shadow */
     border: 4px solid #1aff00;
     border-radius: 10px;
     box-shadow: 0 0 25px #1aff00;
@@ -257,27 +239,23 @@ video {
 
 video:hover {
     transform: scale(1.05);
-    /* Gassy hover shadow */
     box-shadow: 0 0 35px #faff00;
 }
 
-/* === AUDIO (Gassy Styling) === */
 audio {
-    /* Ensure audio elements also respect max-width, though they are usually smaller */
     max-width: 90%; 
     margin: 5px auto;
     display: block;
 }
 
 
-/* === FOOTER (Motorsport Artifacts Layout with Green Colors) === */
+/* === FOOTER (FIXED) === */
 footer {
-    /* Footer background is Gassy dark green */
     background-color: #0a0; 
     color: white;
     padding: 20px 10px;
     text-align: center;
-    position: fixed;
+    position: fixed; /* Ensures it stays visible at the bottom */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -285,6 +263,7 @@ footer {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
+    z-index: 990; /* Ensures it is below the navbar, but above page content */
 }
 
 footer.visible {
@@ -293,7 +272,7 @@ footer.visible {
 }
 
 footer p {
-    color: white; /* Ensure footer text is visible white */
+    color: white; 
 }
 
 footer a {
@@ -312,56 +291,44 @@ footer a:hover {
 /* ======================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. Navbar Content: Setup for Logo (left) and Toggle (right) */
+    /* 1. Navbar Content: Ensure logo and toggle are aligned and menu wraps */
     .navbar-content {
-        /* KEY FIX: ensures the logo and toggle button stay aligned horizontally */
         display: flex; 
-        
-        /* Allow the content (menu-container) to drop below the logo/toggle bar */
         flex-wrap: wrap; 
-        
-        /* Keep logo and toggle on one row on the sides */
         justify-content: space-between; 
         padding: 0 10px;
     }
     
-    /* 2. Logo: Adjust size for mobile and align it */
+    /* 2. Logo: Smaller and centered */
     .navbar-logo {
-        height: 60px; /* Smaller logo for mobile phones */
+        height: 60px;
         width: auto;
-        /* Ensure it's vertically centered with the toggle */
         align-self: center; 
     }
 
-    /* 3. Menu Toggle: Show Hamburger Icon */
+    /* 3. Menu Toggle: Show Hamburger */
     .menu-toggle {
         display: block; 
         box-shadow: 0 0 10px #7fff00;
         border: 2px solid #7fff00;
         border-radius: 5px;
         margin-right: 5px;
-        /* Ensure it's vertically centered with the logo */
         align-self: center; 
     }
-    
-    /* 4. Menu Container: Control visibility and stacking */
+
+    /* 4. Menu Container: Full width and hidden/visible control */
     .menu-container {
-        /* Force it to take up the full width below the logo/toggle bar */
         flex-basis: 100%; 
         flex-grow: 0;
         margin: 10px 0 0 0;
         text-align: left;
-        
-        /* HIDDEN STATE (Default for closed menu on mobile) */
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         padding: 0 10px;
-        /* FINAL FIX: Ensures menu is above footer/translate button when active */
-        z-index: 1; 
+        z-index: 10; 
     }
     
-    /* VISIBLE STATE (Toggled by JavaScript) */
     .menu-container.active {
         max-height: 500px; 
         opacity: 1;
@@ -369,7 +336,7 @@ footer a:hover {
         padding-bottom: 20px;
     }
 
-    /* 5. Menu Rows & Buttons: Stack vertically and fill width */
+    /* 5. Buttons: Full width for easy tapping */
     .menu {
         flex-direction: column; 
         align-items: stretch;
@@ -387,16 +354,15 @@ footer a:hover {
         margin: 5px 0;
     }
     
-    /* 6. Video and Audio: Ensure they are full width on mobile */
+    /* 6. Video and Audio: Full width on mobile viewport */
     video, audio {
-        /* FINAL FIX: Forces full width on mobile, overriding general max-width */
         width: 100% !important; 
         max-width: none; 
     }
 
     /* 7. Translate button/wrapper adjustment */
     .translate-wrapper {
-        /* Moved up slightly to clear the logo/toggle bar area on mobile */
+        /* Move translate button below the navbar on mobile */
         top: 80px; 
         right: 10px;
     }
