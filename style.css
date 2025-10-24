@@ -1,361 +1,411 @@
-/* === BIONIC FART GREEN THEME (Combined) === */
+<!DOCTYPE html>
+<html lang="en">
 
-/* Ensure padding and border are included in the element's total width/height */
-* {
-    box-sizing: border-box; 
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slavik Gassifried Fanpage</title>
+    <!-- Placeholder for the favicon -->
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/000/00ff00?text=S">
 
-body {
-    margin: 0;
-    padding: 0;
-    /* DESKTOP/DEFAULT: Keep 100px padding for the FIXED footer content gap */
-    padding-bottom: 100px;
-    
-    font-family: 'Trebuchet MS', sans-serif;
-    background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
-    color: #0b0b0b;
-    text-align: center;
-    overflow-x: hidden; 
-}
+    <style>
+        /* === BIONIC FART GREEN THEME (Combined) === */
+        * {
+            box-sizing: border-box;
+        }
 
-/* CONTENT STACKING FIX: 
-    Adding position: relative and a medium z-index ensures main content (videos, audio) 
-    sits above the footer.
-*/
-header, section, .video-container, .audio-container, .fun-list { 
-    z-index: 100; 
-    position: relative; 
-}
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 100px;
+            font-family: 'Trebuchet MS', sans-serif;
+            background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+            color: #0b0b0b;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-/* FIX: Reduce H1 and P z-index slightly so the translate button (1005) is clearly on top. */
-h1, p {
-    position: relative;
-    z-index: 100; 
-}
+        header,
+        section,
+        .video-container,
+        audio,
+        .fun-list {
+            z-index: 100;
+            position: relative;
+        }
 
-/* === HEADER === */
-h1 {
-    color: #101010;
-    text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
-    font-size: 2.8em;
-    margin-top: 30px;
-    animation: glow 2s infinite alternate;
-}
+        h1,
+        p {
+            position: relative;
+            z-index: 100;
+        }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00; }
-    to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
-}
+        /* === HEADER === */
+        h1 {
+            color: #101010;
+            text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
+            font-size: 2.8em;
+            margin-top: 30px;
+            animation: glow 2s infinite alternate;
+        }
 
-p {
-    font-size: 1.2em;
-    color: #111;
-    margin-bottom: 20px;
-}
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00;
+            }
+            to {
+                text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00;
+            }
+        }
 
-/* === GOOGLE TRANSLATE STYLING (Fixed Mobile Alignment/Covering) === */
-.translate-wrapper {
-    position: fixed;
-    /* Default desktop position */
-    top: 140px; 
-    right: 20px;
-    /* Highest Z-Index to be on top of EVERYTHING, including the navbar */
-    z-index: 1005; 
-    text-align: right; 
-}
+        p {
+            font-size: 1.2em;
+            color: #111;
+            margin-bottom: 20px;
+        }
 
-/* Hides the actual Google element dropdown that was causing the "white button" issue */
-#google_translate_element {
-    visibility: hidden; 
-    height: 0; 
-    overflow: hidden;
-}
+        /* === NAVIGATION MENU (DESKTOP LAYOUT - STICKY FIXED) === */
+        .navbar {
+            background-color: #0a0;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: opacity 0.4s ease;
+        }
 
-.translate-popup:not(.hidden) #google_translate_element {
-    visibility: visible;
-    height: auto;
-}
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-.translate-popup {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #111;
-    border: 3px solid #9eff00;
-    border-radius: 8px;
-    box-shadow: 0 0 15px #7fff00;
-    display: inline-block;
-    max-width: 250px;
-}
+        .navbar-logo {
+            flex-shrink: 0;
+            border-radius: 8px; /* Added rounded corners to logo */
+        }
 
-.translate-popup.hidden {
-    display: none;
-}
+        .menu-container {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0 auto;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
 
-.translate-popup .goog-te-gadget-simple {
-    background-color: #0a0 !important; 
-    border: 1px solid #faff00 !important; 
-    border-radius: 5px;
-    padding: 5px;
-}
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
 
-/* === NAVIGATION MENU (DESKTOP LAYOUT - STICKY FIXED) === */
-.navbar {
-    background-color: #0a0; 
-    padding: 15px 0;
-    position: sticky; /* Sticky Navbar */
-    top: 0;
-    /* Second Highest Z-Index */
-    z-index: 1000;  
-    transition: opacity 0.4s ease;
-}
+        .menu-toggle .bar {
+            display: block;
+            width: 30px;
+            height: 4px;
+            margin: 5px auto;
+            background-color: #9eff00;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
 
-.navbar-content {
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    width: 100%;
-}
+        /* === BUTTON STYLING (Shared) === */
+        .btn {
+            background-color: #111;
+            color: #9eff00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            font-family: 'Trebuchet MS', sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s ease-in-out;
+            box-shadow: 0 0 10px #7fff00;
+        }
 
-.navbar-logo {
-    flex-shrink: 0;
-}
+        .btn:hover {
+            background-color: #faff00;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px #faff00;
+        }
 
-.menu-container {
-    flex-grow: 1; 
-    text-align: center; 
-    margin: 0 auto;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-}
+        .btn:active {
+            transform: translateY(1px);
+        }
 
-.menu {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
+        /* === IMAGE GALLERY === */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 1400px;
+        }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px 10px;
-    z-index: 1001;
-}
+        .gallery img {
+            height: auto;
+            border: 4px solid #1aff00;
+            border-radius: 10px;
+            box-shadow: 0 0 25px #1aff00;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.menu-toggle .bar {
-    display: block;
-    width: 30px;
-    height: 4px;
-    margin: 5px auto;
-    background-color: #9eff00;
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-}
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #faff00;
+        }
 
-/* === BUTTON STYLING (Shared) === */
-.btn {
-    background-color: #111;
-    color: #9eff00; 
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    font-family: 'Trebuchet MS', sans-serif;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
-    box-shadow: 0 0 10px #7fff00; 
-}
+        @media (max-width: 600px) {
+            .gallery img {
+                width: 48%;
+                max-width: 200px;
+            }
+        }
 
-.btn:hover {
-    background-color: #faff00; 
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px #faff00;
-}
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .gallery img {
+                width: 47%;
+                max-width: 350px;
+            }
+        }
 
-.btn:active {
-    transform: translateY(1px);
-}
+        @media (min-width: 1025px) {
+            .gallery img {
+                width: 46%;
+                max-width: 500px;
+            }
+        }
 
-/* === IMAGE GALLERY === */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px auto;
-    max-width: 1400px;
-}
+        /* === FUN LIST === */
+        .fun-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
 
-.gallery img {
-    height: auto;
-    border: 4px solid #1aff00;
-    border-radius: 10px;
-    box-shadow: 0 0 25px #1aff00;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        .fun-list li {
+            display: inline-block;
+            background-color: #111;
+            color: #9eff00;
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 10px #70ff00;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px #faff00;
-}
+        /* === VIDEO / AUDIO === */
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+        }
 
-@media (max-width: 600px) {
-    .gallery img { width: 48%; max-width: 200px; }
-}
+        video {
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+            border: 4px solid #1aff00;
+            border-radius: 10px;
+            box-shadow: 0 0 25px #1aff00;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-@media (min-width: 601px) and (max-width: 1024px) {
-    .gallery img { width: 47%; max-width: 350px; }
-}
+        video:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #faff00;
+        }
 
-@media (min-width: 1025px) {
-    .gallery img { width: 46%; max-width: 500px; }
-}
+        audio {
+            max-width: 90%;
+            margin: 5px auto;
+            display: block;
+            border: 2px solid #1aff00;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #1aff00;
+        }
 
-/* === FUN LIST === */
-.fun-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
+        /* === FOOTER (FIXED & FADING) === */
+        footer {
+            background-color: #0a0;
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 50;
+        }
 
-.fun-list li {
-    display: inline-block;
-    background-color: #111;
-    color: #9eff00;
-    margin: 5px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    box-shadow: 0 0 10px #70ff00;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        footer.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-/* === VIDEO / AUDIO === */
-.video-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px auto;
-}
+        footer p {
+            color: white;
+        }
 
-video {
-    width: 90%;
-    max-width: 400px;
-    height: auto;
-    border: 4px solid #1aff00;
-    border-radius: 10px;
-    box-shadow: 0 0 25px #1aff00;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+        }
 
-video:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px #faff00;
-}
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-/* NEW: Audio Container for side-by-side layout (requires HTML wrapper) */
-.audio-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px; 
-    margin: 20px auto;
-    max-width: 1000px;
-}
+        /* === CUSTOM MODAL STYLING (Replacing alert/confirm) === */
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            /* Animation for fade in/out */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
 
-/* UPDATED: Audio element styles */
-audio {
-    max-width: 300px; /* Gives each player a defined width */
-    width: 100%; /* Ensures it scales down on mobile */
-    margin: 5px; /* Space around each player */
-    display: block; 
-}
+        .custom-modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
 
+        .modal-content {
+            background-color: #111;
+            color: #9eff00;
+            padding: 30px;
+            border-radius: 15px;
+            border: 5px solid #faff00;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: 0 0 40px #faff00;
+            /* Small bounce animation for visibility */
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
 
-/* === FOOTER (FIXED & FADING) - Integrated like Motorsport Artifacts === */
-footer {
-    background-color: #0a0; 
-    color: white;
-    padding: 20px 10px;
-    text-align: center;
-    /* DESKTOP: Fixed position for the integrated look and content gap */
-    position: fixed; 
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    font-size: 16px;
-    /* Start fully hidden (for desktop fade logic) */
-    opacity: 0; 
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
-    z-index: 50; 
-}
+        .custom-modal.visible .modal-content {
+            transform: scale(1);
+        }
 
-/* This class is applied by JavaScript to make it visible on desktop */
-footer.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
+        #modal-message {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: white;
+            white-space: pre-wrap; /* Preserve newlines from JS text */
+            text-shadow: 0 0 5px #faff00;
+        }
 
-footer p {
-    color: white; 
-}
+        #modal-actions button,
+        #modal-ok {
+            margin: 5px 10px;
+        }
 
-footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 8px;
-}
+        /* ======================================= */
+        /* === MOBILE MEDIA QUERY: max-width: 768px === */
+        /* ======================================= */
+        @media screen and (max-width: 768px) {
 
-footer a:hover {
-    text-decoration: underline;
-}
+            /* 1. Navbar Content */
+            .navbar-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0 10px;
+            }
 
+            /* 2. Logo: Smaller and centered */
+            .navbar-logo {
+                height: 60px;
+                width: auto;
+                align-self: center;
+            }
 
-/* ======================================= */
-/* === MOBILE MEDIA QUERY: max-width: 768px === */
-/* ======================================= */
-@media screen and (max-width: 768px) {
-    
-    /* 1-5. Navbar & Button rules remain the same */
-    
-    /* 6. Video and Audio: Full width on mobile viewport */
-    video, audio {
-        width: 100% !important; 
-        max-width: none; 
-    }
+            /* 3. Menu Toggle: Show Hamburger */
+            .menu-toggle {
+                display: block;
+                box-shadow: 0 0 10px #7fff00;
+                border: 2px solid #7fff00;
+                border-radius: 5px;
+                margin-right: 5px;
+                align-self: center;
+            }
 
-    /* 7. Translate button/wrapper adjustment (Mobile Fix) */
-    .translate-wrapper {
-        /* Pushed LOWER to clear the header/navbar */
-        top: 120px; /* Increased from 100px to fix overlap */
-        right: 10px;
-    }
+            /* 4. Menu Container: Full width and hidden/visible control */
+            .menu-container {
+                flex-basis: 100%;
+                flex-grow: 0;
+                margin: 10px 0 0 0;
+                text-align: left;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                padding: 0 10px;
+                z-index: 10;
+            }
 
-    /* --- FOOTER FIXES --- */
+            .menu-container.active {
+                max-height: 500px;
+                opacity: 1;
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
 
-    /* NEW: BODY PADDING FIX FOR MOBILE: Remove the space for the fixed footer */
-    body {
-        padding-bottom: 0 !important; /* Use !important to override the desktop padding */
-    }
+            /* 5. Buttons: Full width for easy tapping */
+            .menu {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                margin: 0;
+            }
 
-    /* NEW: FOOTER FIX FOR MOBILE: Make it static (scrolling) and always visible */
-    footer {
-        /* Override fixed position to STATIC so it appears after the page content */
-        position: static; 
-        
-        /* Force visibility, overriding the desktop 'opacity: 0' and 'visible' class */
-        opacity: 1;      
-        pointer-events: auto; 
-        z-index: auto;
-        /* Ensure the opacity transition doesn't briefly fade it in/out on resize */
-        transition: none;
-    }
-}
+            .menu[style] {
+                margin-top: 0 !important;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            /* 6. Video and Audio: Full width on mobile viewport */
+            video,
+            audio {
+                width: 100% !important;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
