@@ -297,6 +297,22 @@ footer a:hover {
     text-decoration: underline;
 }
 
-
 /* ======================================= */
-/* === MOBILE MEDIA QUERY: max-width:
+/* === MOBILE MEDIA QUERY: max-width: 768px === */
+/* ======================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Navbar Content: Setup for Logo (left) and Toggle (right) */
+    .navbar-content {
+        /* This line is the KEY fix. It allows the menu to drop below the logo/toggle. */
+        display: flex; 
+        
+        /* Allow the content to wrap */
+        flex-wrap: wrap; 
+        /* Keep logo and toggle on one row on the sides */
+        justify-content: space-between; 
+        padding: 0 10px; /* Add some padding on the sides */
+    }
+
+    /* ... all your other mobile CSS styles ... */
+}
