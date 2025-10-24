@@ -20,7 +20,7 @@ body {
 
 /* CONTENT STACKING FIX: 
    Adding position: relative and a medium z-index ensures main content (videos, audio) 
-   sits above the footer (z-index: 50).
+   sits above the footer.
 */
 header, section, .video-container, audio, .fun-list {
     z-index: 100; 
@@ -271,6 +271,7 @@ footer {
     color: white;
     padding: 20px 10px;
     text-align: center;
+    /* Default position BEFORE JS adds 'visible' class */
     position: fixed; 
     left: 0;
     bottom: 0;
@@ -279,6 +280,7 @@ footer {
     /* Start fully hidden */
     opacity: 0; 
     pointer-events: none;
+    /* FIX: Footer Transition and Opacity Control simplified */
     transition: opacity 0.5s ease;
     /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
     z-index: 50; 
@@ -288,6 +290,7 @@ footer {
 footer.visible {
     opacity: 1;
     pointer-events: auto;
+    /* We don't need to re-apply position: fixed since it's on the base 'footer' rule now */
 }
 
 footer p {
