@@ -358,3 +358,27 @@ footer a:hover {
         margin-top: 5px;
     }
 }
+
+/* Keep footer above content */
+body {
+  padding-bottom: 140px; /* ensures footer not covering content */
+}
+
+/* Fix translate button position */
+.translate-wrapper {
+  position: fixed;
+  right: 15px;
+  z-index: 2000;
+}
+
+@media (max-width: 768px) {
+  .translate-wrapper {
+    right: 10px;
+    transform: scale(0.9);
+  }
+
+  .footer {
+    transition: opacity 0.4s ease;
+    opacity: 0; /* starts hidden */
+  }
+}
