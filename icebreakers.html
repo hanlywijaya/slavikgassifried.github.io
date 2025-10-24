@@ -9,12 +9,12 @@
 </head>
 <body>
 
-    <!-- NAVIGATION BAR (Using navbar/menu/btn structure for consistent styling) -->
-<nav class="navbar">
+    <nav class="navbar">
     <div class="navbar-content">
         <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="96" width="168" alt="Gassing slavik" class="navbar-logo">
-        
-        <div class="menu-container">
+        <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false"> <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <div class="menu-container" id="menu-container">
             <div class="menu">
                 <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
                 <button class="btn" onClick="window.location.href='images'" target="_self">slavik galleries</button>
@@ -37,23 +37,18 @@
     </div>
 </nav>
   
-    <!-- HEADER -->
     <header>
         <h1>Welcome to our incredible slavikgassifried icebreakers</h1>
         <p>This is an amazing fanpage website run by the fans of SLavik gassy!
             Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
     </header>
 
-    <!-- GOOGLE TRANSLATE TOGGLE WINDOW (Fixed position) -->
     <div class="translate-wrapper">
         <button id="translate-toggle" class="btn">Translate Page 🌐</button>
         <div id="translate-popup" class="translate-popup hidden">
-            <!-- The original Google Translate element -->
             <div id="google_translate_element"></div>
         </div>
     </div>
-    <!-- END GOOGLE TRANSLATE TOGGLE -->
-
     <h2>Icebreaker 1</h2>
     <p2>Is it more weird to jerk off with your legs spread out or to jerk off with headphones on?</p2>
     <p2>Example answer - Jerk off with headphones obviously bro</p2>
@@ -66,11 +61,6 @@
     <p2>If you carved a penis out on a snowman, what would you do with it?</p2>
     <p2>Example answer - I'd start bouncing on it.</p2>
 
-    <h2>Icebreaker 4</h2>
-    <p2>What sounds better as a synonym for masturbating? a) jerking b )busting c) nutting d) cumming</p2>
-    <p2>Example answer - Obviously jerking bro</p2>
-    
-    <!-- FUN LIST -->
     <ul class="fun-list">
         <li>SLava</li>
         <li>is</li>
@@ -78,16 +68,13 @@
         <li>jorking!</li>
     </ul>
     
-    <!-- VIDEO CONTAINER (FIXED - using video-container for styling) -->
     <div class="video-container">
-        <!-- Removed empty/malformed </video> tag from original content -->
         <video controls>
             <source src="files/khabylamemechanism.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 
-    <!-- AUDIO -->
     <audio controls>
         <source src="files/greatautoplay.mp3" type="audio/mpeg">
     </audio>
@@ -104,39 +91,54 @@
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- FOOTER (Motorsport Artifacts Style) -->
     <footer class="footer">
         <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
         <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
-        // Google Translate init
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
 
-        // Toggle visibility for the Google Translate popup
-        document.getElementById("translate-toggle").addEventListener("click", function() {
-            const popup = document.getElementById("translate-popup");
-            popup.classList.toggle("hidden");
+        document.getElementById("translate-toggle").addEventListener("click", () => {
+            document.getElementById("translate-popup").classList.toggle("hidden");
         });
 
-        // Fav gassyfried warning system
-        document.getElementById("favgLink").addEventListener("click", function(event) {
-            event.preventDefault();
-            const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
-            if (confirm(confirmMessage)) {
+        document.getElementById("favgLink").addEventListener("click", e => {
+            e.preventDefault();
+            if (confirm("⚠️ WARNING ⚠️\\n\\nYou're about to open SLavik's fav gassyfried video.\\nIt may contain EXTREME gassiness 💨💨💨\\n\\nDo you still want to proceed?")) {
                 window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
             } else {
                 alert("Good choice 😮‍💨 Stay away from the gas!");
             }
         });
 
-        // Make footer visible when the page loads
-        window.addEventListener('load', function() {
-            document.querySelector('footer').classList.add('visible');
+        /* Fade footer only on mobile */
+        const footer = document.querySelector(".footer");
+        window.addEventListener("scroll", () => {
+            if (window.innerWidth <= 768) {
+                footer.style.opacity = window.scrollY > 120 ? "1" : "0";
+            } else {
+                footer.style.opacity = "1";
+            }
+        });
+
+        /* Fix translate overlap */
+        window.addEventListener("load", () => {
+            const translate = document.querySelector(".translate-wrapper");
+            const navbar = document.querySelector(".navbar");
+            const offset = navbar.offsetHeight + 10;
+            translate.style.top = `${offset}px`;
+        });
+
+        /* Prevent cutoff scrolling */
+        document.body.style.overflowY = "auto";
+
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menuContainer = document.getElementById("menu-container");
+            menuContainer.classList.toggle("active");
+            this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
         });
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
