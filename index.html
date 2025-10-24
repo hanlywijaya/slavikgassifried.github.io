@@ -9,23 +9,37 @@
 </head>
 <body>
 
+    <!-- NAVIGATION BAR (Motorsport Artifacts Style) -->
     <nav class="navbar">
         <div class="menu">
+            <!-- Links converted to Motorsport Artifacts button style -->
             <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
             <button class="btn" onClick="window.location.href='images'" target="_self">slavik galleries</button>
             <button class="btn" onClick="window.location.href='icebreakers'" target="_self">Slavik's fav icebreakers</button>
             <button class="btn" id="favgLink">Slavik's fav gassyfried</button>
             <button class="btn" onClick="window.open('pizzeria/saved_resource.html', '_blank')">doggeriajoo</button>
             <button class="btn" onClick="window.open('geometrydash', '_blank')">geometrydashjoo</button>
-            </div>
+        </div>
     </nav>
     
+    <!-- HEADER -->
     <header>
         <h1>Welcome to slavikgassifried</h1>
         <p>This is an amazing fanpage website run by the fans of SLavik gassy!
             Diddy Blud get yours in ze dooor 🪫 watch out its about it "Watch out—the slavikgassys are creeping closer."</p>
     </header>
 
+    <!-- NEW GOOGLE TRANSLATE TOGGLE WINDOW (Fixed position and styled in CSS) -->
+    <div class="translate-wrapper">
+        <button id="translate-toggle" class="btn">Translate Page 🌐</button>
+        <div id="translate-popup" class="translate-popup hidden">
+            <!-- The original Google Translate element -->
+            <div id="google_translate_element"></div>
+        </div>
+    </div>
+    <!-- END GOOGLE TRANSLATE TOGGLE -->
+
+    <!-- IMAGE GALLERY -->
     <section class="gallery">
         <img src="files/Gemini_Generated_Image_148w3c148w3c148w.png" alt="Gassing slavik">
         <img src="files/chicken gassy.jpg" alt="namisgassyasshit">
@@ -35,6 +49,7 @@
         <img src="files/3944AF67-057A-437B-A97A-A3A73444B317_1_105_c.jpeg" alt="Gassy slavik">
     </section>
 
+    <!-- FUN LIST -->
     <ul class="fun-list">
         <li>SLava</li>
         <li>is</li>
@@ -42,7 +57,9 @@
         <li>jorking!</li>
     </ul>
 
+    <!-- VIDEO -->
     <div class="video-container">
+        <!-- Re-added video-container class to simplify styling like Motorsport Artifacts -->
         <video controls>
             <source src="files/lgnosignal.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -57,8 +74,7 @@
         </video>
     </div>
 
-    <div id="google_translate_element"></div>
-
+    <!-- AUDIO -->
     <audio controls>
         <source src="files/greatautoplay.mp3" type="audio/mpeg">
     </audio>
@@ -75,20 +91,29 @@
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
     
+    <!-- FOOTER (Motorsport Artifacts Style) -->
     <footer class="footer">
         <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
         // Google Translate init
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
 
+        // Toggle visibility for the Google Translate popup
+        document.getElementById("translate-toggle").addEventListener("click", function() {
+            const popup = document.getElementById("translate-popup");
+            popup.classList.toggle("hidden");
+        });
+
         // Fav gassyfried warning system
         document.getElementById("favgLink").addEventListener("click", function(event) {
             event.preventDefault();
             const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
+            // Using confirm/alert as per original logic, though custom UI is preferred in Canvas
             if (confirm(confirmMessage)) {
                 window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
             } else {
