@@ -1,142 +1,302 @@
-@charset "UTF-8";
+/* === BIONIC FART GREEN THEME (Fixed Mobile + Footer Version) === */
 
-@font-face {
-  font-family: 'Oracle';
-  src: url('fonts/oracle.otf') format('opentype');
+/* Universal box-sizing */
+* {
+    box-sizing: border-box;
 }
 
-/* === General Styles === */
 body {
-    font-family: 'Arial', sans-serif, 'Oracle';
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    padding-bottom: 140px; /* ensures space for footer */
+    font-family: 'Trebuchet MS', sans-serif;
+    background: radial-gradient(circle at center, #00ff00 0%, #004400 100%);
+    color: #0b0b0b;
+    text-align: center;
+    overflow-x: hidden;
 }
 
-/* === Typography === */
+/* Content stacking order */
+header, section, .video-container, .audio-container, .fun-list {
+    z-index: 100;
+    position: relative;
+}
+
+h1, p {
+    position: relative;
+    z-index: 100;
+}
+
+/* === HEADER === */
 h1 {
-    color: darkblue;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-    opacity: 0;
-    animation: fadeIn 1s forwards 0.5s;
+    color: #101010;
+    text-shadow: 0 0 10px #9eff00, 0 0 25px #8aff00;
+    font-size: 2.8em;
+    margin-top: 30px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #9eff00, 0 0 20px #8aff00; }
+    to { text-shadow: 0 0 25px #f5ff00, 0 0 45px #ffea00; }
 }
 
 p {
-    color: black;
-    font-size: 16px;
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 1s forwards 1s;
+    font-size: 1.2em;
+    color: #111;
+    margin-bottom: 20px;
 }
 
-p2 {
-    color: darkblue;
-    font-size: 20px;
-    text-align: center;
-	font-family: 'Oracle';
-    opacity: 0;
-    animation: fadeIn 1s forwards 1s;
+/* === TRANSLATE BUTTON (Moved to Bottom Right) === */
+.translate-wrapper {
+    position: fixed;
+    bottom: 20px; /* Position at the bottom */
+    right: 15px; /* Position on the right */
+    top: auto; /* Remove top position */
+    z-index: 1500;
+    text-align: right;
+    transition: transform 0.3s ease; /* Add transition for smoothness */
 }
 
-/* === Navigation Menu === */
+#google_translate_element {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+.translate-popup:not(.hidden) #google_translate_element {
+    visibility: visible;
+    height: auto;
+}
+
+.translate-popup {
+    margin-bottom: 10px; /* Changed margin-top to margin-bottom */
+    padding: 10px;
+    background-color: #111;
+    border: 3px solid #9eff00;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #7fff00;
+    display: inline-block;
+    max-width: 250px;
+}
+
+.translate-popup.hidden {
+    display: none;
+}
+
+.translate-popup .goog-te-gadget-simple {
+    background-color: #0a0 !important;
+    border: 1px solid #faff00 !important;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* === NAVBAR === */
 .navbar {
-    background-color: #2837A2;
+    background-color: #0a0;
     padding: 15px 0;
     position: sticky;
     top: 0;
-    z-index: 1000;  
-	transition: opacity 0.4s ease;
+    z-index: 1000;
+    transition: opacity 0.4s ease;
 }
 
-.navbar.hidden {
-  opacity: 0;
-  pointer-events: none;
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar-logo {
+    flex-shrink: 0;
+}
+
+.menu-container {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 auto;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .menu {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 5px;
 }
 
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 5px auto;
+    background-color: #9eff00;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* === BUTTONS === */
 .btn {
-    background-color: #2837A2;
-    color: white;
+    background-color: #111;
+    color: #9eff00;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     border: none;
     font-size: 16px;
-    font-family: Arial, sans-serif;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 0 0 10px #7fff00;
 }
 
 .btn:hover {
-    background-color: darkslateblue;
+    background-color: #faff00;
+    color: #000;
     transform: translateY(-2px);
+    box-shadow: 0 0 20px #faff00;
 }
 
 .btn:active {
     transform: translateY(1px);
 }
 
-/* === Image Slider === */
-.slider {
+/* === IMAGE GALLERY === */
+.gallery {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 10px;
-    padding: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 1400px;
 }
 
-.slider img {
-    height: 500px;
-    margin-right: 10px;
-    scroll-snap-align: start;
+.gallery img {
+    height: auto;
+    border: 4px solid #1aff00;
     border-radius: 10px;
-    transition: transform 0.3s ease;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.slider img:hover {
-    transform: scale(1.1);
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #faff00;
 }
 
-/* === Video Container === */
-.video-container {
-    display: flex;
-    justify-content: center; /* Centers the video horizontally */
-    align-items: center;     /* Centers the video vertically (optional if you have height set) */
+/* Responsive gallery */
+@media (max-width: 600px) {
+    .gallery img { width: 48%; max-width: 200px; }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+    .gallery img { width: 47%; max-width: 350px; }
+}
+@media (min-width: 1025px) {
+    .gallery img { width: 46%; max-width: 500px; }
+}
+
+/* === FUN LIST === */
+.fun-list {
+    list-style: none;
+    padding: 0;
     margin-top: 20px;
 }
 
-.styled-frame {
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.fun-list li {
+    display: inline-block;
+    background-color: #111;
+    color: #9eff00;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px #70ff00;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-/* === Footer (Base Styles) === */
-.footer { /* Changed from 'footer' to '.footer' for consistency with HTML */
-    background-color: #2837A2;
+/* === VIDEO & AUDIO === */
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+}
+
+video {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    border: 4px solid #1aff00;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #1aff00;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #faff00;
+}
+
+.audio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Reduced gap to shrink vertical space */
+    gap: 5px; 
+    margin: 20px auto;
+    z-index: 100;
+    position: relative;
+}
+
+audio {
+    max-width: 300px;
+    width: 100%;
+    /* Reduced margin to shrink vertical space */
+    margin: 2px; 
+}
+
+/* === FOOTER (Fixed for Mobile/Desktop visibility) === */
+.footer { /* Changed from 'footer' to '.footer' for better specificity */
+    background-color: #0a0;
     color: white;
     padding: 20px 10px;
     text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
     font-size: 16px;
-    /* Removed default position: fixed; for desktop flow */
-    opacity: 1; /* Default visibility for desktop, overridden for mobile below */
-    pointer-events: auto;
-    transition: opacity 0.5s ease;
+    z-index: 1002;
+    opacity: 0; /* Starts hidden on all devices */
+    pointer-events: none; /* Disables interaction when hidden */
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 
-.footer.visible {
+.footer.visible { /* This class is now toggled by JavaScript */
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Desktop: ensure footer is visible by default (CSS handles the position, JS adds the 'visible' class on load/scroll for non-mobile) */
+@media (min-width: 769px) {
+    .footer {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
 }
 
 footer a {
@@ -144,146 +304,79 @@ footer a {
     text-decoration: none;
     margin: 0 8px;
 }
-
 footer a:hover {
     text-decoration: underline;
 }
 
-/* === Pointer Cursor for Clickables === */
-a[href],
-input[type='submit'],
-input[type='image'],
-label[for],
-select,
-button,
-.pointer {
-    cursor: pointer;
+/* Keep footer above content */
+body {
+    padding-bottom: 140px; /* ensures footer not covering content */
 }
 
-/* === Animations === */
-@keyframes fadeIn {
-    0% {
+/* === MOBILE === */
+@media screen and (max-width: 768px) {
+    .navbar-content {
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+    .navbar-logo {
+        height: 60px;
+        width: auto;
+        align-self: center;
+    }
+    .menu-toggle {
+        display: block;
+        box-shadow: 0 0 10px #7fff00;
+        border: 2px solid #7fff00;
+        border-radius: 5px;
+        margin-right: 5px;
+        align-self: center;
+    }
+    .menu-container {
+        flex-basis: 100%;
+        margin: 10px 0 0 0;
+        text-align: left;
+        max-height: 0;
+        overflow: hidden;
         opacity: 0;
+        padding: 0 10px;
+        z-index: 10;
     }
-    100% {
+    .menu-container.active {
+        /* Kept fix for mobile menu scrolling */
+        max-height: 1000px;
+        overflow-y: auto;
         opacity: 1;
+        padding-top: 10px;
+        padding-bottom: 20px;
     }
-}
-
-/* === Photos === */
-.photo-text {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers image and text as a group */
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-    text-align: center; /* Optional: center-align text on mobile */
-}
-
-.photo-text img {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.photo-text p2 {
-    color: darkblue;
-    font-size: 1.8rem;
-    max-width: 500px;
-}
-
-/* === Main Content === */
-main {
-    padding-bottom: 0; /* Default padding for desktop */
-}
-
-/* === Contact Form === */
-.contact-form {
-    background-color: white;
-    padding: 20px;
-    max-width: 600px;
-    margin: 30px auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: auto;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.contact-form textarea {
-    height: 150px;
-	width: auto;
-    resize: none; /* Prevents resizing the message box */
-}
-
-.contact-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: #2837A2;
-    color: white;
-    border: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.contact-form button:hover {
-    background-color: darkslateblue;
-}
-
-/* === Mobile Responsiveness === */
-@media (max-width: 768px) {
     .menu {
         flex-direction: column;
-        gap: 15px;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        margin: 0;
     }
-
-    .slider {
-        flex-direction: column;
-    }
-
-    .slider img {
+    .btn {
         width: 100%;
-        height: auto;
+        margin: 5px 0;
+    }
+    video, audio {
+        width: 100% !important;
+        max-width: none;
     }
 
-    .photo-text {
-        flex-direction: column; /* Stack photo and text on smaller screens */
-        text-align: center;
+    .translate-wrapper {
+        bottom: 20px; /* Bottom position for mobile */
+        right: 10px;
+        transform: scale(0.9);
+    }
+    .translate-popup {
+        max-width: 200px;
+        word-wrap: break-word;
+        right: 0;
+        margin-bottom: 5px; /* Changed margin-top to margin-bottom */
     }
 
-    .photo-text img {
-        width: 80%; /* Adjust image size on smaller screens */
-    }
-
-    .photo-text .caption {
-        max-width: 90%; /* Adjust text width */
-        font-size: 1rem; /* Adjust font size for small screens */
-    }
-    
-    /* Footer Fix: Apply fixed position only on mobile */
-    .footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 1000;
-        opacity: 0; /* Start hidden for mobile scroll fade */
-        pointer-events: none;
-    }
-
-    main {
-        padding-bottom: 72px; /* Make room for the fixed footer on mobile */
-    }
+    /* Remove previous mobile footer style, rely on generic .footer and JS logic */
 }
