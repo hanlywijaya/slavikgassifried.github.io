@@ -20,9 +20,9 @@ body {
 
 /* CONTENT STACKING FIX: 
    Adding position: relative and a medium z-index ensures main content (videos, audio) 
-   sits above the footer.
+   sits above the footer (z-index: 50).
 */
-header, section, .video-container, audio, .fun-list {
+header, section, .video-container, .audio-container, .fun-list {
     z-index: 100; 
     position: relative; 
 }
@@ -258,10 +258,23 @@ video:hover {
     box-shadow: 0 0 35px #faff00;
 }
 
+/* ADDED: Flex container for audio elements */
+.audio-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    margin: 20px auto;
+    /* Ensure the audio container maintains its stacking context */
+    z-index: 100;
+    position: relative; 
+}
+
 audio {
-    max-width: 90%; 
-    margin: 5px auto;
-    display: block;
+    /* REMOVED: display: block; */
+    max-width: 300px; /* Constrain width so multiple fit on one line */
+    width: 100%; /* Allows it to shrink if needed */
+    margin: 5px; /* Space around each player */
 }
 
 
@@ -271,7 +284,6 @@ footer {
     color: white;
     padding: 20px 10px;
     text-align: center;
-    /* Default position BEFORE JS adds 'visible' class */
     position: fixed; 
     left: 0;
     bottom: 0;
@@ -280,7 +292,6 @@ footer {
     /* Start fully hidden */
     opacity: 0; 
     pointer-events: none;
-    /* FIX: Footer Transition and Opacity Control simplified */
     transition: opacity 0.5s ease;
     /* Lowest Z-Index to ensure content (z-index: 100) sits on top */
     z-index: 50; 
@@ -290,7 +301,6 @@ footer {
 footer.visible {
     opacity: 1;
     pointer-events: auto;
-    /* We don't need to re-apply position: fixed since it's on the base 'footer' rule now */
 }
 
 footer p {
