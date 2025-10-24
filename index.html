@@ -18,7 +18,6 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-        
         <div class="menu-container" id="menu-container">
             <div class="menu">
                 <button class="btn" onClick="window.location.href='index'" target="_self">slaviks home</button>
@@ -51,7 +50,7 @@
     <div class="translate-wrapper">
         <button id="translate-toggle" class="btn">Translate Page 🌐</button>
         <div id="translate-popup" class="translate-popup hidden">
-            <div id="google_translate_element" style="display: none;"></div>
+            <div id="google_translate_element"></div>
         </div>
     </div>
     <section class="gallery">
@@ -115,22 +114,14 @@
         // Toggle visibility for the Google Translate popup
         document.getElementById("translate-toggle").addEventListener("click", function() {
             const popup = document.getElementById("translate-popup");
-            const translateElement = document.getElementById("google_translate_element");
-            
             popup.classList.toggle("hidden");
-            
-            // Toggle visibility of the actual GTranslate element inside the popup
-            if (popup.classList.contains("hidden")) {
-                translateElement.style.display = 'none';
-            } else {
-                translateElement.style.display = 'block';
-            }
         });
 
         // Fav gassyfried warning system
         document.getElementById("favgLink").addEventListener("click", function(event) {
             event.preventDefault();
             const confirmMessage = "⚠️ WARNING ⚠️\n\nYou're about to open SLavik's fav gassyfried video.\nIt may contain EXTREME gassiness 💨💨💨\n\nDo you still want to proceed?";
+            // Using confirm/alert as per original logic, though custom UI is preferred in Canvas
             if (confirm(confirmMessage)) {
                 window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
             } else {
@@ -143,13 +134,15 @@
             document.querySelector('footer').classList.add('visible');
         });
 
-        // Toggle logic for the mobile menu
+        // NEW: Toggle logic for the mobile menu
         document.getElementById("menu-toggle").addEventListener("click", function() {
             const menuContainer = document.getElementById("menu-container");
             const toggleButton = this;
             
+            // Toggles the 'active' class to show/hide the menu
             menuContainer.classList.toggle("active");
             
+            // Update ARIA attributes for accessibility
             const isExpanded = menuContainer.classList.contains("active");
             toggleButton.setAttribute("aria-expanded", isExpanded);
         });
