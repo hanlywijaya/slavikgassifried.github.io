@@ -370,7 +370,7 @@ footer a:hover {
     /* Removed redundant .footer styling here as the main footer CSS handles the visibility */
 }
 
-/* Override for the fixed gassylink icon */
+/* Override for the fixed gassylink and mediglare icon */
 #gassyLinkIcon {
     width: 256px;
     height: 256px;
@@ -380,5 +380,17 @@ footer a:hover {
 }
 
 #gassyLinkIcon:hover {
+    transform: none !important; /* Disable hover scale effect */
+}
+
+#mediglareIcon {
+    width: auto;
+    height: 256px;
+    max-width: 768px !important; /* Force fixed width even in media queries */
+    transition: none !important; /* Disable general transitions */
+    transform: none !important; /* Disable general transforms */
+}
+
+#mediglareIcon:hover {
     transform: none !important; /* Disable hover scale effect */
 }
