@@ -103,16 +103,25 @@
         alert("Good choice 😮‍💨 Stay away from the gas!");
       }
     });
+	  
+    /* Logic to show footer only on scroll bottom */
+    const footer = document.querySelector('footer');
+    window.addEventListener('scroll', () => {
+      // Calculate scroll position
+      const scrollY = window.scrollY || window.pageYOffset;
+      const visibleHeight = document.documentElement.clientHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      
+      // When the user scrolls within 100 pixels of the bottom, show the footer
+      const isNearBottom = (scrollY + visibleHeight) >= (totalHeight - 100);
 
-    /* Fade footer only on mobile */
-    const footer = document.querySelector(".footer");
-    window.addEventListener("scroll", () => {
-      if (window.innerWidth <= 768) {
-        footer.style.opacity = window.scrollY > 120 ? "1" : "0";
+      if (isNearBottom) {
+        footer.classList.add('visible');
       } else {
-        footer.style.opacity = "1";
+        footer.classList.remove('visible');
       }
     });
+
 
     /* Fix translate overlap */
     window.addEventListener("load", () => {
