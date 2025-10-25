@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>icebreakers</title>
@@ -151,6 +150,9 @@
     <audio controls>
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
+		<audio id="randomizerSound" preload="auto" style="display: none;">
+    <source src="files/vineboom.mp3" type="audio/mpeg">
+	</audio>
     
     <div class="icebreaker-list-container">
         <h2>Full List of Gassy Icebreakers</h2>
@@ -192,102 +194,106 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Randomizer Logic
-            const randomizeButton = document.getElementById("randomize-btn");
-            const outputDiv = document.getElementById("random-icebreaker-output");
+    document.addEventListener("DOMContentLoaded", function() {
+        // NEW: Get the audio element for the randomizer button
+        const soundEffect = document.getElementById("randomizerSound");
+        
+        // Randomizer Logic
+        const randomizeButton = document.getElementById("randomize-btn");
+        const outputDiv = document.getElementById("random-icebreaker-output");
 
-            randomizeButton.addEventListener("click", () => {
-                // This line automatically finds all icebreakers using their common class.
-                const icebreakers = document.querySelectorAll(".icebreaker-item");
-
-                if (icebreakers.length === 0) {
-                    outputDiv.innerHTML = "<p>No icebreakers found to randomize!</p>";
-                    return;
-                }
-
-                // 1. Select a random index
-                const randomIndex = Math.floor(Math.random() * icebreakers.length);
-
-                // 2. Get the randomly selected icebreaker item
-                const selectedIcebreaker = icebreakers[randomIndex];
-
-                // 3. Extract the title, question, and ANSWER text
-                const titleElement = selectedIcebreaker.querySelector(".icebreaker-title");
-                const questionElement = selectedIcebreaker.querySelector(".icebreaker-question");
-                const answerElement = selectedIcebreaker.querySelector(".icebreaker-answer");
-
-                const title = titleElement ? titleElement.textContent : "Random Icebreaker";
-                const question = questionElement ? questionElement.textContent : "Error: Question not found.";
-                const answer = answerElement ? answerElement.textContent : "No example answer provided.";
-
-                // 4. Update the output HTML to include the question and the answer
-                outputDiv.innerHTML = `
-                    <h3>${title}</h3>
-                    <span class="random-question-text">${question}</span>
-                    <p class="random-answer-text">**Example Answer:** ${answer}</p>
-                `;
-            });
-            // End Randomizer Logic
+        randomizeButton.addEventListener("click", () => {
+            // NEW: Play the sound effect
+            // Rewind to the start allows the sound to be played multiple times quickly
+            soundEffect.currentTime = 0; 
+            soundEffect.play().catch(e => console.error("Audio play failed:", e)); 
             
-            // Existing scripts below
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            // This line automatically finds all icebreakers using their common class.
+            const icebreakers = document.querySelectorAll(".icebreaker-item");
+
+            if (icebreakers.length === 0) {
+                outputDiv.innerHTML = "<p>No icebreakers found to randomize!</p>";
+                return;
             }
 
-            // Make sure the translate function is defined in the global scope for the callback
-            window.googleTranslateElementInit = googleTranslateElementInit;
+            // 1. Select a random index
+            const randomIndex = Math.floor(Math.random() * icebreakers.length);
 
-            document.getElementById("translate-toggle").addEventListener("click", () => {
-                document.getElementById("translate-popup").classList.toggle("hidden");
-            });
+            // 2. Get the randomly selected icebreaker item
+            const selectedIcebreaker = icebreakers[randomIndex];
 
-            document.getElementById("favgLink").addEventListener("click", e => {
-                e.preventDefault();
-                if (confirm("⚠️ WARNING ⚠️\\n\\nYou're about to open SLavik's fav gassyfried video.\\nIt may contain EXTREME gassiness 💨💨💨\\n\\nDo you still want to proceed?")) {
-                    window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
-                } else {
-                    alert("Good choice 😮‍💨 Stay away from the gas!");
-                }
-            });
+            // 3. Extract the title, question, and ANSWER text
+            const titleElement = selectedIcebreaker.querySelector(".icebreaker-title");
+            const questionElement = selectedIcebreaker.querySelector(".icebreaker-question");
+            const answerElement = selectedIcebreaker.querySelector(".icebreaker-answer");
 
-            /* Logic to show footer only on scroll bottom */
-            const footer = document.querySelector('footer');
-            window.addEventListener('scroll', () => {
-                // Calculate scroll position
-                const scrollY = window.scrollY || window.pageYOffset;
-                const visibleHeight = document.documentElement.clientHeight;
-                const totalHeight = document.documentElement.scrollHeight;
-                
-                // When the user scrolls within 100 pixels of the bottom, show the footer
-                const isNearBottom = (scrollY + visibleHeight) >= (totalHeight - 100);
+            const title = titleElement ? titleElement.textContent : "Random Icebreaker";
+            const question = questionElement ? questionElement.textContent : "Error: Question not found.";
+            const answer = answerElement ? answerElement.textContent : "No example answer provided.";
 
-                if (isNearBottom) {
-                    footer.classList.add('visible');
-                } else {
-                    footer.classList.remove('visible');
-                }
-            });
-
-            /* Fix translate overlap */
-            window.addEventListener("load", () => {
-                const translate = document.querySelector(".translate-wrapper");
-                const navbar = document.querySelector(".navbar");
-                const offset = navbar.offsetHeight + 10;
-                translate.style.top = `${offset}px`;
-            });
-
-            /* Prevent cutoff scrolling */
-            document.body.style.overflowY = "auto";
-
-            document.getElementById("menu-toggle").addEventListener("click", function() {
-                const menuContainer = document.getElementById("menu-container");
-                menuContainer.classList.toggle("active");
-                this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
-            });
+            // 4. Update the output HTML to include the question and the answer
+            outputDiv.innerHTML = `
+                <h3>${title}</h3>
+                <span class="random-question-text">${question}</span>
+                <p class="random-answer-text">${answer}</p>
+            `;
         });
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        // End Randomizer Logic
+        
+        // Existing scripts below
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
 
-</body>
-</html>
+        // Make sure the translate function is defined in the global scope for the callback
+        window.googleTranslateElementInit = googleTranslateElementInit;
+
+        document.getElementById("translate-toggle").addEventListener("click", () => {
+            document.getElementById("translate-popup").classList.toggle("hidden");
+        });
+
+        document.getElementById("favgLink").addEventListener("click", e => {
+            e.preventDefault();
+            if (confirm("⚠️ WARNING ⚠️\\n\\nYou're about to open SLavik's fav gassyfried video.\\nIt may contain EXTREME gassiness 💨💨💨\\n\\nDo you still want to proceed?")) {
+                window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
+            } else {
+                alert("Good choice 😮‍💨 Stay away from the gas!");
+            }
+        });
+
+        /* Logic to show footer only on scroll bottom */
+        const footer = document.querySelector('footer');
+        window.addEventListener('scroll', () => {
+            // Calculate scroll position
+            const scrollY = window.scrollY || window.pageYOffset;
+            const visibleHeight = document.documentElement.clientHeight;
+            const totalHeight = document.documentElement.scrollHeight;
+            
+            // When the user scrolls within 100 pixels of the bottom, show the footer
+            const isNearBottom = (scrollY + visibleHeight) >= (totalHeight - 100);
+
+            if (isNearBottom) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        });
+
+        /* Fix translate overlap */
+        window.addEventListener("load", () => {
+            const translate = document.querySelector(".translate-wrapper");
+            const navbar = document.querySelector(".navbar");
+            const offset = navbar.offsetHeight + 10;
+            translate.style.top = `${offset}px`;
+        });
+
+        /* Prevent cutoff scrolling */
+        document.body.style.overflowY = "auto";
+
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menuContainer = document.getElementById("menu-container");
+            menuContainer.classList.toggle("active");
+            this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
+        });
+    });
+</script>
