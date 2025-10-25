@@ -195,7 +195,7 @@
         <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
     </footer>
 
-  <script>
+ <script>
     document.addEventListener("DOMContentLoaded", function() {
         // NEW: Get the audio element for the randomizer button
         const soundEffect = document.getElementById("randomizerSound");
@@ -204,13 +204,41 @@
         const randomizeButton = document.getElementById("randomize-btn");
         const outputDiv = document.getElementById("random-icebreaker-output");
 
+        // Helper function to pause all media except the vineboom sound
+        function pauseOtherMedia() {
+            // Select all <video> and <audio> elements (excluding the vineboom audio)
+            const mediaElements = document.querySelectorAll('video, audio:not(#randomizerSound)');
+            mediaElements.forEach(media => {
+                if (!media.paused && media.currentTime > 0) {
+                    media.pause();
+                    // Store the media element to resume it later
+                    media.setAttribute('data-was-playing', 'true');
+                } else {
+                    media.removeAttribute('data-was-playing');
+                }
+            });
+        }
+
+        // Helper function to resume paused media
+        function resumeMedia() {
+            const mediaElements = document.querySelectorAll('[data-was-playing="true"]');
+            mediaElements.forEach(media => {
+                media.play().catch(e => console.log("Media resume failed:", e));
+                media.removeAttribute('data-was-playing');
+            });
+        }
+
         randomizeButton.addEventListener("click", () => {
             
+            // 1. Pause other media immediately
+            pauseOtherMedia();
+
             // This line automatically finds all icebreakers using their common class.
             const icebreakers = document.querySelectorAll(".icebreaker-item");
 
             if (icebreakers.length === 0) {
                 outputDiv.innerHTML = "<p>No icebreakers found to randomize!</p>";
+                resumeMedia(); // Resume media if we can't do anything
                 return;
             }
 
@@ -228,54 +256,52 @@
             const title = titleElement ? titleElement.textContent : "Random Icebreaker";
             const question = questionElement ? questionElement.textContent : "Error: Question not found.";
             
-            // CLEAN THE ANSWER TEXT: Remove "Example answer -" from the start of the answer.
+            // CLEAN THE ANSWER TEXT
             let answer = answerElement ? answerElement.textContent : "No example answer provided.";
             answer = answer.replace(/Example answer\s*-\s*/i, '').trim(); 
             
             // Combine question and cleaned answer for TTS
             const combinedSpeechText = `${question}. The example answer is: ${answer}`;
             
-            // 4. Update the output HTML to include the question and the answer
+            // 4. Update the output HTML
             outputDiv.innerHTML = `
                 <h3>${title}</h3>
                 <span class="random-question-text">${question}</span>
                 <p class="random-answer-text">Example answer - ${answer}</p>
             `;
 
-            // TTS and Sound Logic
+            // TTS and Sound Logic (Now correctly sequenced)
             if ('speechSynthesis' in window) {
-                // Play sound first
+                
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(combinedSpeechText);
+
+                // Add an event listener to resume media when TTS finishes
+                utterance.onend = function() {
+                    resumeMedia();
+                };
+                utterance.onerror = function(e) {
+                    console.error("TTS Error:", e);
+                    resumeMedia(); // Resume media even if speech fails
+                };
+                
+                // Set voice parameters
+                utterance.rate = 1.1; 
+                utterance.pitch = 1;
+
+                // Play vineboom sound effect
                 soundEffect.currentTime = 0; 
                 soundEffect.play().then(() => {
-                    
-                    // After the sound plays (or immediately if it can't be awaited), start TTS
-                    window.speechSynthesis.cancel();
-                    
-                    const utterance = new SpeechSynthesisUtterance(combinedSpeechText);
-                    
-                    // OPTIONAL: Try to set a more natural voice/rate/pitch
-                    // The 'less robotic' voice depends entirely on the user's browser/OS voices.
-                    // This attempts to set a faster rate and lower pitch for a different effect.
-                    utterance.rate = 1.1; // Slightly faster
-                    utterance.pitch = 1; // Normal pitch 
-                    
-                    // You could try to find a specific voice, but it's not guaranteed to exist:
-                    // const voices = window.speechSynthesis.getVoices();
-                    // utterance.voice = voices.find(v => v.name.includes('Google US English')); // Example
-                    
+                    // This block executes ONLY after the vineboom sound finishes playing
                     window.speechSynthesis.speak(utterance);
-                    
                 }).catch(e => {
-                    console.error("Audio play failed, continuing with TTS:", e);
-                    // Fallback to starting TTS immediately if sound fails
-                    window.speechSynthesis.cancel();
-                    const utterance = new SpeechSynthesisUtterance(combinedSpeechText);
-                    utterance.rate = 1.1;
-                    utterance.pitch = 1;
-                    window.speechSynthesis.speak(utterance);
+                    console.log("Vineboom failed to play or was blocked. Starting TTS immediately.", e);
+                    window.speechSynthesis.speak(utterance); // Fallback to starting TTS immediately
                 });
+                
             } else {
                  console.log("Web Speech API not supported.");
+                 resumeMedia(); // Resume media if TTS isn't supported
             }
         });
         // End Randomizer Logic
