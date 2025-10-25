@@ -32,7 +32,7 @@ h1 {
     color: #101010;
     text-shadow: 0 0 10px #9eff00, 0 0 15px #8aff00;
     font-size: 2.8em;
-    margin-top: 20px;
+    margin-top: 10px;
     animation: glow 2s infinite alternate;
 }
 
@@ -267,7 +267,7 @@ audio {
 footer {
     background-color: #0a0;
     color: white;
-    padding: 20px 10px;
+    padding: 10px 05px;
     text-align: center;
     position: fixed;
     left: 0;
@@ -369,4 +369,17 @@ footer a:hover {
         transition: opacity 0.4s ease;
         opacity: 0; /* starts hidden, matches the opacity setting in the JS */
     }
+}
+
+/* Override for the fixed gassylink icon */
+#gassyLinkIcon {
+    width: 256px;
+    height: 256px;
+    max-width: 256px !important; /* Force fixed width even in media queries */
+    transition: none !important; /* Disable general transitions */
+    transform: none !important; /* Disable general transforms */
+}
+
+#gassyLinkIcon:hover {
+    transform: none !important; /* Disable hover scale effect */
 }
