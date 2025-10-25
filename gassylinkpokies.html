@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gassy Pokies Machine 💨</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import for the arcade look */
+        @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700;900&display=swap');
+        
+        /* Custom styles for the slot machine look */
+        .slot-body {
+            background: linear-gradient(145deg, #a73737, #7a2525);
+            border: 10px solid #ffde00;
+            box-shadow: 0 0 40px rgba(255, 222, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            font-family: 'Bungee', cursive;
+            min-height: 480px;
+        }
+
+        .reels-container {
+            border: 5px solid #ffde00;
+            background-color: #000000;
+            box-shadow: inset 0 0 15px rgba(255, 222, 0, 0.7);
+        }
+
+        .reel {
+            width: 90px;
+            height: 90px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            margin: 0 4px;
+        }
+
+        .symbols {
+            display: flex;
+            flex-direction: column;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1); /* Ease-out cubic for smooth stop */
+        }
+
+        .symbol {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            transition: opacity 0.3s;
+        }
+
+        .spinning .symbols {
+            transition: none; /* Disable transition during fast spinning */
+            animation: fastSpin 0.1s linear infinite;
+        }
+
+        @keyframes fastSpin {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
+        }
+
+        .glow {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #ffde00; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #ffde00; }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4 font-inter">
+
+    <!-- WELCOME MODAL (First-Time Prompt) -->
+    <div id="welcome-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm text-center transform scale-100 transition-transform duration-300">
+            <h3 class="text-3xl font-bold text-red-600 mb-4 font-bungee">GASSYLINK GREETINGS!</h3>
+            <p class="text-lg text-gray-700 font-inter leading-relaxed">
+                "You have just gotten your gassylink money, how about we spend it on the pokies cuz? - **moey**"
+            </p>
+            <button id="close-modal-btn" class="mt-6 w-full py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition active:scale-95">
+                Start Playing!
+            </button>
+        </div>
+    </div>
+    <!-- END MODAL -->
+
+
+    <div class="slot-body w-full max-w-sm mx-auto p-6 rounded-3xl text-white flex flex-col items-center">
+        
+        <!-- Header & Balance -->
+        <h1 class="text-4xl text-yellow-400 mb-2 mt-2 text-center">GASSY SLOTS</h1>
+
+        <div class="flex flex-row justify-between w-full mb-4 text-lg p-2 bg-gray-900 bg-opacity-30 rounded-lg border border-yellow-400">
+            <span>Balance:</span>
+            <span id="balance-value" class="text-2xl text-yellow-300 font-extrabold">$5000.00</span>
+        </div>
+
+        <!-- Bet Selection -->
+        <div class="flex flex-row justify-between w-full mb-6 text-lg p-2 bg-gray-900 bg-opacity-30 rounded-lg border border-yellow-400">
+            <span>Current Bet:</span>
+            <select id="bet-selector" class="bg-gray-700 text-yellow-300 rounded-md p-1 font-bold">
+                <option value="10">10 GassyCoins</option>
+                <option value="50">50 GassyCoins</option>
+                <option value="100">100 GassyCoins</option>
+                <option value="500">500 GassyCoins</option>
+            </select>
+        </div>
+
+
+        <!-- Reels Display Area -->
+        <div class="reels-container flex justify-center p-3 rounded-xl mb-8">
+            <div class="reel" id="reel1"></div>
+            <div class="reel" id="reel2"></div>
+            <div class="reel" id="reel3"></div>
+        </div>
+
+        <!-- Spin Button -->
+        <button 
+            id="spin-button" 
+            disabled 
+            class="w-full py-4 text-3xl rounded-xl font-bold uppercase transition duration-300 transform 
+                   bg-green-600 hover:bg-green-500 text-white 
+                   active:scale-95 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:shadow-none"
+        >
+            SPIN GASS
+        </button>
+
+        <!-- Message Box -->
+        <div id="message-box" class="mt-4 h-12 text-lg text-center font-extrabold text-white">
+            Loading game...
+        </div>
+
+        <!-- Status & User ID -->
+        <div class="mt-6 text-xs text-gray-300 border-t border-gray-700 pt-4 w-full text-center">
+            <p>Status: <span class="text-yellow-300">Balance saved to browser Local Storage.</span></p>
+            <button onclick="localStorage.removeItem('pokies_machine_balance'); localStorage.removeItem('pokies_first_time'); window.location.reload();" 
+                    class="mt-2 text-red-400 hover:text-red-300 transition duration-150 underline">
+                Reset Balance
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Local Storage Logic -->
+    <script>
+        
+        // --- Local Storage Setup ---
+        const BALANCE_KEY = 'pokies_machine_balance';
+        const FIRST_TIME_KEY = 'pokies_first_time'; // New key for the welcome message
+        const INITIAL_BALANCE = 5000; // Updated initial balance
+        let currentBalance = INITIAL_BALANCE;
+        let BET_AMOUNT = 10; // Default bet amount
+
+        // Display elements
+        const balanceDisplay = document.getElementById('balance-value');
+        const spinButton = document.getElementById('spin-button');
+        const messageBox = document.getElementById('message-box');
+        const betSelector = document.getElementById('bet-selector'); // New element
+        
+        // Modal Elements
+        const welcomeModal = document.getElementById('welcome-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+
+        // --- Modal Functions ---
+        function showWelcomeMessage() {
+            welcomeModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            welcomeModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        });
+
+        // --- Core Functions ---
+        
+        function updateBalanceInUI(newBalance, message = '') {
+            currentBalance = newBalance;
+            balanceDisplay.textContent = newBalance.toFixed(2);
+            messageBox.innerHTML = message;
+
+            if (message.includes('WINNER') || message.includes('JACKPOT')) {
+                messageBox.classList.add('glow', 'text-yellow-400');
+            } else {
+                messageBox.classList.remove('glow', 'text-yellow-400');
+            }
+        }
+
+        function loadBalance() {
+            try {
+                const storedBalance = localStorage.getItem(BALANCE_KEY);
+                if (storedBalance !== null) {
+                    currentBalance = parseFloat(storedBalance);
+                } else {
+                    currentBalance = INITIAL_BALANCE;
+                    localStorage.setItem(BALANCE_KEY, INITIAL_BALANCE.toFixed(2));
+                }
+                updateBalanceInUI(currentBalance, 'Welcome! Select your bet and hit SPIN GASS.');
+
+                // Check for first-time play (after setting initial balance if needed)
+                if (localStorage.getItem(FIRST_TIME_KEY) === null) {
+                    localStorage.setItem(FIRST_TIME_KEY, 'true'); // Set flag immediately
+                    showWelcomeMessage(); 
+                }
+
+            } catch (e) {
+                console.error("Error loading balance from Local Storage: ", e);
+                updateBalanceInUI(INITIAL_BALANCE, '<span class="text-red-500">Error loading data. Playing offline.</span>');
+            }
+        }
+        
+        function saveBalance() {
+             try {
+                localStorage.setItem(BALANCE_KEY, currentBalance.toFixed(2));
+             } catch (e) {
+                 console.error("Error saving balance to Local Storage: ", e);
+             }
+        }
+        
+        // --- Slot Machine Logic ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBalance(); // Load balance and show modal if first time
+            
+            const reels = [
+                document.getElementById('reel1'),
+                document.getElementById('reel2'),
+                document.getElementById('reel3'),
+            ];
+            const SYMBOLS = ['🍒', '🍊', '🔔', '💎', '7️⃣'];
+            const SYMBOL_HEIGHT = 90; // Must match CSS
+
+            // Initialize BET_AMOUNT from selector and listen for changes
+            BET_AMOUNT = parseInt(betSelector.value);
+            betSelector.addEventListener('change', (e) => {
+                BET_AMOUNT = parseInt(e.target.value);
+            });
+
+            // Enable spin button after loading
+            spinButton.disabled = false;
+
+
+            // Generate symbol strips inside each reel
+            function populateReels() {
+                reels.forEach(reel => {
+                    const container = document.createElement('div');
+                    container.className = 'symbols';
+                    
+                    for (let i = 0; i < SYMBOLS.length * 20; i++) {
+                        const symbolDiv = document.createElement('div');
+                        symbolDiv.className = 'symbol';
+                        symbolDiv.textContent = SYMBOLS[i % SYMBOLS.length];
+                        container.appendChild(symbolDiv);
+                    }
+                    reel.appendChild(container);
+                });
+            }
+
+            populateReels();
+
+
+            function checkWin(results) {
+                const [r1, r2, r3] = results;
+                let winAmount = 0;
+                let message = 'No Match. Try again!';
+                
+                const Payouts = {
+                    '7️⃣': { match3: 100, match2: 5 },
+                    '💎': { match3: 50, match2: 3 },
+                    '🔔': { match3: 20, match2: 2 },
+                    '🍒': { match3: 10, match2: 1 },
+                    '🍊': { match3: 10, match2: 1 }
+                };
+                
+                if (r1 === r2 && r2 === r3) {
+                    const symbol = r1;
+                    const multiplier = Payouts[symbol]?.match3 || 10;
+                    winAmount = BET_AMOUNT * multiplier;
+                    message = symbol === '7️⃣' ? `JACKPOT! ${winAmount}$ WINNER!` : `${symbol}x3! ${winAmount}$ WINNER!`;
+                } 
+                else if (r1 === r2 || r2 === r3) {
+                    const symbol = (r1 === r2) ? r1 : r2;
+                    const multiplier = Payouts[symbol]?.match2 || 1;
+                    if (multiplier > 1) { 
+                        winAmount = BET_AMOUNT * multiplier;
+                        message = `2x ${symbol} Match! ${winAmount}$ Win!`;
+                    }
+                }
+                
+                return { winAmount, message };
+            }
+
+            function getFinalSymbol(reelIndex, stopIndex) {
+                // The result is the middle symbol (offset + 1)
+                return SYMBOLS[(stopIndex + 1) % SYMBOLS.length];
+            }
+
+            // The main game loop
+            spinButton.addEventListener('click', async () => {
+                if (currentBalance < BET_AMOUNT) {
+                    messageBox.innerHTML = `<span class="text-red-500">Insufficient funds! ${BET_AMOUNT}$ required.</span>`;
+                    return;
+                }
+
+                // 1. Deduct bet and disable button
+                updateBalanceInUI(currentBalance - BET_AMOUNT, 'Spinning...');
+                spinButton.disabled = true;
+                
+                // 2. Prepare the reels for spinning
+                const spinPromises = [];
+                const finalResults = [];
+
+                reels.forEach((reel, index) => {
+                    const symbolsContainer = reel.querySelector('.symbols');
+                    symbolsContainer.classList.add('spinning');
+                    
+                    symbolsContainer.style.transform = 'translateY(0)';
+                    symbolsContainer.ontransitionend = null; 
+
+                    const stopSymbolIndex = Math.floor(Math.random() * SYMBOLS.length);
+                    const totalSpinPositions = SYMBOLS.length * 10;
+                    const finalStopIndex = totalSpinPositions + stopSymbolIndex; 
+                    
+                    const finalY = -1 * (finalStopIndex * SYMBOL_HEIGHT);
+                    
+                    finalResults[index] = getFinalSymbol(index, stopSymbolIndex);
+
+                    const delay = 1000 + (index * 500); 
+
+                    spinPromises.push(new Promise((resolve) => {
+                        setTimeout(() => {
+                            symbolsContainer.classList.remove('spinning');
+                            symbolsContainer.style.transitionDuration = `${2 + (index * 0.5)}s`;
+                            symbolsContainer.style.transform = `translateY(${finalY}px)`;
+                            
+                            symbolsContainer.ontransitionend = () => {
+                                resolve();
+                            };
+                        }, delay);
+                    }));
+                });
+
+                // 3. Wait for all reels to stop
+                await Promise.all(spinPromises);
+
+                // 4. Check results and update balance
+                const { winAmount, message } = checkWin(finalResults);
+                
+                updateBalanceInUI(currentBalance + winAmount, message);
+                saveBalance(); // Save balance to Local Storage
+
+                // 5. Re-enable button
+                spinButton.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
