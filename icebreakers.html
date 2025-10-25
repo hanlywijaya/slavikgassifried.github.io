@@ -6,6 +6,81 @@
     <title>icebreakers</title>
     <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_148w3c148w3c148w copy.png">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS for the new randomizer section */
+
+        .randomizer-section {
+            border: 3px dashed #8b0000; /* Dark red/maroon dashed border */
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            max-width: 600px;
+            background-color: #f7f7f7; /* Light background for contrast */
+            border-radius: 10px;
+        }
+
+        #random-icebreaker-output {
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            min-height: 50px; /* Ensure space even when empty */
+        }
+
+        #randomize-btn {
+            background-color: #008000; /* Green button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #randomize-btn:hover {
+            background-color: #006400; /* Darker green on hover */
+        }
+
+        .random-question-text {
+            color: #8b0000; /* Prominent color for the question */
+            font-style: italic;
+            display: block;
+            margin: 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .random-answer-text {
+            color: #00008b; /* Blue/Navy color for the answer */
+            font-size: 1.1em;
+            font-style: normal;
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px solid #ccc;
+        }
+
+        /* Styling for the visible icebreaker list */
+        .icebreaker-list-container {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid #333;
+        }
+        .icebreaker-item-visible {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-left: 5px solid #8b0000;
+        }
+        .icebreaker-item-visible h2 {
+            margin-top: 0;
+            color: #8b0000;
+        }
+        .icebreaker-item-visible .icebreaker-answer {
+            font-style: italic;
+            color: #00008b;
+        }
+    </style>
 </head>
 <body>
 
@@ -39,26 +114,14 @@
             <div id="google_translate_element"></div>
         </div>
     </div>
-    <h2>Icebreaker 1</h2>
-    <p2>Is it more weird to jerk off with your legs spread out or to jerk off with headphones on?</p2><br>
-    Example answer - Jerk off with headphones obviously bro
 
-    <h2>Icebreaker 2</h2>
-    <p2>If a lab grew a piece of artificial human meat, would you eat it? It could be any body part or limb.</p2><br>
-    Example answer- I'd eat that penis clean no doubt.
-
-    <h2>Icebreaker 3</h2>
-    <p2>If you carved a penis out on a snowman, what would you do with it?</p2><br>
-    Example answer - I'd start bouncing on it.
-
-    <h2>Icebreaker 4</h2>
-    <p2>What sounds better as a synonym for masturbating?: a) jerking b) busting c) nutting d) cumming</p2><br>
-    Example answer - Obviously jerking bro what else
-	
-    <h2>Icebreaker 5</h2>
-    <p2>ould you rather have sex with your mum or have your dad have sex with you (he’s on top) 🤔 </p2><br>
-    Example answer - Hard one, I'd go with my Dad cuz im a femboy
-
+    <div class="randomizer-section">
+        <h2>Your Random Gassy Icebreaker 🎲</h2>
+        <button id="randomize-btn" class="btn">Gassify Me an Icebreaker 💨</button>
+        <div id="random-icebreaker-output">
+            <p>Click the button to get your first icebreaker!</p>
+        </div>
+    </div>
     <ul class="fun-list">
         <li>SLava</li>
         <li>is</li>
@@ -89,62 +152,139 @@
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
     
+    <div class="icebreaker-list-container">
+        <h2>Full List of Gassy Icebreakers</h2>
+        <div id="icebreakers-list">
+            <div class="icebreaker-item icebreaker-item-visible">
+                <h2 class="icebreaker-title">Icebreaker 1</h2>
+                <p class="icebreaker-question">Is it more weird to jerk off with your legs spread out or to jerk off with headphones on?</p>
+                <p class="icebreaker-answer">Example answer - Jerk off with headphones obviously bro</p>
+            </div>
+
+            <div class="icebreaker-item icebreaker-item-visible">
+                <h2 class="icebreaker-title">Icebreaker 2</h2>
+                <p class="icebreaker-question">If a lab grew a piece of artificial human meat, would you eat it? It could be any body part or limb.</p>
+                <p class="icebreaker-answer">Example answer- I'd eat that penis clean no doubt.</p>
+            </div>
+
+            <div class="icebreaker-item icebreaker-item-visible">
+                <h2 class="icebreaker-title">Icebreaker 3</h2>
+                <p class="icebreaker-question">If you carved a penis out on a snowman, what would you do with it?</p>
+                <p class="icebreaker-answer">Example answer - I'd start bouncing on it.</p>
+            </div>
+
+            <div class="icebreaker-item icebreaker-item-visible">
+                <h2 class="icebreaker-title">Icebreaker 4</h2>
+                <p class="icebreaker-question">What sounds better as a synonym for masturbating?: a) jerking b) busting c) nutting d) cumming</p>
+                <p class="icebreaker-answer">Example answer - Obviously jerking bro what else</p>
+            </div>
+            
+            <div class="icebreaker-item icebreaker-item-visible">
+                <h2 class="icebreaker-title">Icebreaker 5</h2>
+                <p class="icebreaker-question">Would you rather have sex with your mum or have your dad have sex with you (he’s on top) 🤔</p>
+                <p class="icebreaker-answer">Example answer - Hard one, I'd go with my Dad cuz im a femboy</p>
+            </div>
+        </div>
+    </div>
     <footer class="footer">
         <p>Made with 💨 Bionic Fart Green Power by the one and only Gassy SLavik >_< 👉👈</p>
         <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
     </footer>
 
     <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Randomizer Logic
+            const randomizeButton = document.getElementById("randomize-btn");
+            const outputDiv = document.getElementById("random-icebreaker-output");
 
-        document.getElementById("translate-toggle").addEventListener("click", () => {
-            document.getElementById("translate-popup").classList.toggle("hidden");
-        });
+            randomizeButton.addEventListener("click", () => {
+                // This line automatically finds all icebreakers using their common class.
+                const icebreakers = document.querySelectorAll(".icebreaker-item");
 
-        document.getElementById("favgLink").addEventListener("click", e => {
-            e.preventDefault();
-            if (confirm("⚠️ WARNING ⚠️\\n\\nYou're about to open SLavik's fav gassyfried video.\\nIt may contain EXTREME gassiness 💨💨💨\\n\\nDo you still want to proceed?")) {
-                window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
-            } else {
-                alert("Good choice 😮‍💨 Stay away from the gas!");
+                if (icebreakers.length === 0) {
+                    outputDiv.innerHTML = "<p>No icebreakers found to randomize!</p>";
+                    return;
+                }
+
+                // 1. Select a random index
+                const randomIndex = Math.floor(Math.random() * icebreakers.length);
+
+                // 2. Get the randomly selected icebreaker item
+                const selectedIcebreaker = icebreakers[randomIndex];
+
+                // 3. Extract the title, question, and ANSWER text
+                const titleElement = selectedIcebreaker.querySelector(".icebreaker-title");
+                const questionElement = selectedIcebreaker.querySelector(".icebreaker-question");
+                const answerElement = selectedIcebreaker.querySelector(".icebreaker-answer");
+
+                const title = titleElement ? titleElement.textContent : "Random Icebreaker";
+                const question = questionElement ? questionElement.textContent : "Error: Question not found.";
+                const answer = answerElement ? answerElement.textContent : "No example answer provided.";
+
+                // 4. Update the output HTML to include the question and the answer
+                outputDiv.innerHTML = `
+                    <h3>${title}</h3>
+                    <span class="random-question-text">${question}</span>
+                    <p class="random-answer-text">**Example Answer:** ${answer}</p>
+                `;
+            });
+            // End Randomizer Logic
+            
+            // Existing scripts below
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
             }
-        });
 
-		    /* Logic to show footer only on scroll bottom */
-    const footer = document.querySelector('footer');
-    window.addEventListener('scroll', () => {
-      // Calculate scroll position
-      const scrollY = window.scrollY || window.pageYOffset;
-      const visibleHeight = document.documentElement.clientHeight;
-      const totalHeight = document.documentElement.scrollHeight;
-      
-      // When the user scrolls within 100 pixels of the bottom, show the footer
-      const isNearBottom = (scrollY + visibleHeight) >= (totalHeight - 100);
+            // Make sure the translate function is defined in the global scope for the callback
+            window.googleTranslateElementInit = googleTranslateElementInit;
 
-      if (isNearBottom) {
-        footer.classList.add('visible');
-      } else {
-        footer.classList.remove('visible');
-      }
-    });
+            document.getElementById("translate-toggle").addEventListener("click", () => {
+                document.getElementById("translate-popup").classList.toggle("hidden");
+            });
 
-        /* Fix translate overlap */
-        window.addEventListener("load", () => {
-            const translate = document.querySelector(".translate-wrapper");
-            const navbar = document.querySelector(".navbar");
-            const offset = navbar.offsetHeight + 10;
-            translate.style.top = `${offset}px`;
-        });
+            document.getElementById("favgLink").addEventListener("click", e => {
+                e.preventDefault();
+                if (confirm("⚠️ WARNING ⚠️\\n\\nYou're about to open SLavik's fav gassyfried video.\\nIt may contain EXTREME gassiness 💨💨💨\\n\\nDo you still want to proceed?")) {
+                    window.open("https://www.youtube.com/watch?v=eS7svjrghmc", "_blank");
+                } else {
+                    alert("Good choice 😮‍💨 Stay away from the gas!");
+                }
+            });
 
-        /* Prevent cutoff scrolling */
-        document.body.style.overflowY = "auto";
+            /* Logic to show footer only on scroll bottom */
+            const footer = document.querySelector('footer');
+            window.addEventListener('scroll', () => {
+                // Calculate scroll position
+                const scrollY = window.scrollY || window.pageYOffset;
+                const visibleHeight = document.documentElement.clientHeight;
+                const totalHeight = document.documentElement.scrollHeight;
+                
+                // When the user scrolls within 100 pixels of the bottom, show the footer
+                const isNearBottom = (scrollY + visibleHeight) >= (totalHeight - 100);
 
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            const menuContainer = document.getElementById("menu-container");
-            menuContainer.classList.toggle("active");
-            this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
+                if (isNearBottom) {
+                    footer.classList.add('visible');
+                } else {
+                    footer.classList.remove('visible');
+                }
+            });
+
+            /* Fix translate overlap */
+            window.addEventListener("load", () => {
+                const translate = document.querySelector(".translate-wrapper");
+                const navbar = document.querySelector(".navbar");
+                const offset = navbar.offsetHeight + 10;
+                translate.style.top = `${offset}px`;
+            });
+
+            /* Prevent cutoff scrolling */
+            document.body.style.overflowY = "auto";
+
+            document.getElementById("menu-toggle").addEventListener("click", function() {
+                const menuContainer = document.getElementById("menu-container");
+                menuContainer.classList.toggle("active");
+                this.setAttribute("aria-expanded", menuContainer.classList.contains("active"));
+            });
         });
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
