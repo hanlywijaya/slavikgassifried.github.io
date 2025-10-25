@@ -147,6 +147,7 @@ p {
     background-color: #111;
     color: #9eff00;
     padding: 10px 20px;
+	margin: 10px;
     border-radius: 5px;
     cursor: pointer;
     border: none;
@@ -167,6 +168,34 @@ p {
 }
 
 .btn:active {
+    transform: translateY(1px);
+}
+
+.btng {
+    background-color: #111;
+    color: #9eff00;
+    padding: 20px 30px;
+	margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+	font-family: 'Trebuchet MS', sans-serif;
+    font-size: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 0 0 10px #7fff00;
+}
+
+.btng:hover {
+    background-color: #faff00;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px #faff00;
+}
+
+.btng:active {
     transform: translateY(1px);
 }
 
