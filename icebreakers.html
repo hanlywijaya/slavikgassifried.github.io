@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>icebreakers</title>
@@ -83,25 +84,25 @@
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="navbar-content">
-      <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="48" width="84" alt="Gassing slavik" class="navbar-logo" />
-      <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-      <div class="menu-container" id="menu-container">
-        <div class="menu">
-          <button class="btn" onClick="window.location.href='index'" target="_self">gassyhome</button>
-          <button class="btn" onClick="window.location.href='gassygames'" target="_self">gassygames</button>
-          <button class="btn" onClick="window.location.href='images'" target="_self">gassygalleries</button>
-          <button class="btn" onClick="window.location.href='icebreakers'" target="_self">gassyicebreakers</button>
-          <button class="btn" onClick="window.location.href='gassylink'" target="_self">gassylink</button>
-		  <button class="btn" onClick="window.location.href='mediglare'" target="_self">mediglare</button>
-		  <button class="btn" onClick="window.location.href='https://tinyurl.com/2vzubenv'" target="_self">dogeub</button>
-          <button class="btn" id="favgLink">favgassyfried</button>
-        </div>
-  </nav>
-  
+    <nav class="navbar">
+        <div class="navbar-content">
+            <img src="files/Gemini_Generated_Image_148w3c148w3c148w copy.png" height="48" width="84" alt="Gassing slavik" class="navbar-logo" />
+            <button class="menu-toggle" id="menu-toggle" aria-controls="menu-container" aria-expanded="false">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <div class="menu-container" id="menu-container">
+                <div class="menu">
+                    <button class="btn" onClick="window.location.href='index'" target="_self">gassyhome</button>
+                    <button class="btn" onClick="window.location.href='gassygames'" target="_self">gassygames</button>
+                    <button class="btn" onClick="window.location.href='images'" target="_self">gassygalleries</button>
+                    <button class="btn" onClick="window.location.href='icebreakers'" target="_self">gassyicebreakers</button>
+                    <button class="btn" onClick="window.location.href='gassylink'" target="_self">gassylink</button>
+                    <button class="btn" onClick="window.location.href='mediglare'" target="_self">mediglare</button>
+                    <button class="btn" onClick="window.location.href='https://tinyurl.com/2vzubenv'" target="_self">dogeub</button>
+                    <button class="btn" id="favgLink">favgassyfried</button>
+                </div>
+    </nav>
+    
     <header>
         <h1>Welcome to our incredible slavikgassifried icebreakers</h1>
         <p>This is an amazing fanpage website run by the fans of SLavik gassy!
@@ -151,7 +152,7 @@
     <audio controls>
         <source src="files/Somebody get the door for Hulk.mp3" type="audio/mpeg">
     </audio>
-		<audio id="randomizerSound" preload="auto" style="display: none;">
+    <audio id="randomizerSound" preload="auto" style="display: none;">
     <source src="files/vineboom.mp3" type="audio/mpeg">
 	</audio>
     
@@ -194,7 +195,7 @@
         <p><a href="index.html"> &copy; 2025 slavikgassifried</a></p>
     </footer>
 
-    <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
         // NEW: Get the audio element for the randomizer button
         const soundEffect = document.getElementById("randomizerSound");
@@ -204,10 +205,6 @@
         const outputDiv = document.getElementById("random-icebreaker-output");
 
         randomizeButton.addEventListener("click", () => {
-            // NEW: Play the sound effect
-            // Rewind to the start allows the sound to be played multiple times quickly
-            soundEffect.currentTime = 0; 
-            soundEffect.play().catch(e => console.error("Audio play failed:", e)); 
             
             // This line automatically finds all icebreakers using their common class.
             const icebreakers = document.querySelectorAll(".icebreaker-item");
@@ -230,14 +227,56 @@
 
             const title = titleElement ? titleElement.textContent : "Random Icebreaker";
             const question = questionElement ? questionElement.textContent : "Error: Question not found.";
-            const answer = answerElement ? answerElement.textContent : "No example answer provided.";
-
+            
+            // CLEAN THE ANSWER TEXT: Remove "Example answer -" from the start of the answer.
+            let answer = answerElement ? answerElement.textContent : "No example answer provided.";
+            answer = answer.replace(/Example answer\s*-\s*/i, '').trim(); 
+            
+            // Combine question and cleaned answer for TTS
+            const combinedSpeechText = `${question}. The example answer is: ${answer}`;
+            
             // 4. Update the output HTML to include the question and the answer
             outputDiv.innerHTML = `
                 <h3>${title}</h3>
                 <span class="random-question-text">${question}</span>
-                <p class="random-answer-text">${answer}</p>
+                <p class="random-answer-text">Example answer - ${answer}</p>
             `;
+
+            // TTS and Sound Logic
+            if ('speechSynthesis' in window) {
+                // Play sound first
+                soundEffect.currentTime = 0; 
+                soundEffect.play().then(() => {
+                    
+                    // After the sound plays (or immediately if it can't be awaited), start TTS
+                    window.speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(combinedSpeechText);
+                    
+                    // OPTIONAL: Try to set a more natural voice/rate/pitch
+                    // The 'less robotic' voice depends entirely on the user's browser/OS voices.
+                    // This attempts to set a faster rate and lower pitch for a different effect.
+                    utterance.rate = 1.1; // Slightly faster
+                    utterance.pitch = 1; // Normal pitch 
+                    
+                    // You could try to find a specific voice, but it's not guaranteed to exist:
+                    // const voices = window.speechSynthesis.getVoices();
+                    // utterance.voice = voices.find(v => v.name.includes('Google US English')); // Example
+                    
+                    window.speechSynthesis.speak(utterance);
+                    
+                }).catch(e => {
+                    console.error("Audio play failed, continuing with TTS:", e);
+                    // Fallback to starting TTS immediately if sound fails
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(combinedSpeechText);
+                    utterance.rate = 1.1;
+                    utterance.pitch = 1;
+                    window.speechSynthesis.speak(utterance);
+                });
+            } else {
+                 console.log("Web Speech API not supported.");
+            }
         });
         // End Randomizer Logic
         
@@ -298,3 +337,6 @@
         });
     });
 </script>
+
+</body>
+</html>
